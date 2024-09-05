@@ -1,0 +1,145 @@
+.img-registro {
+  background: url("./../../../assets/chill-bg.jpg") no-repeat center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  /* z-index: -1; */
+}
+
+.registro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.card {
+  border: 2.5px solid white;
+  background: rgba(136, 134, 134, 0.4);
+  width: 90%;
+  max-width: 1300px;
+  padding: 20px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  font-family: "Metal Mania", cursive;
+  font-size: 64px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+.registro-input,
+.registro-input-medio,
+.registro-input-pequenio {
+  display: flex;
+  flex-direction: center;
+  font-family: "Metal Mania", cursive;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.registro-input input {
+  border: 2.5px solid rgb(45, 45, 45);
+  font-size: 24px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  width: 100%;
+}
+
+.registro-input-medio input {
+  border: 2.5px solid rgb(45, 45, 45);
+  font-size: 24px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  width: 47.5%;
+}
+
+.registro-input-pequenio input {
+  border: 2.5px solid rgb(45, 45, 45);
+  font-size: 24px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  width: 14%;
+}
+
+.registro-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registro-btn button {
+  border: 2.5px solid rgb(45, 45, 45);
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 36px;
+  font-weight: 500;
+  font-family: "Metal Mania", cursive;
+  cursor: pointer;
+}
+
+.registro-info {
+  margin-top: 12px;
+}
+
+.registro-info p {
+  color: rgba(251, 251, 251, 0.85);
+  font-size: 18px;
+}
+
+.registro-info img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .registro-input,
+  .registro-input-medio,
+  .registro-input-pequenio {
+    display: flex;
+    flex-direction: center;
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+
+  .registro-input input {
+    flex-direction: column;
+    border: 2.5px solid rgb(45, 45, 45);
+    font-size: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .registro-input-medio input {
+    flex-direction: column;
+    border: 2.5px solid rgb(45, 45, 45);
+    font-size: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 45%;
+  }
+
+  .registro-input-pequenio input {
+    border: 2.5px solid rgb(45, 45, 45);
+    font-size: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 20%;
+  }
+}

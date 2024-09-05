@@ -1,0 +1,79 @@
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  padding-bottom: -20px;
+  color: rgb(187, 40, 40);
+  font-family: "Press Start 2P", cursive;
+  font-size: 64px;
+  font-weight: 700;
+}
+
+.msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2.5px solid white;
+  margin: 8% 30%;
+  padding-top: 35px;
+  background: rgba(136, 134, 134, 0.4);
+  font-family: "Press Start 2P", cursive;
+}
+
+.error-msg {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 500;
+  color: rgb(170, 12, 12);
+  margin-top: -5px;
+  margin-bottom: -2px;
+}
+
+.retry-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.retry-btn button {
+  margin: 20px;
+  border: 2px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 4px;
+  font-size: 36px;
+  font-weight: 500;
+  color: black;
+  font-family: "Press Start 2P", cursive;
+  cursor: pointer;
+}
+
+/* .retry-btn button {
+  background: rgb(203, 63, 63);
+} */
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 60px;
+  }
+
+  .msg {
+    margin: 8% 20%;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 56px;
+  }
+
+  .msg {
+    margin: 8% 3%;
+  }
+
+  .retry-btn button {
+    font-size: 22px;
+  }
+}

@@ -1,0 +1,40 @@
+<div class="img-login">
+  <div class="login">
+    <div class="card text-center">
+      <div>
+        <h1 class="title">{{ title }}</h1>
+      </div>
+      <div class="card-body">
+        <div class="login-input">
+          <input
+            type="email"
+            id="inputUser"
+            class="form-control"
+            placeholder="{{ txtPrimero }}"
+            [(ngModel)]="userIngresado"
+          />
+          <input
+            type="password"
+            id="inputPass"
+            class="form-control"
+            aria-describedby="passwordHelpBlock"
+            placeholder="{{ txtSegundo }}"
+            [(ngModel)]="claveIngresado"
+          />
+        </div>
+        <div class="login-btn">
+          <button type="button" class="btn btn-light" (click)="loguear()">
+            Login
+          </button>
+        </div>
+      </div>
+      <div class="register-info">
+        <p>
+          Si no estás registrado, entra a
+          <a (click)="registro()">Registrar</a> para crear una cuenta
+          <img src="assets/icon-clean.png" alt="icono" />
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,155 @@
+.img-login {
+  background: url("./../../../assets/chill-bg.jpg") no-repeat center fixed;
+  background-size: cover;
+  min-height: 100vh;
+  /* z-index: -1; */
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 30%;
+  padding-top: 120px;
+}
+
+.card {
+  border: 2.5px solid white;
+  background: rgba(136, 134, 134, 0.4);
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  margin-bottom: 24px;
+  padding-bottom: -20px;
+  font-family: "Metal Mania", cursive;
+  font-size: 64px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+.login-input {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+}
+
+.login-input input {
+  border: 2.5px solid rgb(45, 45, 45);
+  font-size: 32px;
+  font-weight: 500;
+  font-family: "Metal Mania", cursive;
+  width: 90%;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  margin-left: 34px;
+  margin-right: 34px;
+}
+
+.login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 20px;
+}
+
+.login-btn button {
+  border: 2.5px solid rgb(45, 45, 45);
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 36px;
+  font-weight: 500;
+  font-family: "Metal Mania", cursive;
+  cursor: pointer;
+}
+
+.register-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: rgba(251, 251, 251, 0.85);
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.register-info p {
+  margin: 10px;
+}
+
+.register-info img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.register-info a {
+  color: #ffc371;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: "Metal Mania", cursive;
+  cursor: pointer;
+}
+
+.register-info a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  .title {
+    font-size: 60px;
+  }
+
+  .login {
+    margin: 0 18%;
+  }
+
+  .login-input {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .register-info {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .login {
+    margin: 0;
+  }
+
+  .login-input {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .login-input input {
+    font-size: 24px;
+  }
+
+  .login-btn button {
+    font-size: 26px;
+  }
+
+  .register-info {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

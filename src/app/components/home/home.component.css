@@ -1,0 +1,22 @@
+.home-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.title-app {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-size: 66px;
+  font-family: "Metal Mania", cursive;
+  margin: 0;
+}
+
+.home-icon {
+  height: 70px;
+  width: 70px;
+  margin-left: -12px;
+  margin-right: 8px;
+}

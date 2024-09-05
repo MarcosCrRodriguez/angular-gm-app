@@ -1,0 +1,129 @@
+<!-- <div class="registro">
+  <div class="card text-center">
+    <div>
+      <h1 class="title">{{ title }}</h1>
+    </div>
+    <div class="card-body">
+      <div class="login-input">
+        <input
+          type="text"
+          id="inputUser"
+          class="form-control"
+          placeholder="Usuario"
+          [(ngModel)]="userIngresado"
+        />
+        <input
+          type="password"
+          id="inputPass"
+          class="form-control"
+          aria-describedby="passwordHelpBlock"
+          placeholder="{{ txtSegundo }}"
+          [(ngModel)]="claveIngresado"
+        />
+      </div>
+      <div class="login-btn">
+        <button type="button" class="btn btn-light" (click)="registrar()">
+          Login
+        </button>
+      </div>
+    </div>
+    <div class="register-info">
+      <p>
+        Si no estás registrado, entra a
+        <a routerLink="/registro">Registrar</a> para crear una cuenta
+        <img src="assets/icon-clean.png" alt="icono" />
+      </p>
+    </div>
+  </div>
+</div> -->
+<div class="img-registro">
+  <div class="registro">
+    <div class="card text-center">
+      <div>
+        <h1 class="title">{{ title }}</h1>
+      </div>
+      <div class="card-body">
+        <div class="registro-input">
+          <input
+            type="text"
+            id="inputUser"
+            class="form-control"
+            placeholder="{{ txtSeptimo }}"
+            [(ngModel)]="usuarioIngresado"
+          />
+          <input
+            type="text"
+            id="inputPass"
+            class="form-control"
+            placeholder="{{ txtOctavo }}"
+            [(ngModel)]="contraseniaIngresado"
+          />
+        </div>
+        <div class="registro-input">
+          <input
+            type="text"
+            id="inputNombre"
+            class="form-control"
+            placeholder="{{ txtPrimero }}"
+            [(ngModel)]="userIngresado"
+          />
+          <input
+            type="text"
+            id="inputApellido"
+            class="form-control"
+            aria-describedby="passwordHelpBlock"
+            placeholder="{{ txtSegundo }}"
+            [(ngModel)]="claveIngresado"
+          />
+        </div>
+        <div class="registro-input-medio">
+          <input
+            type="text"
+            id="inputEdad"
+            class="form-control"
+            placeholder="{{ txtTercero }}"
+            [(ngModel)]="edadIngresado"
+          />
+        </div>
+        <div class="registro-input-pequenio">
+          <input
+            type="text"
+            id="inputDia"
+            class="form-control"
+            placeholder="{{ txtCuarto }}"
+            [(ngModel)]="diaIngresado"
+          />
+          <input
+            type="text"
+            id="inputMes"
+            class="form-control"
+            placeholder="{{ txtQuinto }}"
+            [(ngModel)]="mesIngresado"
+          />
+          <input
+            type="text"
+            id="inputAnio"
+            class="form-control"
+            placeholder="{{ txtSexto }}"
+            [(ngModel)]="anioIngresado"
+          />
+        </div>
+        <div class="registro-btn">
+          <button type="button" class="btn btn-light" (click)="loguear()">
+            Volver a Login
+          </button>
+          <button type="button" class="btn btn-warning" (click)="registrar()">
+            Registrar
+          </button>
+        </div>
+      </div>
+      <div class="registro-info">
+        <p>
+          Te invito a conocer un nuevo espacio interactivo, para que puedas
+          pasar tiempo y disfrutar de los juegos
+          <img src="assets/icon-clean.png" alt="icono" />
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
