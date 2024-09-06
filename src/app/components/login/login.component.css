@@ -1,8 +1,11 @@
 .img-login {
   background: url("./../../../assets/chill-bg.jpg") no-repeat center fixed;
   background-size: cover;
+  min-height: 100%;
+  width: 100%;
+  /* background-size: cover;
   min-height: 100vh;
-  /* z-index: -1; */
+  z-index: -1; */
 }
 
 .login {
@@ -12,6 +15,7 @@
   flex-direction: column;
   margin: 0 30%;
   padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 .card {
@@ -48,7 +52,7 @@
   font-family: "Metal Mania", cursive;
   width: 90%;
   margin-top: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
   margin-left: 34px;
   margin-right: 34px;
 }

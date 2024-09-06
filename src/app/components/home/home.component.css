@@ -17,6 +17,21 @@
 .home-icon {
   height: 70px;
   width: 70px;
-  margin-left: -12px;
-  margin-right: 8px;
+  margin-left: -15px;
+  margin-right: 7px;
+}
+
+.inicio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 40%;
+}
+
+.inicio p {
+  font-size: 24px;
+  margin-top: 10px;
+  color: #fff;
+  font-family: "Metal Mania", cursive;
 }

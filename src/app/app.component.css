@@ -1,8 +1,9 @@
 .pp {
-  background: url("./../assets/luthadel.jpeg") no-repeat center fixed;
+  background: #555;
   background-size: cover;
-  min-height: 100vh;
-  /* z-index: -1; */
+  min-height: 40vh;
+  background-attachment: scroll;
+  z-index: -1;
 }
 
 .navbar {
@@ -63,6 +64,35 @@
 }
 
 .title-app:hover {
+  color: #ffcc80;
+  transition: 0.3s;
+}
+
+.footer-app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #333;
+  min-height: 16vh;
+}
+
+.home-icon {
+  height: 70px;
+  width: 70px;
+  margin-left: -16px;
+  margin-right: 6px;
+}
+
+.title-footer {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+  font-size: 64px;
+  font-family: "Metal Mania", cursive;
+  margin: 0;
+}
+
+.title-footer:hover {
   color: #ffcc80;
   transition: 0.3s;
 }
