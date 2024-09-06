@@ -44,69 +44,101 @@
       </div>
       <div class="card-body">
         <div class="registro-input">
-          <input
-            type="text"
-            id="inputUser"
-            class="form-control"
-            placeholder="{{ txtSeptimo }}"
-            [(ngModel)]="usuarioIngresado"
-          />
-          <input
-            type="text"
-            id="inputPass"
-            class="form-control"
-            placeholder="{{ txtOctavo }}"
-            [(ngModel)]="contraseniaIngresado"
-          />
+          <div class="columna-input">
+            <input
+              type="text"
+              id="inputUser"
+              class="form-control"
+              placeholder="{{ txtSeptimo }}"
+              [(ngModel)]="usuarioIngresado"
+            />
+            <small class="form-text text-muted"
+              >El usuario debe ser un correo electrónico válido</small
+            >
+          </div>
+          <div class="columna-input">
+            <input
+              type="password"
+              id="inputPass"
+              class="form-control"
+              placeholder="{{ txtOctavo }}"
+              [(ngModel)]="contraseniaIngresado"
+            />
+            <small class="form-text text-muted"
+              >La contraseña debe tener al menos 8 caracteres</small
+            >
+          </div>
         </div>
         <div class="registro-input">
-          <input
-            type="text"
-            id="inputNombre"
-            class="form-control"
-            placeholder="{{ txtPrimero }}"
-            [(ngModel)]="userIngresado"
-          />
-          <input
-            type="text"
-            id="inputApellido"
-            class="form-control"
-            aria-describedby="passwordHelpBlock"
-            placeholder="{{ txtSegundo }}"
-            [(ngModel)]="claveIngresado"
-          />
+          <div class="columna-input">
+            <input
+              type="text"
+              id="inputNombre"
+              class="form-control"
+              placeholder="{{ txtPrimero }}"
+              [(ngModel)]="userIngresado"
+            />
+            <small class="form-text text-muted"
+              >El usuario debe ser un correo electrónico válido</small
+            >
+          </div>
+          <div class="columna-input">
+            <input
+              type="text"
+              id="inputApellido"
+              class="form-control"
+              aria-describedby="passwordHelpBlock"
+              placeholder="{{ txtSegundo }}"
+              [(ngModel)]="claveIngresado"
+            />
+            <small class="form-text text-muted"
+              >El usuario debe ser un correo electrónico válido</small
+            >
+          </div>
         </div>
         <div class="registro-input-medio">
-          <input
-            type="text"
-            id="inputEdad"
-            class="form-control"
-            placeholder="{{ txtTercero }}"
-            [(ngModel)]="edadIngresado"
-          />
+          <div class="columna-input">
+            <input
+              type="text"
+              id="inputEdad"
+              class="form-control"
+              placeholder="{{ txtTercero }}"
+              [(ngModel)]="edadIngresado"
+            />
+            <small class="form-text text-muted small-medio"
+              >El usuario debe ser un correo electrónico válido</small
+            >
+          </div>
         </div>
         <div class="registro-input-pequenio">
-          <input
-            type="text"
-            id="inputDia"
-            class="form-control"
-            placeholder="{{ txtCuarto }}"
-            [(ngModel)]="diaIngresado"
-          />
-          <input
-            type="text"
-            id="inputMes"
-            class="form-control"
-            placeholder="{{ txtQuinto }}"
-            [(ngModel)]="mesIngresado"
-          />
-          <input
-            type="text"
-            id="inputAnio"
-            class="form-control"
-            placeholder="{{ txtSexto }}"
-            [(ngModel)]="anioIngresado"
-          />
+          <div class="columna-input">
+            <div class="columna-centrada">
+              <input
+                type="text"
+                id="inputDia"
+                class="form-control"
+                placeholder="{{ txtCuarto }}"
+                [(ngModel)]="diaIngresado"
+              />
+              <input
+                type="text"
+                id="inputMes"
+                class="form-control"
+                placeholder="{{ txtQuinto }}"
+                [(ngModel)]="mesIngresado"
+              />
+              <input
+                type="text"
+                id="inputAnio"
+                class="form-control"
+                placeholder="{{ txtSexto }}"
+                [(ngModel)]="anioIngresado"
+              />
+            </div>
+            <small class="form-text text-muted small-medio"
+              >El usuario debe ser un correo electrónico válido</small
+            >
+          </div>
         </div>
         <div class="registro-btn">
           <button type="button" class="btn btn-light" (click)="loguear()">
