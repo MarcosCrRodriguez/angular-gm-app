@@ -1,24 +1,30 @@
+.seccion-imagen {
+  background: url("./../../../assets/buildings-home.jpg") no-repeat center;
+  background-size: cover;
+  height: 58vh;
+}
+
 .home-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 32px;
+  padding-top: 60px;
 }
 
 .title-app {
   cursor: pointer;
   text-decoration: none;
   color: white;
-  font-size: 66px;
+  font-size: 72px;
   font-family: "Metal Mania", cursive;
   margin: 0;
 }
 
 .home-icon {
-  height: 70px;
-  width: 70px;
-  margin-left: -15px;
-  margin-right: 7px;
+  height: 77px;
+  width: 77px;
+  margin-left: -17px;
+  margin-right: 8px;
 }
 
 .inicio {
@@ -26,12 +32,125 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 40%;
+  width: 54%;
 }
 
 .inicio p {
-  font-size: 24px;
+  font-size: 26px;
   margin-top: 10px;
   color: #fff;
+}
+
+.card {
+  border: 2.5px solid white;
+  background: rgba(136, 134, 134, 0.4);
   font-family: "Metal Mania", cursive;
+  margin: 30px;
+  width: 100%;
+}
+
+.card h3 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.card button {
+  border: 2.5px solid rgb(45, 45, 45);
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 28px;
+  font-weight: 500;
+  font-family: "Metal Mania", cursive;
+  cursor: pointer;
+}
+
+.division-seccion {
+  margin-top: -1px;
+  border: 2px solid white;
+}
+
+.seccion-juegos {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+.titulo-juegos {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+  font-weight: 550;
+  color: #fff;
+  font-family: "Metal Mania", cursive;
+}
+
+.doble-card {
+  margin-top: 60px;
+}
+
+.bloque-juego {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-right {
+  margin-right: 26%;
+  margin-top: 60px;
+  margin-bottom: 70px;
+}
+
+.btn-left {
+  margin-left: 32%;
+  background: url("./../../../assets/buildings-home.jpg") no-repeat center;
+  background-size: cover;
+  background-color: rgb(230, 70, 70);
+  height: 140px;
+  width: 140px;
+}
+
+.card-left {
+  margin-left: 26%;
+  margin-top: 60px;
+  margin-bottom: 70px;
+}
+
+.btn-right {
+  margin-right: 32%;
+  background: url("./../../../assets/buildings-home.jpg") no-repeat center;
+  background-size: cover;
+  background-color: rgb(230, 70, 70);
+  margin-top: 40px;
+  height: 140px;
+  width: 140px;
+}
+
+@media (max-width: 1024px) {
+  .inicio {
+    width: 76%;
+  }
+}
+
+@media (max-width: 768px) {
+  .inicio {
+    width: 90%;
+  }
+
+  .inicio p {
+    font-size: 20px;
+  }
+
+  .card h3 {
+    font-size: 28px;
+    font-weight: 550;
+  }
+
+  .card button {
+    font-size: 24px;
+    font-weight: 500;
+  }
 }

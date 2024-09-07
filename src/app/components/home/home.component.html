@@ -1,15 +1,100 @@
-<div class="home-container">
-  <div class="inicio">
-    <h1 class="title-app" routerLink="/home" routerLinkActive="active">
-      Perfe <img class="home-icon" src="assets/icon-clean.png" alt="icono" />t
-      Game
-    </h1>
-    <!-- dentro de una card? -->
-    <p>
-      Bienvenido a un lugar donde puedes relajarte, divertirte y explorar nuevos
-      mundos. Este es un espacio diseñado para que todos disfruten y jueguen,
-      donde siempre puedes encontrar entretenimiento y compartir la experiencia
-      con otras personas
-    </p>
+<section class="seccion-imagen">
+  <div class="home-container">
+    <div class="inicio">
+      <h1 class="title-app" routerLink="/home" routerLinkActive="active">
+        Perfe <img class="home-icon" src="assets/icon-clean.png" alt="icono" />t
+        Game
+      </h1>
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="card-title">(- Acerca de la página -)</h3>
+          <p class="card-text">
+            Bienvenido a un lugar donde puedes relajarte, divertirte y explorar
+            nuevos mundos. Este es un espacio diseñado para que todos disfruten
+            y jueguen, donde siempre puedes encontrar entretenimiento y
+            compartir la experiencia con otras personas.
+          </p>
+          <button type="button" class="btn btn-warning" (click)="quienSoy()">
+            Quién Soy
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
+<hr class="division-seccion" />
+<section class="seccion-juegos">
+  <h2 class="titulo-juegos">Juegos Disponibles</h2>
+  <div class="doble-card">
+    <div class="bloque-juego">
+      <button
+        type="button"
+        class="btn btn-secondary btn-left"
+        (click)="quienSoy()"
+      ></button>
+      <div class="card text-end card-right" style="width: 30%">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">
+            With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <div class="bloque-juego">
+      <div class="card mb-3 card-left" style="width: 30%">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">
+            With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn-secondary btn-right"
+        (click)="quienSoy()"
+      ></button>
+    </div>
+  </div>
+  <div class="doble-card">
+    <div class="bloque-juego">
+      <button
+        type="button"
+        class="btn btn-secondary btn-left"
+        (click)="quienSoy()"
+      ></button>
+      <div class="card text-end card-right" style="width: 30%">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">
+            With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+    <div class="bloque-juego">
+      <div class="card mb-3 card-left" style="width: 30%">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">
+            With supporting text below as a natural lead-in to additional
+            content.
+          </p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn btn-secondary btn-right"
+        (click)="quienSoy()"
+      ></button>
+    </div>
+  </div>
+</section>

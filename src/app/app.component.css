@@ -1,5 +1,5 @@
 .pp {
-  background: #555;
+  background: rgba(65, 65, 65);
   background-size: cover;
   min-height: 40vh;
   background-attachment: scroll;
@@ -73,7 +73,7 @@
   align-items: center;
   justify-content: center;
   background-color: #333;
-  min-height: 16vh;
+  min-height: 18vh;
 }
 
 .home-icon {
