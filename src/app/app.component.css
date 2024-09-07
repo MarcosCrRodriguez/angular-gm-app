@@ -12,6 +12,7 @@
   align-items: center;
   padding: 10px 20px;
   background-color: #333;
+  border-bottom: 4px solid #a9a9a9;
 }
 
 .nav-title {
@@ -74,6 +75,10 @@
   justify-content: center;
   background-color: #333;
   min-height: 18vh;
+}
+
+footer {
+  border-top: 4px solid #a9a9a9;
 }
 
 .home-icon {

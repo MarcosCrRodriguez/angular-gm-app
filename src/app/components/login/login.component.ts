@@ -33,7 +33,7 @@ export class LoginComponent {
       this.userIngresado === this.nombreUser &&
       this.claveIngresado === this.claveUser
     ) {
-      this.router.navigate(['/bienvenido'], {
+      this.router.navigate(['/home'], {
         state: { usuario: this.usuario },
       });
     } else {

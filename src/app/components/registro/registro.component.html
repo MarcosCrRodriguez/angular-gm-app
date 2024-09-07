@@ -15,8 +15,9 @@
               [(ngModel)]="usuarioIngresado"
             />
             <small class="form-text text-muted"
-              >El usuario debe ser un correo electrónico válido</small
-            >
+              >El usuario debe tener entre 8 y 16 caracteres, no se aceptan
+              caracteres especiales
+            </small>
           </div>
           <div class="columna-input">
             <input
@@ -62,14 +63,14 @@
         <div class="registro-input-medio">
           <div class="columna-input">
             <input
-              type="text"
+              type="email"
               id="inputEdad"
               class="form-control"
               placeholder="{{ txtTercero }}"
-              [(ngModel)]="edadIngresado"
+              [(ngModel)]="mailIngresado"
             />
             <small class="form-text text-muted small-medio"
-              >El usuario debe ser mayor de edad</small
+              >El mail ingresado debe ser un mail válido</small
             >
           </div>
         </div>

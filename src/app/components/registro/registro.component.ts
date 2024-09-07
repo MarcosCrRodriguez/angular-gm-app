@@ -15,7 +15,7 @@ export class RegistroComponent {
   public title = 'Registro';
   public txtPrimero = 'Nombre';
   public txtSegundo = 'Apellido';
-  public txtTercero = 'Edad';
+  public txtTercero = 'Email';
   public txtCuarto = 'Dia';
   public txtQuinto = 'Mes';
   public txtSexto = 'Año';
@@ -24,7 +24,7 @@ export class RegistroComponent {
 
   public userIngresado!: string;
   public claveIngresado!: string;
-  public edadIngresado!: number;
+  public mailIngresado!: string;
   public diaIngresado!: number;
   public mesIngresado!: number;
   public anioIngresado!: number;
