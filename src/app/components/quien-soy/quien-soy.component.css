@@ -1,0 +1,142 @@
+.who-im {
+  position: relative;
+  overflow: hidden;
+}
+
+.who-im::before,
+.who-im::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.who-im::before {
+  left: 0;
+  background-image: url("./../../../assets/lava-wall.jpg");
+  border-right: 4px solid #a9a9a9;
+}
+
+.who-im::after {
+  right: 0;
+  background-image: url("./../../../assets/lava-wall.jpg");
+  border-left: 4px solid #a9a9a9;
+}
+
+.title-who {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 66px;
+  margin-bottom: 66px;
+  font-family: "Metal Mania", cursive;
+  font-size: 72px;
+  font-weight: 500;
+  background: linear-gradient(270deg, #df0828 10%, #f3ff15 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px #000;
+}
+
+.top-tittle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.rayo-izq {
+  width: 104px;
+  height: 104px;
+  margin-right: 4px;
+}
+
+.rayo-der {
+  width: 104px;
+  height: 104px;
+  margin-left: 2px;
+}
+
+.personal-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 80px;
+}
+
+.card {
+  border: 2.5px solid white;
+  background: rgba(136, 134, 134, 0.4);
+  width: 50%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: "Metal Mania", cursive;
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: 500;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
+  transition: 0.4s;
+}
+
+.card-body p {
+  font-size: 24px;
+  font-weight: 500;
+  color: #fff;
+  margin-top: -10px;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
+    -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: -10px;
+  margin-bottom: -8px;
+  color: #fff;
+}
+
+.bold-txt {
+  margin-right: 8px;
+  font-size: 26px;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
+}
+
+.icon-white {
+  color: white !important;
+}
+
+.left-text {
+  padding-left: 20px;
+}
+
+.right-text {
+  padding-right: 20px;
+}
+
+.div-hr {
+  border: 1px solid white;
+}
+
+.card-header:hover {
+  transform: scale(1.05);
+  transition: 0.4s;
+}

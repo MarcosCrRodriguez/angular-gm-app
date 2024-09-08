@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './quien-soy.component.html',
-  styleUrl: './quien-soy.component.css'
+  styleUrl: './quien-soy.component.css',
 })
 export class QuienSoyComponent {
-
+  email: string = 'rodriguezmarcoscruz@gmail.com';
 }

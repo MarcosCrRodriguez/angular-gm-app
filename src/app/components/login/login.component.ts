@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../../models/usuario';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -24,18 +25,36 @@ export class LoginComponent {
 
   public usuario!: Usuario;
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   loguear() {
-    this.usuario = new Usuario(this.userIngresado, this.claveIngresado);
+    // Obtener los usuarios registrados desde el localStorage
+    const usuariosGuardados = JSON.parse(
+      localStorage.getItem('usuarios') || '[]'
+    );
 
-    if (
-      this.userIngresado === this.nombreUser &&
-      this.claveIngresado === this.claveUser
-    ) {
-      this.router.navigate(['/home'], {
-        state: { usuario: this.usuario },
-      });
+    // podría pasarlo a una funcion en el authService
+    // Verificar si las credenciales coinciden con algún usuario guardado
+    const usuarioValido = usuariosGuardados.find((user: any) => {
+      return (
+        user.username === this.userIngresado &&
+        user.password === this.claveIngresado
+      );
+    });
+
+    if (usuarioValido) {
+      Toastify({
+        text: '¡Se logeo correctamente!',
+        duration: 4000,
+        close: true,
+        gravity: 'top',
+        position: 'center',
+        backgroundColor: 'linear-gradient(to right, #1c25d1, #23c620)',
+      }).showToast();
+
+      this.authService.loguear(usuarioValido);
+
+      this.router.navigate(['/home']);
     } else {
       Toastify({
         text: '¡Error! Los datos de la cuenta son incorrectos',
@@ -44,11 +63,12 @@ export class LoginComponent {
         gravity: 'top',
         position: 'center',
         backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
-        className: 'error-toast',
       }).showToast();
 
       this.router.navigate(['/error'], {
-        state: { error: 'al intentar iniciar sesion' },
+        state: {
+          error: 'Error al intentar iniciar sesion - cuenta no existente',
+        },
       });
     }
   }

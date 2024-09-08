@@ -12,7 +12,7 @@
               id="inputUser"
               class="form-control"
               placeholder="{{ txtSeptimo }}"
-              [(ngModel)]="usuarioIngresado"
+              [(ngModel)]="userIngresado"
             />
             <small class="form-text text-muted"
               >El usuario debe tener entre 8 y 16 caracteres, no se aceptan
@@ -22,10 +22,10 @@
           <div class="columna-input">
             <input
               type="password"
-              id="inputPass"
+              id="inputClave"
               class="form-control"
               placeholder="{{ txtOctavo }}"
-              [(ngModel)]="contraseniaIngresado"
+              [(ngModel)]="claveIngresado"
             />
             <small class="form-text text-muted"
               >La contraseña debe tener al menos 8 caracteres sin caracter
@@ -40,7 +40,7 @@
               id="inputNombre"
               class="form-control"
               placeholder="{{ txtPrimero }}"
-              [(ngModel)]="userIngresado"
+              [(ngModel)]="nombreIngresado"
             />
             <small class="form-text text-muted"
               >Nombre completo del usuario</small
@@ -53,7 +53,7 @@
               class="form-control"
               aria-describedby="passwordHelpBlock"
               placeholder="{{ txtSegundo }}"
-              [(ngModel)]="claveIngresado"
+              [(ngModel)]="apellidoIngresado"
             />
             <small class="form-text text-muted"
               >Apellido completo del usuario</small

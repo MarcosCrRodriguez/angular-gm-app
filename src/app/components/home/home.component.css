@@ -1,8 +1,9 @@
 .seccion-imagen {
-  background: url("./../../../assets/buildings-home.jpg") no-repeat center;
+  background: url("./../../../assets/atroz.jpg") no-repeat center;
   background-size: cover;
   height: 58vh;
   border-bottom: 4px solid #a9a9a9;
+  z-index: -1;
 }
 
 .seccion-juegos {
@@ -23,13 +24,15 @@
 
 .seccion-juegos::before {
   left: 0;
-  background-image: url("./../../../assets/buildings-home.jpg");
+  background-image: url("./../../../assets/lava-wall.jpg");
+  /* background-image: url("./../../../assets/lava-wall.jpg"); */
   border-right: 4px solid #a9a9a9;
 }
 
 .seccion-juegos::after {
   right: 0;
-  background-image: url("./../../../assets/buildings-home.jpg");
+  background-image: url("./../../../assets/lava-wall.jpg");
+  /* background-image: url("./../../../assets/lava-wall.jpg"); */
   border-left: 4px solid #a9a9a9;
 }
 
@@ -44,10 +47,11 @@
   cursor: pointer;
   text-decoration: none;
   color: white;
-  font-size: 72px;
+  font-size: 76px;
   font-family: "Metal Mania", cursive;
   transition: 0.4s;
   margin: 0;
+  -webkit-text-stroke: 2px #000;
 }
 
 .home-icon {
@@ -152,7 +156,8 @@
 }
 
 .bloque-juego button {
-  transition: 0.5s;
+  font-size: 22px;
+  transition: 0.4s;
 }
 
 .bloque-juego p {
@@ -161,36 +166,61 @@
 }
 
 .card-right {
-  margin-right: 24%;
+  margin-right: 26%;
   margin-top: 60px;
   margin-bottom: 70px;
-  width: 30%;
+  width: 28%;
 }
 
-.btn-left {
-  margin-left: 30%;
+.card-right h5 {
+  padding-right: 4px;
+}
+
+.btn-left-one {
+  background: url("./../../../assets/icon-ahorcado.png") no-repeat center;
+}
+
+.btn-left-two {
   background: url("./../../../assets/buildings-home.jpg") no-repeat center;
+}
+
+.btn-left-one,
+.btn-left-two {
+  margin-left: 30%;
   background-size: cover;
   background-color: rgb(230, 70, 70);
-  height: 140px;
-  width: 140px;
+  height: 160px;
+  width: 160px;
 }
 
 .card-left {
-  margin-left: 24%;
+  margin-left: 26%;
   margin-top: 60px;
   margin-bottom: 70px;
-  width: 30%;
+  width: 28%;
 }
 
-.btn-right {
+.card-left h5 {
+  padding-left: 4px;
+}
+
+.btn-right-one {
+  background: url("./../../../assets/buildings-home.jpg") no-repeat center;
+}
+
+.btn-right-two {
+  background: url("./../../../assets/buildings-home.jpg") no-repeat center;
+}
+
+.btn-right-one,
+.btn-right-two {
   margin-right: 30%;
   background: url("./../../../assets/buildings-home.jpg") no-repeat center;
   background-size: cover;
   background-color: rgb(230, 70, 70);
   margin-top: 40px;
-  height: 140px;
-  width: 140px;
+  height: 160px;
+  width: 160px;
 }
 
 .card-title {
@@ -252,6 +282,16 @@
   .btn-right {
     margin-right: 16%;
   }
+
+  .btn-left-one,
+  .btn-left-two {
+    margin-left: 14%;
+  }
+
+  .btn-right-one,
+  .btn-right-two {
+    margin-right: 14%;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -290,6 +330,16 @@
     font-size: 16px;
     color: #fff;
   }
+
+  .btn-left-one,
+  .btn-left-two {
+    margin-left: 5%;
+  }
+
+  .btn-right-one,
+  .btn-right-two {
+    margin-right: 5%;
+  }
 }
 
 @media (max-width: 768px) {
@@ -312,7 +362,7 @@
   }
 
   .card-right {
-    margin-right: 6%;
+    margin-right: 4%;
     width: 62%;
   }
 
@@ -321,7 +371,7 @@
   }
 
   .card-left {
-    margin-left: 6%;
+    margin-left: 4%;
     width: 62%;
   }
 
