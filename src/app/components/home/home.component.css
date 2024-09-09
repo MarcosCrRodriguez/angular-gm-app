@@ -179,16 +179,23 @@
 }
 
 .btn-left-two {
-  background: url("./../../../assets/buildings-home.jpg") no-repeat center;
+  background: url("./../../../assets/preguntados-original.png") no-repeat center;
 }
 
 .btn-left-one,
 .btn-left-two {
   margin-left: 30%;
   background-size: cover;
-  background-color: rgb(230, 70, 70);
   height: 160px;
   width: 160px;
+}
+
+.btn-left-one {
+  background-color: rgb(192, 63, 63);
+}
+
+.btn-left-two {
+  background-color: rgb(85, 91, 216);
 }
 
 .card-left {
@@ -203,17 +210,16 @@
 }
 
 .btn-right-one {
-  background: url("./../../../assets/buildings-home.jpg") no-repeat center;
+  background: url("./../../../assets/mayor-menor-logo.jpg") no-repeat center;
 }
 
 .btn-right-two {
-  background: url("./../../../assets/buildings-home.jpg") no-repeat center;
+  background: url("./../../../assets/generala-logo.jpg") no-repeat center;
 }
 
 .btn-right-one,
 .btn-right-two {
   margin-right: 30%;
-  background: url("./../../../assets/buildings-home.jpg") no-repeat center;
   background-size: cover;
   background-color: rgb(230, 70, 70);
   margin-top: 40px;
