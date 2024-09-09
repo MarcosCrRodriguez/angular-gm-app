@@ -91,7 +91,9 @@
   font-size: 42px;
   font-weight: 600;
   margin-top: 2px;
-  background: linear-gradient(270deg, #df0828 10%, #1521ff 100%);
+  cursor: pointer;
+  transition: 0.4s;
+  background: linear-gradient(270deg, #cbd217 10%, #bc152e 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -127,7 +129,7 @@
   font-size: 56px;
   font-weight: 550;
   font-family: "Metal Mania", cursive;
-  background: linear-gradient(270deg, #df0828 10%, #f3ff15 100%);
+  background: linear-gradient(270deg, #cbd217 10%, #bc152e 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -237,6 +239,11 @@
   margin-top: 40px;
   height: 160px;
   width: 160px;
+}
+
+.card-title:hover {
+  transform: scale(1.02);
+  transition: 0.4s;
 }
 
 .inicio button:hover {
