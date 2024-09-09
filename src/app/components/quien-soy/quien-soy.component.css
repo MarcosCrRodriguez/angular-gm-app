@@ -140,3 +140,89 @@
   transform: scale(1.05);
   transition: 0.4s;
 }
+
+@media (max-width: 1024px) {
+  .who-im::before,
+  .who-im::after {
+    width: 6%;
+  }
+
+  .title-who {
+    font-size: 62px;
+  }
+
+  .rayo-izq {
+    width: 84px;
+    height: 84px;
+    margin-right: -4px;
+  }
+
+  .rayo-der {
+    width: 84px;
+    height: 84px;
+    margin-left: 2px;
+  }
+
+  .card {
+    width: 70%;
+  }
+
+  .card-header {
+    font-size: 28px;
+  }
+
+  .txt-body {
+    font-size: 22px !important;
+  }
+
+  .card-row {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .bold-txt {
+    margin-right: 4px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .who-im::before,
+  .who-im::after {
+    width: 0;
+  }
+
+  .title-who {
+    font-size: 44px;
+  }
+
+  .rayo-izq {
+    display: none;
+  }
+
+  .rayo-der {
+    display: none;
+  }
+
+  .card {
+    width: 94%;
+  }
+
+  .card-header {
+    font-size: 20px;
+  }
+
+  .txt-body {
+    font-size: 18px !important;
+  }
+
+  .card-row {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .bold-txt {
+    margin-right: 4px;
+    font-size: 16px;
+  }
+}
