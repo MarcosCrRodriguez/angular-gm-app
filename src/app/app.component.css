@@ -15,11 +15,16 @@
   border-bottom: 4px solid #a9a9a9;
 }
 
+.menu-img img {
+  max-width: 100%;
+  height: 40px;
+  cursor: pointer;
+}
+
 .nav-title {
   display: flex;
   justify-content: center;
   align-items: center;
-  display: inline-block;
 }
 
 .title-app {
@@ -45,6 +50,9 @@
   display: flex;
   gap: 20px;
   margin: 0;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 .nav-links li {
@@ -107,6 +115,34 @@ footer {
   transition: 0.5s;
 }
 
+.nav-mob-open {
+  display: none;
+  cursor: pointer;
+}
+
+.nav-mob-close {
+  display: none;
+  cursor: pointer;
+}
+
+@media (min-width: 769px) {
+  .nav-links {
+    transform: translateX(0);
+    position: static;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    display: flex; /* Asegúrate de que las opciones del menú se muestren en línea */
+    flex-direction: row; /* Alinea las opciones del menú horizontalmente */
+  }
+
+  /* Ocultar los íconos para abrir y cerrar el menú en pantallas grandes */
+  .nav-mob-open,
+  .nav-mob-close {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .title-app {
     font-size: 30px;
@@ -120,7 +156,18 @@ footer {
   }
 
   .nav-links {
-    gap: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #2c2c2c;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 20px;
+    padding-left: 20px;
+    transform: translateX(100%);
+    z-index: 1000;
   }
 
   .nav-links a {
@@ -140,5 +187,22 @@ footer {
     width: 48px;
     margin-left: -11px;
     margin-right: 4px;
+  }
+
+  .nav-links.open {
+    transform: translateX(0);
+  }
+
+  .nav-mob-open {
+    display: block;
+  }
+
+  .nav-mob-close {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  body.no-scroll {
+    overflow-x: hidden;
   }
 }

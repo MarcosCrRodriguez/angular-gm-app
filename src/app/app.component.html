@@ -6,26 +6,54 @@
         <img class="nav-icon" src="assets/icon-clean.png" alt="icono" />Game
       </h1>
     </div>
-    <ul *ngIf="!usuarioLogueado" class="nav-links">
-      <li>
-        <a routerLink="/login" routerLinkActive="active">Login</a>
-      </li>
-      <li>
-        <a routerLink="/registro" routerLinkActive="active">Registro</a>
-      </li>
-    </ul>
-    <ul *ngIf="usuarioLogueado" class="nav-links">
-      <li class="user-txt">
-        <a routerLink="/profile" routerLinkActive="active">{{
-          usuarioLogueado.email
-        }}</a>
-      </li>
-      <li>
-        <a (click)="logout()">Log Out</a>
-      </li>
+
+    <!-- Ícono para abrir el menú en pantallas pequeñas -->
+    <div class="menu-img">
+      <img
+        src="assets/menu-icon.png"
+        (click)="openMenu()"
+        alt="Abrir Menú"
+        class="nav-mob-open"
+      />
+    </div>
+
+    <ul #menuRef class="nav-links" [class.open]="isMenuOpen">
+      <!-- Ícono para cerrar el menú en pantallas pequeñas -->
+      <div class="menu-img">
+        <img
+          src="assets/menu-icon.png"
+          (click)="closeMenu()"
+          alt="Cerrar Menú"
+          class="nav-mob-close"
+        />
+      </div>
+
+      <!-- Si el usuario no está logueado -->
+      <ng-container *ngIf="!usuarioLogueado">
+        <li>
+          <a routerLink="/login" routerLinkActive="active">Login</a>
+        </li>
+        <li>
+          <a routerLink="/registro" routerLinkActive="active">Registro</a>
+        </li>
+      </ng-container>
+
+      <!-- Si el usuario está logueado -->
+      <ng-container *ngIf="usuarioLogueado">
+        <li class="user-txt">
+          <a routerLink="/profile" routerLinkActive="active">{{
+            usuarioLogueado.email
+          }}</a>
+        </li>
+        <li>
+          <a (click)="logout()">Log Out</a>
+        </li>
+      </ng-container>
     </ul>
   </nav>
-  <router-outlet />
+
+  <router-outlet></router-outlet>
+
   <footer class="footer-app">
     <div class="columna-logo">
       <h1 class="title-footer" routerLink="/home" routerLinkActive="active">
