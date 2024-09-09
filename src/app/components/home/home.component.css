@@ -411,7 +411,7 @@
 
   .card-right {
     margin-right: 10% !important;
-    width: 42% !important;
+    width: 50% !important;
   }
 
   .btn-left {
@@ -420,7 +420,7 @@
 
   .card-left {
     margin-left: 10% !important;
-    width: 42% !important;
+    width: 50% !important;
   }
 
   .btn-right {
@@ -476,11 +476,11 @@
   }
 
   .inicio h3 {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .inicio p {
-    font-size: 20px;
+    font-size: 22px;
   }
 
   .bloque-juego {
