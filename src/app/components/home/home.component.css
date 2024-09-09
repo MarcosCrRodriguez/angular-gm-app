@@ -444,7 +444,7 @@
 
   .seccion-juegos::before,
   .seccion-juegos::after {
-    width: 6%;
+    width: 8%;
   }
 
   .card {
@@ -511,20 +511,25 @@
 
   .btn-left-one,
   .btn-left-two {
-    margin-right: 4% !important;
+    margin-right: 12% !important;
     height: 180px;
     width: 180px;
   }
 
   .btn-right-one,
   .btn-right-two {
-    margin-left: 4% !important;
+    margin-left: 12% !important;
     height: 180px;
     width: 180px;
   }
 }
 
 @media (max-width: 600px) {
+  .seccion-juegos::before,
+  .seccion-juegos::after {
+    width: 0%;
+  }
+
   .titulo-juegos {
     font-size: 32px;
   }
@@ -544,14 +549,14 @@
 
   .btn-left-one,
   .btn-left-two {
-    margin-right: 4% !important;
+    margin-right: 12% !important;
     height: 180px;
     width: 180px;
   }
 
   .btn-right-one,
   .btn-right-two {
-    margin-left: 4% !important;
+    margin-left: 12% !important;
     height: 180px;
     width: 180px;
   }
@@ -581,14 +586,14 @@
 
   .btn-left-one,
   .btn-left-two {
-    margin-right: 4% !important;
+    margin-right: 12% !important;
     height: 150px;
     width: 150px;
   }
 
   .btn-right-one,
   .btn-right-two {
-    margin-left: 4% !important;
+    margin-left: 12% !important;
     height: 150px;
     width: 150px;
   }
