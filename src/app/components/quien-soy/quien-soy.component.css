@@ -74,7 +74,7 @@
   width: 50%;
   padding-top: 20px;
   padding-bottom: 20px;
-  font-family: "Metal Mania", cursive;
+  font-family: "Grenze Gotisch", serif;
 }
 
 .card-header {
@@ -87,6 +87,7 @@
   margin-right: 20px;
   margin-bottom: 20px;
   color: #fff;
+  font-family: "Metal Mania", cursive;
   text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
     2px 2px 0 #000;
 }
@@ -138,11 +139,11 @@
 }
 
 .left-text {
-  padding-left: 20px;
+  padding-left: 10px;
 }
 
 .right-text {
-  padding-right: 20px;
+  padding-right: 10px;
 }
 
 .div-hr {

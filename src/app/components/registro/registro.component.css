@@ -39,7 +39,7 @@
 .registro-input {
   display: flex;
   justify-content: space-between;
-  font-family: "Metal Mania", cursive;
+  font-family: "Grenze Gotisch", serif;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 40px;
@@ -50,7 +50,7 @@
 .registro-input-pequenio {
   display: flex;
   flex-direction: center;
-  font-family: "Metal Mania", cursive;
+  font-family: "Grenze Gotisch", serif;
   margin-left: 10px;
   margin-right: 10px;
   margin-bottom: 40px;
@@ -92,7 +92,7 @@
 }
 
 .columna-input small {
-  font-size: 14px;
+  font-size: 16px;
   margin-top: -6px;
   color: #ffffffaa !important;
 }
@@ -122,7 +122,7 @@
   margin-right: 10px;
   font-size: 36px;
   font-weight: 500;
-  font-family: "Metal Mania", cursive;
+  font-family: "Grenze Gotisch", serif;
   cursor: pointer;
 }
 
@@ -132,7 +132,8 @@
 
 .registro-info p {
   color: rgba(251, 251, 251, 0.85);
-  font-size: 18px;
+  font-family: "Grenze Gotisch", serif;
+  font-size: 22px;
 }
 
 .registro-info img {

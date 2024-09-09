@@ -1,0 +1,125 @@
+.profile {
+  position: relative;
+  overflow: hidden;
+}
+
+.profile::before,
+.profile::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 12%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.profile::before {
+  left: 0;
+  background-image: url("./../../../assets/lava-wall.jpg");
+  border-right: 4px solid #a9a9a9;
+}
+
+.profile::after {
+  right: 0;
+  background-image: url("./../../../assets/lava-wall.jpg");
+  border-left: 4px solid #a9a9a9;
+}
+
+.data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.card {
+  border: 2.5px solid white;
+  background: rgba(136, 134, 134, 0.4);
+  width: 50%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-family: "Metal Mania", cursive;
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  font-weight: 500;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  color: #fff;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: -10px;
+  margin-bottom: -8px;
+  font-family: "Grenze Gotisch", serif;
+  color: #fff;
+}
+
+.left-text {
+  padding-left: 10px;
+}
+
+.right-text {
+  padding-right: 10px;
+}
+
+.bold-txt {
+  margin-right: 8px;
+  font-size: 26px;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.info label {
+  font-size: 26px;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
+  margin: 10px;
+}
+
+.info input {
+  border: 2px solid black;
+}
+
+.card-footer {
+  font-size: 24px;
+  font-family: "Grenze Gotisch", serif;
+}
+
+.info-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-btn button {
+  border: 2.5px solid rgb(45, 45, 45);
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 32px;
+  font-weight: 500;
+  font-family: "Grenze Gotisch", serif;
+  cursor: pointer;
+}

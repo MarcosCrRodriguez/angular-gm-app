@@ -1,1 +1,72 @@
-<p>profile works!</p>
+<section class="profile">
+  <div class="data">
+    <div class="card text-center">
+      <div class="card-header">Perfil</div>
+      <div class="card-body">
+        <div class="card-row">
+          <div class="info">
+            <label for="disabledTextInput" class="form-label">Usuario</label>
+            <input
+              type="text"
+              id="txtUsername"
+              class="form-control"
+              [(ngModel)]="usuarioLogueado.username"
+              [readonly]="true"
+            />
+          </div>
+          <div class="info">
+            <label for="disabledTextInput" class="form-label">Password</label>
+            <input
+              type="password"
+              id="txtPassword"
+              class="form-control"
+              [(ngModel)]="usuarioLogueado.password"
+              [readonly]="true"
+            />
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="info">
+            <label for="disabledTextInput" class="form-label">Nombre</label>
+            <input
+              type="text"
+              id="txtUsername"
+              class="form-control"
+              [(ngModel)]="usuarioLogueado.nombre"
+              [readonly]="true"
+            />
+          </div>
+          <div class="info">
+            <label for="disabledTextInput" class="form-label">Apellido</label>
+            <input
+              type="text"
+              id="txtPassword"
+              class="form-control"
+              [(ngModel)]="usuarioLogueado.apellido"
+              [readonly]="true"
+            />
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="info">
+            <label for="disabledTextInput" class="form-label">Email</label>
+            <input
+              type="text"
+              id="txtUsername"
+              class="form-control"
+              [(ngModel)]="usuarioLogueado.email"
+              [readonly]="true"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-body-secondary">
+        Para poder modificar los datos del usuario debe ingresar la contraseña
+        del mismo
+      </div>
+      <div class="info-btn">
+        <button type="button" class="btn btn-warning">Modificar</button>
+      </div>
+    </div>
+  </div>
+</section>

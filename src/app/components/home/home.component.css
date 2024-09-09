@@ -50,7 +50,8 @@
   font-family: "Metal Mania", cursive;
   transition: 0.4s;
   margin: 0;
-  /* -webkit-text-stroke: 2.5px #000; */
+  text-shadow: -2.5px -2.5px 0 #000, 2.5px -2.5px 0 #000,
+    -2.5px 2.5px 0 hsl(0, 0%, 0%), 2.5px 2.5px 0 #000;
 }
 
 .home-icon {
@@ -81,15 +82,25 @@
 .card {
   border: 2.5px solid white;
   background: rgba(136, 134, 134, 0.4);
-  font-family: "Metal Mania", cursive;
+  font-family: "Grenze Gotisch", serif;
   margin: 30px;
   width: 100%;
 }
 
-.card h3 {
-  font-size: 36px;
+.card-title {
+  font-size: 42px;
   font-weight: 600;
-  margin-top: 6px;
+  margin-top: 2px;
+  background: linear-gradient(270deg, #df0828 10%, #1521ff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px #000;
+}
+
+.card p {
+  font-family: "Grenze Gotisch", serif;
+  font-size: 28px;
 }
 
 .card button {
@@ -100,9 +111,9 @@
   margin-bottom: 16px;
   margin-left: 10px;
   margin-right: 10px;
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 500;
-  font-family: "Metal Mania", cursive;
+  font-family: "Grenze Gotisch", serif;
   cursor: pointer;
 }
 
@@ -159,7 +170,7 @@
 }
 
 .bloque-juego p {
-  font-size: 18px;
+  font-size: 22px;
   color: #fff;
 }
 
@@ -171,7 +182,8 @@
 }
 
 .card-right h5 {
-  padding-right: 4px;
+  font-size: 36px !important;
+  padding-right: 4px !important;
 }
 
 .btn-left-one {
@@ -227,16 +239,6 @@
   width: 160px;
 }
 
-.card-title {
-  font-size: 30px;
-  font-weight: 550;
-  background: linear-gradient(270deg, #df0828 10%, #1521ff 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 0.6px #000;
-}
-
 .inicio button:hover {
   transform: scale(1.05);
   transition: 0.4s;
@@ -264,8 +266,8 @@
     margin-right: 4px;
   }
 
-  .card h3 {
-    font-size: 28px;
+  .card-title {
+    font-size: 36px;
   }
 
   .card p {
@@ -306,7 +308,7 @@
   }
 
   .bloque-juego h5 {
-    font-size: 26px;
+    font-size: 28px !important;
   }
 
   .bloque-juego p {
@@ -360,8 +362,8 @@
     font-size: 56px;
   }
 
-  .card h3 {
-    font-size: 26px;
+  .card-title {
+    font-size: 28px;
   }
 
   .card p {
@@ -457,8 +459,8 @@
     margin-top: -40px;
   }
 
-  .card h3 {
-    font-size: 22px;
+  .card-title {
+    font-size: 24px;
   }
 
   .card p {

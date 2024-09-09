@@ -49,7 +49,7 @@
   border: 2.5px solid rgb(45, 45, 45);
   font-size: 32px;
   font-weight: 500;
-  font-family: "Metal Mania", cursive;
+  font-family: "Grenze Gotisch", serif;
   width: 90%;
   margin-top: 12px;
   margin-bottom: 20px;
@@ -71,7 +71,7 @@
   padding-right: 10px;
   font-size: 36px;
   font-weight: 500;
-  font-family: "Metal Mania", cursive;
+  font-family: "Grenze Gotisch", serif;
   cursor: pointer;
 }
 
@@ -81,7 +81,8 @@
   justify-content: center;
   gap: 10px;
   color: rgba(251, 251, 251, 0.85);
-  font-size: 18px;
+  font-size: 22px;
+  font-family: "Grenze Gotisch", serif;
   margin-bottom: 12px;
 }
 
