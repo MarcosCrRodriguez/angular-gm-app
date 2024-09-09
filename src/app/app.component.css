@@ -29,6 +29,7 @@
   font-size: 36px;
   font-family: "Metal Mania", cursive;
   margin: 0;
+  transition: 0.6s;
 }
 
 .nav-icon {
@@ -67,11 +68,6 @@
   border-radius: 4px;
 }
 
-.title-app:hover {
-  color: #ffcc80;
-  transition: 0.3s;
-}
-
 .footer-app {
   display: flex;
   align-items: center;
@@ -98,11 +94,17 @@ footer {
   font-size: 64px;
   font-family: "Metal Mania", cursive;
   margin: 0;
+  transition: 0.6s;
+}
+
+.title-app:hover {
+  color: #eb8353;
+  transition: 0.5s;
 }
 
 .title-footer:hover {
-  color: #ffcc80;
-  transition: 0.3s;
+  color: #eb8353;
+  transition: 0.5s;
 }
 
 @media (max-width: 768px) {

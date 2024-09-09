@@ -47,7 +47,6 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  cursor: pointer;
 }
 
 .rayo-izq {
@@ -90,7 +89,21 @@
   color: #fff;
   text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
     2px 2px 0 #000;
-  transition: 0.4s;
+}
+
+.personal-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.personal-info img {
+  border-radius: 50%;
+  border: 2px solid white;
+  object-fit: cover;
+  margin-left: 6px;
+  width: 100%;
+  max-width: 150px;
 }
 
 .card-body p {
@@ -136,9 +149,65 @@
   border: 1px solid white;
 }
 
-.card-header:hover {
-  transform: scale(1.05);
+.card-row i {
   transition: 0.4s;
+}
+
+.proyecto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-side {
+  width: 35%;
+  margin: 10px;
+}
+
+.left-side img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.right-side {
+  width: 75%;
+  margin: 10px;
+}
+
+.right-side p {
+  font-size: 24px;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
+    -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
+}
+
+.right-side a {
+  font-size: 24px;
+  font-weight: 500;
+  color: #dbd40e;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
+    -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.card-row i:hover {
+  transform: scale(1.1);
+  transition: 0.4s;
+}
+
+.right-side a:hover {
+  transform: scale(1.06);
 }
 
 @media (max-width: 1024px) {
@@ -171,6 +240,10 @@
     font-size: 28px;
   }
 
+  .personal-info img {
+    max-width: 100px;
+  }
+
   .txt-body {
     font-size: 22px !important;
   }
@@ -183,6 +256,14 @@
   .bold-txt {
     margin-right: 4px;
     font-size: 22px;
+  }
+
+  .right-side p {
+    font-size: 20px;
+  }
+
+  .right-side a {
+    font-size: 20px;
   }
 }
 
@@ -212,6 +293,10 @@
     font-size: 20px;
   }
 
+  .personal-info img {
+    display: none;
+  }
+
   .txt-body {
     font-size: 18px !important;
   }
@@ -223,6 +308,14 @@
 
   .bold-txt {
     margin-right: 4px;
+    font-size: 16px;
+  }
+
+  .right-side p {
+    font-size: 16px;
+  }
+
+  .right-side a {
     font-size: 16px;
   }
 }
