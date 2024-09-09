@@ -114,12 +114,45 @@
 
 .info-btn button {
   border: 2.5px solid rgb(45, 45, 45);
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-top: 6px;
   font-size: 32px;
   font-weight: 500;
   font-family: "Grenze Gotisch", serif;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .profile::before,
+  .profile::after {
+    width: 8%;
+  }
+
+  .data {
+    margin-left: -12%;
+    margin-right: -12%;
+  }
+
+  .card-row {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .info label {
+    font-size: 20px;
+  }
+  .card-footer {
+    font-size: 18px;
+    font-family: "Grenze Gotisch", serif;
+  }
+
+  .info-btn button {
+    font-size: 24px;
+  }
 }

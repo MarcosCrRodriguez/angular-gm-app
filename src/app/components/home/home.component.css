@@ -1,7 +1,7 @@
 .seccion-imagen {
   background: url("./../../../assets/atroz.jpg") no-repeat center;
   background-size: cover;
-  height: 58vh;
+  height: 62vh;
   border-bottom: 4px solid #a9a9a9;
   z-index: -1;
 }

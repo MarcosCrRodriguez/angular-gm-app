@@ -72,7 +72,7 @@ export class RegistroComponent {
       this.router.navigate(['/login']);
     } else {
       Toastify({
-        text: '¡Error! Complete todos los campos',
+        text: '¡Error! Complete todos los campos ',
         duration: 4000,
         close: true,
         gravity: 'top',

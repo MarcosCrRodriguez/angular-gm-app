@@ -32,7 +32,7 @@ export class AppComponent {
   // se llama después de que Angular ha inicializado las propiedades de entrada del componente
   ngOnInit(): void {
     this.authService.usuarioLogueado$.subscribe((usuario) => {
-      console.log('Usuario logueado:', usuario);
+      console.log('Usuario logueado:', usuario.username);
       this.usuarioLogueado = usuario;
     });
   }

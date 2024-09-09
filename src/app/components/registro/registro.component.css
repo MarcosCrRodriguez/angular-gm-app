@@ -180,4 +180,38 @@
     padding: 10px;
     width: 20%;
   }
+
+  .registro-btn button {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 60px;
+  }
+
+  .registro-input input {
+    font-size: 20px;
+  }
+
+  .registro-input-medio input {
+    font-size: 20px;
+  }
+
+  .registro-input-pequenio input {
+    font-size: 20px;
+  }
+
+  .registro-btn button {
+    font-size: 22px;
+  }
+
+  .columna-input small {
+    font-size: 16px;
+  }
+
+  .registro-info p {
+    font-size: 16px;
+  }
 }

@@ -57,7 +57,7 @@ export class LoginComponent {
       this.router.navigate(['/home']);
     } else {
       Toastify({
-        text: '¡Error! Los datos de la cuenta son incorrectos',
+        text: '¡Error! La cuenta ingresada no existe ',
         duration: 4000,
         close: true,
         gravity: 'top',
@@ -65,11 +65,8 @@ export class LoginComponent {
         backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
       }).showToast();
 
-      this.router.navigate(['/error'], {
-        state: {
-          error: 'Error al intentar iniciar sesion - cuenta no existente',
-        },
-      });
+      this.userIngresado = '';
+      this.claveIngresado = '';
     }
   }
 
