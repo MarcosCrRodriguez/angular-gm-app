@@ -177,10 +177,10 @@
 }
 
 .card-right {
-  margin-right: 26%;
+  margin-right: 20%;
   margin-top: 60px;
   margin-bottom: 70px;
-  width: 28%;
+  width: 32%;
 }
 
 .card-right h5 {
@@ -200,8 +200,8 @@
 .btn-left-two {
   margin-left: 30%;
   background-size: cover;
-  height: 160px;
-  width: 160px;
+  height: 180px;
+  width: 180px;
 }
 
 .btn-left-one {
@@ -213,10 +213,10 @@
 }
 
 .card-left {
-  margin-left: 26%;
+  margin-left: 20%;
   margin-top: 60px;
   margin-bottom: 70px;
-  width: 28%;
+  width: 32%;
 }
 
 .card-left h5 {
@@ -237,8 +237,8 @@
   background-size: cover;
   background-color: rgb(230, 70, 70);
   margin-top: 40px;
-  height: 160px;
-  width: 160px;
+  height: 180px;
+  width: 180px;
 }
 
 .card-title:hover {
@@ -299,18 +299,18 @@
   }
 
   .top-bloque-juego {
-    margin-top: 48px;
+    margin-top: 52px;
   }
 
   .rayo-izq {
-    width: 70px;
-    height: 70px;
+    width: 74px;
+    height: 74px;
     margin-right: 2px;
   }
 
   .rayo-der {
-    width: 70px;
-    height: 70px;
+    width: 74px;
+    height: 74px;
     margin-left: -4px;
   }
 
@@ -386,7 +386,7 @@
   }
 
   .titulo-juegos {
-    font-size: 40px;
+    font-size: 48px;
     font-weight: 550;
   }
 
@@ -543,10 +543,6 @@
   .seccion-juegos::before,
   .seccion-juegos::after {
     width: 0%;
-  }
-
-  .titulo-juegos {
-    font-size: 32px;
   }
 
   .rayo-der {
