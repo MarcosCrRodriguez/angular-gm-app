@@ -19,6 +19,7 @@ export class LoginComponent {
   public claveUser = '13249';
   public txtPrimero = 'Usuario';
   public txtSegundo = 'Contraseña';
+  public try = 0;
 
   public userIngresado!: string;
   public claveIngresado!: string;
@@ -52,6 +53,7 @@ export class LoginComponent {
         backgroundColor: 'linear-gradient(to right, #1c25d1, #23c620)',
       }).showToast();
 
+      this.try = 0;
       this.authService.loguear(usuarioValido);
 
       this.router.navigate(['/home']);
@@ -65,6 +67,14 @@ export class LoginComponent {
         backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
       }).showToast();
 
+      if (this.try == 5) {
+        this.try = 0;
+        this.router.navigate(['/error'], {
+          state: { error: 'Límites de intentos alcanzados' },
+        });
+      }
+
+      this.try += 1;
       this.userIngresado = '';
       this.claveIngresado = '';
     }

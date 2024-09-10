@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
   styleUrl: './error.component.css',
 })
 export class ErrorComponent {
-  public title = 'Error';
   public error!: string;
 
   constructor(private router: Router) {
     const navigation = this.router.getCurrentNavigation();
-    this.error = navigation?.extras.state?.['error'];
+    this.error =
+      navigation?.extras.state?.['error'] || 'Ha ocurrido un error desconocido';
   }
 
   home() {
