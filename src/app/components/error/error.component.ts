@@ -17,7 +17,7 @@ export class ErrorComponent {
     this.error = navigation?.extras.state?.['error'];
   }
 
-  volverAlLogin() {
+  home() {
     this.router.navigate(['/home']);
   }
 }

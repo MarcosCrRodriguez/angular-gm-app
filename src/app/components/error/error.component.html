@@ -1,11 +1,32 @@
-<div class="msg">
-  <div>
-    <h1 class="title">{{ title }}</h1>
+<section class="seccion-imagen">
+  <div class="page-container">
+    <div class="inicio">
+      <h1 class="title-app" routerLink="/home" routerLinkActive="active">
+        Perfect
+        <img class="page-icon" src="assets/icon-clean.png" alt="icono" />Game
+      </h1>
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="card-title">(- Error: {{ title }} -)</h3>
+          <p class="card-text">Estimado usuario,</p>
+          <p class="card-text">
+            Se ha producido un error al procesar su solicitud. Esto puede
+            deberse a un intento de acceso no autorizado, datos incorrectos o
+            problemas con el inicio de sesión.
+          </p>
+          <p class="card-text">
+            Le sugerimos verificar los datos ingresados o intentarlo nuevamente.
+            Si el problema persiste, póngase en contacto con nuestro equipo de
+            soporte para recibir asistencia.
+          </p>
+          <p class="card-text">Gracias por su comprensión.</p>
+        </div>
+      </div>
+    </div>
+    <div class="back-btn">
+      <button type="button" class="btn btn-warning" (click)="home()">
+        Home
+      </button>
+    </div>
   </div>
-  <p class="error-msg">{{ error }}</p>
-  <div class="retry-btn">
-    <button type="button" class="btn btn-danger" (click)="volverAlLogin()">
-      Volver al Inicio
-    </button>
-  </div>
-</div>
+</section>

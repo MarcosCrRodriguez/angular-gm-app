@@ -1,1 +1,31 @@
-<p>page-not-found works!</p>
+<section class="seccion-imagen">
+  <div class="page-container">
+    <div class="inicio">
+      <h1 class="title-app" routerLink="/home" routerLinkActive="active">
+        Perfect
+        <img class="page-icon" src="assets/icon-clean.png" alt="icono" />Game
+      </h1>
+      <div class="card text-center">
+        <div class="card-body">
+          <h3 class="card-title">(- Error: Página no encontrada -)</h3>
+          <p class="card-text">Estimado usuario,</p>
+          <p class="card-text">
+            Ha intentado acceder a una ruta que no existe o a una sección a la
+            que no tiene acceso. Le recomendamos verificar el enlace que está
+            utilizando o volver a la página principal.
+          </p>
+          <p class="card-text">
+            Si el problema persiste, no dude en ponerse en contacto con nuestro
+            equipo de soporte para obtener asistencia.
+          </p>
+          <p class="card-text">Gracias por su comprensión.</p>
+        </div>
+      </div>
+    </div>
+    <div class="back-btn">
+      <button type="button" class="btn btn-warning" (click)="home()">
+        Home
+      </button>
+    </div>
+  </div>
+</section>
