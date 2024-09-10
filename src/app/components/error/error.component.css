@@ -94,3 +94,28 @@
   transform: scale(1.04);
   transition: 0.4s;
 }
+
+@media (max-width: 768px) {
+  .title-app {
+    font-size: 64px;
+  }
+
+  .page-icon {
+    height: 62px;
+    width: 62px;
+    margin-left: -12px;
+    margin-right: 6px;
+  }
+
+  .card-title {
+    font-size: 36px;
+  }
+
+  .card p {
+    font-size: 22px;
+  }
+
+  .back-btn button {
+    font-size: 26px;
+  }
+}
