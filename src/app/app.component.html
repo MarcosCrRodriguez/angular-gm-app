@@ -55,11 +55,56 @@
   <router-outlet></router-outlet>
 
   <footer class="footer-app">
+    <div class="footer-left">
+      <p>
+        Porftolio:
+        <a href="https://portfolio-react-crod.netlify.app/" target="_blank">
+          <i class="fas fa-briefcase icon-white"></i>
+        </a>
+      </p>
+      <p>
+        GitHub:
+        <a href="https://github.com/MarcosCrRodriguez" target="_blank">
+          <i class="fab fa-github icon-white"></i>
+        </a>
+      </p>
+      <p>
+        Linkedin:
+        <a
+          href="https://www.linkedin.com/in/marcos-cruz-rodriguez-3151a2230/"
+          target="_blank"
+        >
+          <i class="fab fa-linkedin icon-white"></i>
+        </a>
+      </p>
+    </div>
     <div class="columna-logo">
       <h1 class="title-footer" routerLink="/home" routerLinkActive="active">
         Perfe <img class="home-icon" src="assets/icon-clean.png" alt="icono" />t
         Game
       </h1>
+    </div>
+    <div class="footer-right">
+      <ul class="footer-links">
+        <ng-container *ngIf="!usuarioLogueado">
+          <li>
+            <a routerLink="/login" routerLinkActive="active">Login</a>
+          </li>
+          <li>
+            <a routerLink="/registro" routerLinkActive="active">Registro</a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="usuarioLogueado">
+          <li class="user-txt">
+            <a routerLink="/profile" routerLinkActive="active">{{
+              usuarioLogueado.email
+            }}</a>
+          </li>
+          <li>
+            <a (click)="logout()">Log Out</a>
+          </li>
+        </ng-container>
+      </ul>
     </div>
   </footer>
 </div>

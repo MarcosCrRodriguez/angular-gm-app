@@ -71,21 +71,17 @@
   cursor: pointer;
 }
 
-.nav-links a:hover {
-  background-color: #555;
-  border-radius: 4px;
-}
-
 .footer-app {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #2c2c2c;
   min-height: 18vh;
 }
 
 footer {
   border-top: 4px solid #a9a9a9;
+  color: white;
 }
 
 .home-icon {
@@ -98,21 +94,65 @@ footer {
 .title-footer {
   cursor: pointer;
   text-decoration: none;
-  color: white;
   font-size: 64px;
   font-family: "Metal Mania", cursive;
   margin: 0;
   transition: 0.6s;
 }
 
-.title-app:hover {
-  color: #eb8353;
-  transition: 0.5s;
+.footer-left {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
+  margin-left: 24px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  width: 16%;
 }
 
-.title-footer:hover {
-  color: #eb8353;
-  transition: 0.5s;
+.footer-left p {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.footer-left i {
+  margin-left: 10px;
+  margin-right: 20px;
+  color: white;
+  transition: 0.4s;
+}
+
+.footer-right {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  margin-right: 24px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  width: 16%;
+}
+
+.footer-links li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: right;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer-left,
+.footer-right {
+  font-size: 26px;
+  font-size: 600;
+  font-family: "Grenze Gotisch", serif;
 }
 
 .nav-mob-open {
@@ -125,6 +165,37 @@ footer {
   cursor: pointer;
 }
 
+.nav-links a:hover {
+  background-color: #555;
+  border-radius: 4px;
+}
+
+.title-app:hover {
+  color: #eb8353;
+  transition: 0.5s;
+}
+
+.title-footer:hover {
+  color: #eb8353;
+  transition: 0.5s;
+}
+
+.footer-left i:hover {
+  transform: scale(1.1);
+  transition: 0.4s;
+}
+
+.footer-links li:hover {
+  transform: scale(1.05);
+  transition: 0.4s;
+}
+
+@media (max-width: 1280px) {
+  .title-footer {
+    display: none;
+  }
+}
+
 @media (min-width: 769px) {
   .nav-links {
     transform: translateX(0);
@@ -132,11 +203,10 @@ footer {
     width: auto;
     height: auto;
     background-color: transparent;
-    display: flex; /* Asegúrate de que las opciones del menú se muestren en línea */
-    flex-direction: row; /* Alinea las opciones del menú horizontalmente */
+    display: flex;
+    flex-direction: row;
   }
 
-  /* Ocultar los íconos para abrir y cerrar el menú en pantallas grandes */
   .nav-mob-open,
   .nav-mob-close {
     display: none;
@@ -187,6 +257,12 @@ footer {
     width: 48px;
     margin-left: -11px;
     margin-right: 4px;
+  }
+
+  .footer-left,
+  .footer-right {
+    font-size: 20px;
+    width: 50%;
   }
 
   .nav-links.open {
