@@ -141,6 +141,7 @@
   font-weight: 500;
   font-family: "Grenze Gotisch", serif;
   cursor: pointer;
+  transition: 0.4s;
 }
 
 .registro-info {
@@ -157,6 +158,11 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
+}
+
+.registro-btn button:hover {
+  transform: scale(1.04);
+  transition: 0.4s;
 }
 
 @media (max-width: 1024px) {

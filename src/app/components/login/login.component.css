@@ -73,6 +73,7 @@
   font-weight: 500;
   font-family: "Grenze Gotisch", serif;
   cursor: pointer;
+  transition: 0.4s;
 }
 
 .register-info {
@@ -106,6 +107,11 @@
 
 .register-info a:hover {
   text-decoration: underline;
+}
+
+.login-btn button:hover {
+  transform: scale(1.04);
+  transition: 0.4s;
 }
 
 @media (max-width: 1024px) {
