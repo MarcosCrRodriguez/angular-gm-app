@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   User,
+  updatePassword as firebaseUpdatePassword,
 } from '@angular/fire/auth';
 import { addDoc, collection, Firestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';

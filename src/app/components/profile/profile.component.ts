@@ -10,13 +10,12 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css',
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   usuarioLogueado: any = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
-    // nos suscribimos al observable para obtener el usuario logueado
     this.authService.usuarioLogueado$.subscribe((usuario) => {
       console.log('Usuario logueado en ProfileComponent:', usuario?.email);
       this.usuarioLogueado = usuario;
