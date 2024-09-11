@@ -145,16 +145,16 @@ export class AuthService {
     usuario: string,
     nombre: string,
     apellido: string,
-    edad: number
+    edad: string
   ) {
     const col = collection(this.firestore, 'registro');
 
     // Agregar validación extra si fuera necesario
     addDoc(col, {
-      usuario: usuario || 'Desconocido', // Evita registros sin usuario
-      nombre: nombre || 'No especificado', // Evita campos vacíos
-      apellido: apellido || 'No especificado',
-      edad: edad || 0, // Si no se ingresa edad, guarda 0
+      usuario: usuario || 'Desconocido',
+      nombre: nombre || 'Desconocido',
+      apellido: apellido || 'Desconocido',
+      edad: edad || 'Desconocido',
     })
       .then(() => {
         console.log('Datos opcionales registrados exitosamente');

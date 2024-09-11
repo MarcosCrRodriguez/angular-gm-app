@@ -19,9 +19,9 @@ export class RegistroComponent {
   public txtPrimero = 'Nombre';
   public txtSegundo = 'Apellido';
   public txtTercero = 'Edad';
-  public txtCuarto = 'Dia';
-  public txtQuinto = 'Mes';
-  public txtSexto = 'Año';
+  // public txtCuarto = 'Dia';
+  // public txtQuinto = 'Mes';
+  // public txtSexto = 'Año';
   public txtSeptimo = 'Usuario';
   public txtOctavo = 'Contraseña';
 
@@ -29,10 +29,10 @@ export class RegistroComponent {
   public claveIngresado!: string;
   public nombreIngresado!: string;
   public apellidoIngresado!: string;
-  public edadIngresada!: number;
-  public diaIngresado!: number;
-  public mesIngresado!: number;
-  public anioIngresado!: number;
+  public edadIngresada!: string;
+  // public diaIngresado!: number;
+  // public mesIngresado!: number;
+  // public anioIngresado!: number;
 
   public msjError: string = '';
 
@@ -45,18 +45,12 @@ export class RegistroComponent {
     this.authService
       .register(this.userIngresado, this.claveIngresado)
       .then(() => {
-        // Validación básica para los datos opcionales
         if (
           this.nombreIngresado &&
           this.apellidoIngresado &&
           this.edadIngresada
         ) {
-          this.authService.optionalRegisterData(
-            this.userIngresado,
-            this.nombreIngresado,
-            this.apellidoIngresado,
-            this.edadIngresada
-          );
+          console.log('Se cagragon los datos opcionales correctamente');
         } else {
           Toastify({
             text: 'Algunos datos opcionales no fueron proporcionados',
@@ -68,6 +62,12 @@ export class RegistroComponent {
           }).showToast();
           // console.log('Algunos datos opcionales no fueron proporcionados');
         }
+        this.authService.optionalRegisterData(
+          this.userIngresado,
+          this.nombreIngresado,
+          this.apellidoIngresado,
+          this.edadIngresada
+        );
       })
       .catch((error: string) => {
         this.msjError = error;
