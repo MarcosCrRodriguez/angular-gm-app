@@ -1,0 +1,33 @@
+.seccion-imagen {
+  background: url("./../../../../assets/atroz.jpg") no-repeat center fixed;
+  background-size: cover;
+  min-height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+
+.ahorcado-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.inicio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 54%;
+}
+
+.title-app {
+  text-decoration: none;
+  color: white;
+  font-size: 76px;
+  font-family: "Metal Mania", cursive;
+  transition: 0.4s;
+  margin: 0;
+  text-shadow: -2.5px -2.5px 0 #000, 2.5px -2.5px 0 #000,
+    -2.5px 2.5px 0 hsl(0, 0%, 0%), 2.5px 2.5px 0 #000;
+}

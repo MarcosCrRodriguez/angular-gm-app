@@ -33,8 +33,8 @@
               id="txtNombre"
               class="form-control"
               [readonly]="true"
+              [(ngModel)]="userData.nombre"
             />
-            <!-- [(ngModel)]="usuarioLogueado.name" -->
           </div>
           <div class="info">
             <label for="disabledTextInput" class="form-label">Apellido</label>
@@ -43,8 +43,8 @@
               id="txtApellido"
               class="form-control"
               [readonly]="true"
+              [(ngModel)]="userData.apellido"
             />
-            <!-- [(ngModel)]="usuarioLogueado.lastName" -->
           </div>
         </div>
         <div class="card-row">
@@ -55,8 +55,8 @@
               id="txtEmail"
               class="form-control"
               [readonly]="true"
+              [(ngModel)]="userData.edad"
             />
-            <!-- [(ngModel)]="usuarioLogueado.age" -->
           </div>
         </div>
       </div>

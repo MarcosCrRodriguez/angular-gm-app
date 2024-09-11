@@ -8,9 +8,20 @@ import {
   User,
   updatePassword as firebaseUpdatePassword,
 } from '@angular/fire/auth';
-import { addDoc, collection, Firestore } from '@angular/fire/firestore';
+import {
+  addDoc,
+  collection,
+  collectionData,
+  Firestore,
+  where,
+  query,
+  limit,
+  orderBy,
+  getDoc,
+  doc,
+} from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
 
 // indica que el servicio -> singleton y se proporciona en el nivel raíz de la aplicación.
 @Injectable({ providedIn: 'root' })
@@ -19,6 +30,8 @@ export class AuthService {
   private usuarioLogueado = new BehaviorSubject<User | null>(null);
   usuarioLogueado$ = this.usuarioLogueado.asObservable();
   private msjError: string = '';
+  public loginCollection: any[] = [];
+  private sub!: Subscription;
 
   constructor(
     private auth: Auth,
@@ -71,10 +84,74 @@ export class AuthService {
     return this.usuarioLogueado.value;
   }
 
+  // Obtener los datos del usuario desde Firestore
+  getUsuarioRegistrado(usuario: string): Observable<any[]> {
+    const col = collection(this.firestore, 'registro');
+
+    const filteredQuery = query(col, where('user', '==', usuario));
+
+    // this.getUser(usuario);
+
+    // Retornamos el observable de los datos
+    return collectionData(filteredQuery);
+  }
+
+  getUserRegistrado(usuario: string): Observable<any> {
+    let col = collection(this.firestore, 'registro');
+
+    const filteredQuery = query(col, where('usuario', '==', usuario));
+
+    // Retornamos el observable en lugar de usar un Subject
+    return collectionData(filteredQuery).pipe(
+      map((respuesta: any[]) => {
+        if (respuesta.length > 0) {
+          const userData = respuesta[0];
+          return {
+            usuario: userData.usuario,
+            nombre: userData.nombre,
+            apellido: userData.apellido,
+            edad: userData.edad,
+          };
+        } else {
+          return {
+            usuario: usuario,
+            nombre: 'No hay datos',
+            apellido: 'No hay datos',
+            edad: 'No hay datos',
+          };
+        }
+      })
+    );
+  }
+
   // Guardar logs de usuarios en Firebase
   private logUserActivity(email: string) {
     const col = collection(this.firestore, 'logins');
     addDoc(col, { fecha: new Date(), user: email });
+  }
+
+  // Datos opcionales registro de datos en Firebase
+  optionalRegisterData(
+    usuario: string,
+    nombre: string,
+    apellido: string,
+    edad: number
+  ) {
+    const col = collection(this.firestore, 'registro');
+
+    // Agregar validación extra si fuera necesario
+    addDoc(col, {
+      usuario: usuario || 'Desconocido', // Evita registros sin usuario
+      nombre: nombre || 'No especificado', // Evita campos vacíos
+      apellido: apellido || 'No especificado',
+      edad: edad || 0, // Si no se ingresa edad, guarda 0
+    })
+      .then(() => {
+        console.log('Datos opcionales registrados exitosamente');
+      })
+      .catch((error) => {
+        console.error('Error al registrar datos opcionales:', error);
+      });
   }
 
   // Manejar mensajes de error de Firebase
