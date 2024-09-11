@@ -37,7 +37,7 @@
       ></button>
       <div class="card text-end card-right">
         <div class="card-body">
-          <h5 class="card-title">Ahorcado</h5>
+          <h5 (click)="ingresoAhorcado()" class="card-title">Ahorcado</h5>
           <p class="card-text">
             Adivina la palabra oculta antes de que el dibujo del ahorcado se
             complete, eligiendo letras correctas en cada intento.
@@ -48,7 +48,7 @@
     <div class="bloque-juego">
       <div class="card mb-3 card-left">
         <div class="card-body">
-          <h5 class="card-title">Mayor Menor</h5>
+          <h5 (click)="ingresoMayorMenor()" class="card-title">Mayor Menor</h5>
           <p class="card-text">
             Adivina si la siguiente carta será mayor o menor que la actual.
             ¡Acierta para ganar!
@@ -71,7 +71,7 @@
       ></button>
       <div class="card text-end card-right">
         <div class="card-body">
-          <h5 class="card-title">Preguntados</h5>
+          <h5 (click)="ingresoPreguntados()" class="card-title">Preguntados</h5>
           <p class="card-text">
             Responde preguntas de distintas categorías y compite contra otros
             jugadores para obtener la mayor cantidad de respuestas correctas.
@@ -82,7 +82,7 @@
     <div class="bloque-juego">
       <div class="card mb-3 card-left">
         <div class="card-body">
-          <h5 class="card-title">Generala</h5>
+          <h5 (click)="ingresoGenerala()" class="card-title">Generala</h5>
           <p class="card-text">
             Lanza dados para formar combinaciones específicas como escalera,
             póker o generala, y consigue la mayor cantidad de puntos en varias
