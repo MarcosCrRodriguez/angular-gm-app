@@ -1,3 +1,5 @@
+import 'toastify-js/src/toastify.css';
+import Toastify from 'toastify-js';
 import { Injectable } from '@angular/core';
 import {
   Auth,
@@ -48,6 +50,14 @@ export class AuthService {
   login(email: string, password: string): Promise<void> {
     return signInWithEmailAndPassword(this.auth, email, password)
       .then((res) => {
+        Toastify({
+          text: '¡Usuario logeado correctamente! ',
+          duration: 4000,
+          close: true,
+          gravity: 'top',
+          position: 'center',
+          backgroundColor: 'linear-gradient(to right, #4caf50, #81c784)',
+        }).showToast();
         this.logUserActivity(res.user.email!); // Guardar log
         this.router.navigate(['/home']); // Redireccionar al home
       })
@@ -168,6 +178,9 @@ export class AuthService {
         break;
       case 'auth/weak-password':
         this.msjError = '¡Contraseña débil! Debe tener más de 6 caracteres.';
+        break;
+      case 'auth/missing-password':
+        this.msjError = '¡Credenciales inválidas!';
         break;
       default:
         this.msjError = 'Error desconocido: ' + ex;

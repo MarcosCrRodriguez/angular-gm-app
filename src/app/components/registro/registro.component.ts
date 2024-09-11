@@ -58,7 +58,15 @@ export class RegistroComponent {
             this.edadIngresada
           );
         } else {
-          console.log('Algunos datos opcionales no fueron proporcionados');
+          Toastify({
+            text: 'Algunos datos opcionales no fueron proporcionados',
+            duration: 4000,
+            close: true,
+            gravity: 'top',
+            position: 'center',
+            backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
+          }).showToast();
+          // console.log('Algunos datos opcionales no fueron proporcionados');
         }
       })
       .catch((error: string) => {
