@@ -18,6 +18,7 @@ export class AuthService {
   private usuarioLogueadoSubject = new BehaviorSubject<any>(null);
   private usuarioLogueado = new BehaviorSubject<User | null>(null);
   usuarioLogueado$ = this.usuarioLogueado.asObservable();
+  private msjError: string = '';
 
   constructor(
     private auth: Auth,
@@ -77,18 +78,24 @@ export class AuthService {
   }
 
   // Manejar mensajes de error de Firebase
-  private getErrorMessage(code: string): string {
-    switch (code) {
+  private getErrorMessage(ex: string): string {
+    switch (ex) {
       case 'auth/invalid-credential':
-        return '¡Credenciales inválidas!';
+        this.msjError = '¡Credenciales inválidas!';
+        break;
       case 'auth/invalid-email':
-        return '¡El email ingresado es inválido!';
+        this.msjError = '¡El email ingresado es inválido!';
+        break;
       case 'auth/email-already-in-use':
-        return '¡El email ingresado ya está en uso!';
+        this.msjError = '¡El email ingresado ya está en uso!';
+        break;
       case 'auth/weak-password':
-        return '¡Contraseña débil! Debe tener más de 6 caracteres.';
+        this.msjError = '¡Contraseña débil! Debe tener más de 6 caracteres.';
+        break;
       default:
-        return 'Error desconocido: ' + code;
+        this.msjError = 'Error desconocido: ' + ex;
+        break;
     }
+    return this.msjError;
   }
 }
