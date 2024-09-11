@@ -60,7 +60,6 @@ export class RegistroComponent {
             position: 'center',
             backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
           }).showToast();
-          // console.log('Algunos datos opcionales no fueron proporcionados');
         }
         this.authService.optionalRegisterData(
           this.userIngresado,
@@ -72,7 +71,6 @@ export class RegistroComponent {
       .catch((error: string) => {
         this.msjError = error;
 
-        // Muestra mensaje de error con Toastify
         Toastify({
           text: this.msjError,
           duration: 4000,
@@ -82,7 +80,6 @@ export class RegistroComponent {
           backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
         }).showToast();
 
-        // Limpia los campos de ingreso
         this.userIngresado = '';
         this.claveIngresado = '';
       });
