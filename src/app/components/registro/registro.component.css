@@ -36,6 +36,19 @@
     2px 2px 0 #000;
 }
 
+.sub-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 32px;
+  font-family: "Metal Mania", cursive;
+  font-size: 36px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
 .registro-input {
   display: flex;
   justify-content: space-between;
@@ -106,6 +119,10 @@
   align-items: center;
   flex-direction: center;
   margin-bottom: 5px;
+}
+
+.div-hr {
+  border: 1px solid white;
 }
 
 .registro-btn {
@@ -189,6 +206,10 @@
 @media (max-width: 768px) {
   .title {
     font-size: 60px;
+  }
+
+  .sub-title {
+    font-size: 28px;
   }
 
   .registro-input input {
