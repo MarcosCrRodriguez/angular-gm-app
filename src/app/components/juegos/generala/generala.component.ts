@@ -2,11 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-generala',
-  standalone: true,
-  imports: [],
+  standalone: false,
   templateUrl: './generala.component.html',
-  styleUrl: './generala.component.css'
+  styleUrl: './generala.component.css',
 })
-export class GeneralaComponent {
-
-}
+export class GeneralaComponent {}

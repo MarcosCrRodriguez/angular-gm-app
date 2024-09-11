@@ -2,11 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-preguntados',
-  standalone: true,
-  imports: [],
+  standalone: false,
   templateUrl: './preguntados.component.html',
-  styleUrl: './preguntados.component.css'
+  styleUrl: './preguntados.component.css',
 })
-export class PreguntadosComponent {
-
-}
+export class PreguntadosComponent {}

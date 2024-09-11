@@ -2,11 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-ahorcado',
-  standalone: true,
-  imports: [],
+  standalone: false,
   templateUrl: './ahorcado.component.html',
-  styleUrl: './ahorcado.component.css'
+  styleUrl: './ahorcado.component.css',
 })
-export class AhorcadoComponent {
-
-}
+export class AhorcadoComponent {}

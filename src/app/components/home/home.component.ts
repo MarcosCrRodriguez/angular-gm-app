@@ -15,4 +15,20 @@ export class HomeComponent {
   quienSoy() {
     this.router.navigate(['/quien-soy']);
   }
+
+  ingresoAhorcado() {
+    this.router.navigate(['/juegos/ahorcado']);
+  }
+
+  ingresoMayorMenor() {
+    this.router.navigate(['/juegos/mayor-menor']);
+  }
+
+  ingresoPreguntados() {
+    this.router.navigate(['/juegos/preguntados']);
+  }
+
+  ingresoGenerala() {
+    this.router.navigate(['/juegos/generala']);
+  }
 }

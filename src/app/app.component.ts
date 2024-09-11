@@ -8,6 +8,7 @@ import {
   RouterLinkActive,
   Router,
 } from '@angular/router';
+import { JuegosModule } from './modules/juegos/juegos.module';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import {
     RouterLink,
     RouterLinkActive,
     CommonModule,
+    JuegosModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

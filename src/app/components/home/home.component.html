@@ -30,7 +30,11 @@
   </div>
   <div class="doble-card">
     <div class="bloque-juego">
-      <button type="button" class="btn btn-secondary btn-left-one"></button>
+      <button
+        type="button"
+        class="btn btn-secondary btn-left-one"
+        (click)="ingresoAhorcado()"
+      ></button>
       <div class="card text-end card-right">
         <div class="card-body">
           <h5 class="card-title">Ahorcado</h5>
@@ -51,12 +55,20 @@
           </p>
         </div>
       </div>
-      <button type="button" class="btn btn-secondary btn-right-one"></button>
+      <button
+        type="button"
+        class="btn btn-secondary btn-right-one"
+        (click)="ingresoMayorMenor()"
+      ></button>
     </div>
   </div>
   <div class="doble-card">
     <div class="bloque-juego">
-      <button type="button" class="btn btn-secondary btn-left-two"></button>
+      <button
+        type="button"
+        class="btn btn-secondary btn-left-two"
+        (click)="ingresoPreguntados()"
+      ></button>
       <div class="card text-end card-right">
         <div class="card-body">
           <h5 class="card-title">Preguntados</h5>
@@ -78,7 +90,11 @@
           </p>
         </div>
       </div>
-      <button type="button" class="btn btn-secondary btn-right-two"></button>
+      <button
+        type="button"
+        class="btn btn-secondary btn-right-two"
+        (click)="ingresoGenerala()"
+      ></button>
     </div>
   </div>
 </section>
