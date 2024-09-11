@@ -12,6 +12,7 @@
             class="form-control"
             placeholder="{{ txtPrimero }}"
             [(ngModel)]="userIngresado"
+            autocomplete="off"
           />
           <input
             type="password"
@@ -20,10 +21,11 @@
             aria-describedby="passwordHelpBlock"
             placeholder="{{ txtSegundo }}"
             [(ngModel)]="claveIngresado"
+            autocomplete="off"
           />
         </div>
         <div class="login-btn">
-          <button type="button" class="btn btn-light" (click)="loguear()">
+          <button type="button" class="btn btn-light" (click)="login()">
             Login
           </button>
         </div>

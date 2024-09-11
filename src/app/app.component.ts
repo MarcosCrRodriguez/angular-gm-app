@@ -33,9 +33,10 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
+    // Escucha los cambios de usuario logueado
     this.authService.usuarioLogueado$.subscribe((usuario) => {
       if (usuario) {
-        console.log('Usuario logueado:', usuario.username);
+        console.log('Usuario logueado:', usuario.email); // Mostrar el email del usuario
       }
       this.usuarioLogueado = usuario;
     });
@@ -46,9 +47,11 @@ export class AppComponent implements OnInit {
     }
   }
 
+  // Cerrar sesión y redirigir al login
   logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
+    this.authService.logout().then(() => {
+      this.router.navigate(['/login']);
+    });
   }
 
   openMenu() {

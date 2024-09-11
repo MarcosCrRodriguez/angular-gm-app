@@ -18,7 +18,7 @@ export class ProfileComponent {
   ngOnInit(): void {
     // nos suscribimos al observable para obtener el usuario logueado
     this.authService.usuarioLogueado$.subscribe((usuario) => {
-      console.log('Usuario logueado en ProfileComponent:', usuario.username);
+      console.log('Usuario logueado en ProfileComponent:', usuario?.email);
       this.usuarioLogueado = usuario;
     });
   }

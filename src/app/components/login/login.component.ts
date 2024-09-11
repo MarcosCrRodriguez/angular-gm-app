@@ -5,6 +5,19 @@ import { Router } from '@angular/router';
 import { Usuario } from '../../models/usuario';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
+import {
+  addDoc,
+  collection,
+  Firestore,
+  where,
+  query,
+  limit,
+  orderBy,
+  collectionData,
+} from '@angular/fire/firestore';
+import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { signOut } from '@firebase/auth';
 
 @Component({
   selector: 'app-login',
@@ -15,69 +28,49 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
   public title = 'Login';
-  public nombreUser = 'JuanCarlos';
-  public claveUser = '13249';
-  public txtPrimero = 'Usuario';
-  public txtSegundo = 'Contraseña';
-  public try = 0;
-
   public userIngresado!: string;
   public claveIngresado!: string;
+  public msjError: string = '';
+  public txtPrimero = 'Usuario';
+  public txtSegundo = 'Contraseña';
 
-  public usuario!: Usuario;
+  constructor(private authService: AuthService, private router: Router) {
+    this.userIngresado = '';
+    this.claveIngresado = '';
+  }
 
-  constructor(private authService: AuthService, private router: Router) {}
+  login() {
+    this.authService
+      .login(this.userIngresado, this.claveIngresado)
+      .then(() => {
+        console.log(
+          'Campos antes de limpiar:',
+          this.userIngresado,
+          this.claveIngresado
+        );
+        this.userIngresado = '';
+        this.claveIngresado = '';
+        console.log(
+          'Campos después de limpiar:',
+          this.userIngresado,
+          this.claveIngresado
+        );
+      })
+      .catch((error: string) => {
+        this.msjError = error;
 
-  loguear() {
-    // Obtener los usuarios registrados desde el localStorage
-    const usuariosGuardados = JSON.parse(
-      localStorage.getItem('usuarios') || '[]'
-    );
+        Toastify({
+          text: this.msjError,
+          duration: 4000,
+          close: true,
+          gravity: 'top',
+          position: 'center',
+          backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
+        }).showToast();
 
-    // podría pasarlo a una funcion en el authService
-    // Verificar si las credenciales coinciden con algún usuario guardado
-    const usuarioValido = usuariosGuardados.find((user: any) => {
-      return (
-        user.username === this.userIngresado &&
-        user.password === this.claveIngresado
-      );
-    });
-
-    if (usuarioValido) {
-      Toastify({
-        text: '¡Se logeo correctamente!',
-        duration: 4000,
-        close: true,
-        gravity: 'top',
-        position: 'center',
-        backgroundColor: 'linear-gradient(to right, #1c25d1, #23c620)',
-      }).showToast();
-
-      this.try = 0;
-      this.authService.loguear(usuarioValido);
-
-      this.router.navigate(['/home']);
-    } else {
-      Toastify({
-        text: '¡Error! La cuenta ingresada no existe ',
-        duration: 4000,
-        close: true,
-        gravity: 'top',
-        position: 'center',
-        backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
-      }).showToast();
-
-      if (this.try == 5) {
-        this.try = 0;
-        this.router.navigate(['/error'], {
-          state: { error: 'Límites de intentos alcanzados' },
-        });
-      }
-
-      this.try += 1;
-      this.userIngresado = '';
-      this.claveIngresado = '';
-    }
+        this.userIngresado = '';
+        this.claveIngresado = '';
+      });
   }
 
   registro() {

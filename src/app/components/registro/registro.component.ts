@@ -3,6 +3,9 @@ import Toastify from 'toastify-js';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { Firestore } from '@angular/fire/firestore';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-registro',
@@ -15,7 +18,7 @@ export class RegistroComponent {
   public title = 'Registro';
   public txtPrimero = 'Nombre';
   public txtSegundo = 'Apellido';
-  public txtTercero = 'Email';
+  public txtTercero = 'Edad';
   public txtCuarto = 'Dia';
   public txtQuinto = 'Mes';
   public txtSexto = 'Año';
@@ -26,61 +29,40 @@ export class RegistroComponent {
   public claveIngresado!: string;
   public nombreIngresado!: string;
   public apellidoIngresado!: string;
-  public mailIngresado!: string;
+  public edadIngresada!: number;
   public diaIngresado!: number;
   public mesIngresado!: number;
   public anioIngresado!: number;
 
-  constructor(private router: Router) {}
+  public msjError: string = '';
 
-  registrar() {
-    if (
-      this.userIngresado &&
-      this.claveIngresado &&
-      this.nombreIngresado &&
-      this.apellidoIngresado &&
-      this.mailIngresado
-    ) {
-      const usuario = {
-        username: this.userIngresado,
-        password: this.claveIngresado,
-        nombre: this.nombreIngresado,
-        apellido: this.apellidoIngresado,
-        email: this.mailIngresado,
-      };
+  constructor(private authService: AuthService, private router: Router) {
+    this.userIngresado = '';
+    this.claveIngresado = '';
+  }
 
-      // Obtener usuarios existentes del localStorage
-      const usuariosGuardados = JSON.parse(
-        localStorage.getItem('usuarios') || '[]'
-      );
+  register() {
+    this.authService
+      .register(this.userIngresado, this.claveIngresado)
+      .then(() => {
+        this.userIngresado = '';
+        this.claveIngresado = '';
+      })
+      .catch((error: string) => {
+        this.msjError = error;
 
-      // Agregar el nuevo usuario a la lista
-      usuariosGuardados.push(usuario);
+        Toastify({
+          text: this.msjError,
+          duration: 4000,
+          close: true,
+          gravity: 'top',
+          position: 'center',
+          backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
+        }).showToast();
 
-      // Guardar la lista actualizada en localStorage
-      localStorage.setItem('usuarios', JSON.stringify(usuariosGuardados));
-
-      Toastify({
-        text: '¡Su cuenta se registro correctamente!',
-        duration: 4000,
-        close: true,
-        gravity: 'top',
-        position: 'center',
-        backgroundColor: 'linear-gradient(to right, #1c25d1, #23c620)',
-      }).showToast();
-
-      this.router.navigate(['/login']);
-    } else {
-      Toastify({
-        text: '¡Error! Complete todos los campos ',
-        duration: 4000,
-        close: true,
-        gravity: 'top',
-        position: 'center',
-        backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
-        className: 'error-toast',
-      }).showToast();
-    }
+        this.userIngresado = '';
+        this.claveIngresado = '';
+      });
   }
 
   loguear() {

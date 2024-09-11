@@ -13,10 +13,10 @@
               class="form-control"
               placeholder="{{ txtSeptimo }}"
               [(ngModel)]="userIngresado"
+              autocomplete="off"
             />
             <small class="form-text text-muted"
-              >El usuario debe tener entre 8 y 16 caracteres, no se aceptan
-              caracteres especiales
+              >El mail ingresado debe ser un mail válido
             </small>
           </div>
           <div class="columna-input">
@@ -26,6 +26,7 @@
               class="form-control"
               placeholder="{{ txtOctavo }}"
               [(ngModel)]="claveIngresado"
+              autocomplete="off"
             />
             <small class="form-text text-muted"
               >La contraseña debe tener al menos 8 caracteres sin caracter
@@ -33,7 +34,7 @@
             >
           </div>
         </div>
-        <div class="registro-input">
+        <!-- <div class="registro-input">
           <div class="columna-input">
             <input
               type="text"
@@ -67,10 +68,10 @@
               id="inputEdad"
               class="form-control"
               placeholder="{{ txtTercero }}"
-              [(ngModel)]="mailIngresado"
+              [(ngModel)]="edadIngresada"
             />
             <small class="form-text text-muted small-medio"
-              >El mail ingresado debe ser un mail válido</small
+              >La edad del usuario debe ser mayor a 18</small
             >
           </div>
         </div>
@@ -103,12 +104,12 @@
               >Fecha de nacimiento del usaurio</small
             >
           </div>
-        </div>
+        </div> -->
         <div class="registro-btn">
           <button type="button" class="btn btn-light" (click)="loguear()">
-            Volver a Login
+            Ir a Login
           </button>
-          <button type="button" class="btn btn-warning" (click)="registrar()">
+          <button type="button" class="btn btn-warning" (click)="register()">
             Registrar
           </button>
         </div>
