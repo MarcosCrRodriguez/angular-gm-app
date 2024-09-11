@@ -42,20 +42,6 @@ export class LoginComponent {
   login() {
     this.authService
       .login(this.userIngresado, this.claveIngresado)
-      .then(() => {
-        console.log(
-          'Campos antes de limpiar:',
-          this.userIngresado,
-          this.claveIngresado
-        );
-        this.userIngresado = '';
-        this.claveIngresado = '';
-        console.log(
-          'Campos después de limpiar:',
-          this.userIngresado,
-          this.claveIngresado
-        );
-      })
       .catch((error: string) => {
         this.msjError = error;
 

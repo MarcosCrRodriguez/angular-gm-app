@@ -47,7 +47,8 @@ export class AuthService {
     return createUserWithEmailAndPassword(this.auth, email, password)
       .then((res) => {
         this.logUserActivity(res.user.email!); // Guardar log
-        this.router.navigate(['/login']); // Redireccionar al login
+        this.login(email, password);
+        // this.router.navigate(['/login']); // Redireccionar al login
       })
       .catch((error) => {
         return Promise.reject(this.getErrorMessage(error.code));

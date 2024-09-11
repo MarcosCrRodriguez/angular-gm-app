@@ -44,10 +44,6 @@ export class RegistroComponent {
   register() {
     this.authService
       .register(this.userIngresado, this.claveIngresado)
-      .then(() => {
-        this.userIngresado = '';
-        this.claveIngresado = '';
-      })
       .catch((error: string) => {
         this.msjError = error;
 
