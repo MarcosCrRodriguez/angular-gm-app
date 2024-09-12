@@ -45,7 +45,7 @@ export class MayorMenorComponent implements OnInit {
       this.terminoJuego = false;
       this.empezoJuego = false;
       this.cartasCargadas = false;
-      this.cartasRestantes = 52; // Reiniciamos la cantidad de cartas
+      this.cartasRestantes = 52;
     });
   }
 
@@ -62,7 +62,6 @@ export class MayorMenorComponent implements OnInit {
     this.visibilidadCarta = false;
     this.primeraRonda = false;
 
-    // Hacemos la solicitud de las cartas
     this.cardService.repartirCartas(this.mazoID).subscribe((response) => {
       if (response.cards.length === 0 || this.cartasRestantes < 2) {
         this.noMasCartas = true;
@@ -75,16 +74,16 @@ export class MayorMenorComponent implements OnInit {
 
       this.cartasCargadas = true;
 
-      const card1Value = this.getValorCarta(this.cartaUno.value);
-      const card2Value = this.getValorCarta(this.cartaDos.value);
+      const cardUnoValue = this.getValorCarta(this.cartaUno.value);
+      const cardDosValue = this.getValorCarta(this.cartaDos.value);
 
       let esCorrecto = false;
 
-      if (eleccion === 'alto' && card2Value > card1Value) {
+      if (eleccion === 'alto' && cardDosValue > cardUnoValue) {
         esCorrecto = true;
-      } else if (eleccion === 'igual' && card2Value === card1Value) {
+      } else if (eleccion === 'igual' && cardDosValue === cardUnoValue) {
         esCorrecto = true;
-      } else if (eleccion === 'bajo' && card2Value < card1Value) {
+      } else if (eleccion === 'bajo' && cardDosValue < cardUnoValue) {
         esCorrecto = true;
       }
 
@@ -96,13 +95,11 @@ export class MayorMenorComponent implements OnInit {
 
       this.visibilidadCarta = true;
 
-      // Actualizamos el número de cartas restantes
       this.cartasRestantes -= 2;
 
-      // Si ya no quedan suficientes cartas para otra ronda, terminamos el juego
       if (this.cartasRestantes < 2) {
         this.noMasCartas = true;
-        this.declararGanador(); // Permitimos que juegue la última ronda completa
+        this.declararGanador();
       }
     });
   }
@@ -129,7 +126,6 @@ export class MayorMenorComponent implements OnInit {
       this.resultado = `Puntaje: Jugador ${this.puntosJugador} - Máquina ${this.puntosIA}`;
     }
 
-    // Deshabilitar los botones después de la última mano
     this.empezoJuego = false;
   }
 
