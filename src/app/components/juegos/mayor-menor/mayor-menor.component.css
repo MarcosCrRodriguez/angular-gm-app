@@ -286,29 +286,29 @@
   }
 
   .cartas img {
-    width: 144px;
+    width: 136px;
     height: auto;
   }
 
   .dorso img {
-    width: 144px;
+    width: 136px;
     height: auto;
   }
 
   .dorso-ia {
-    margin-right: 36px;
+    margin-right: 32px;
   }
 
   .dorso-jugador {
-    margin-left: 36px;
+    margin-left: 32px;
   }
 
   .info-ia {
-    margin-right: 36px;
+    margin-right: 32px;
   }
 
   .info-jugador {
-    margin-left: 36px;
+    margin-left: 32px;
   }
 
   .info-ia p,
