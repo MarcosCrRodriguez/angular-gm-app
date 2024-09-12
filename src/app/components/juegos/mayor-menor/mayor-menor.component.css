@@ -286,12 +286,12 @@
   }
 
   .cartas img {
-    width: 146px;
+    width: 144px;
     height: auto;
   }
 
   .dorso img {
-    width: 146px;
+    width: 144px;
     height: auto;
   }
 
@@ -313,7 +313,7 @@
 
   .info-ia p,
   .info-jugador p {
-    font-size: 26px;
+    font-size: 22px;
   }
 
   .start-game button,
@@ -334,7 +334,7 @@
   }
 
   .msg {
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .resultado {
