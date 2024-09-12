@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .inicio {
@@ -24,19 +25,163 @@
     -2.5px 2.5px 0 hsl(0, 0%, 0%), 2.5px 2.5px 0 #000;
 }
 
-img {
-  width: 100px;
+.home-icon {
+  height: 77px;
+  width: 77px;
+  margin-left: -16px;
+  margin-right: 6px;
+}
+
+.card {
+  background: url("./../../../../assets/bg-cartas.jpg") no-repeat center fixed;
+  background-size: cover;
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   height: auto;
-  margin: 10px;
+  width: 70%;
+  margin-left: 15%;
+  margin-right: 15%;
+  border: 3px solid black;
+  margin-bottom: 60px;
 }
 
-button {
-  margin-top: 20px;
-  margin-right: 10px;
-  padding: 10px;
+.card-img-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-p {
-  font-size: 18px;
-  font-weight: bold;
+.game-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-mm {
+  text-decoration: none;
+  color: white;
+  font-size: 62px;
+  padding-top: 30px;
+  padding-bottom: 40px;
+  font-family: "Grenze Gotisch", serif;
+  /* transition: 0.4s; */
+  margin: 0;
+  text-shadow: -2.5px -2.5px 0 #000, 2.5px -2.5px 0 #000,
+    -2.5px 2.5px 0 hsl(0, 0%, 0%), 2.5px 2.5px 0 #000;
+}
+
+.dorso {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dorso-ia {
+  margin-right: 70px;
+}
+
+.dorso-jugador {
+  margin-left: 70px;
+}
+
+.cartas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-ia,
+.info-jugador {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.info-ia {
+  margin-right: 80px;
+}
+
+.info-jugador {
+  margin-left: 80px;
+}
+
+.info-ia p,
+.info-jugador p {
+  font-size: 30px;
+  font-weight: 500;
+  padding: 32px;
+  font-family: "Grenze Gotisch", serif;
+}
+
+.start-game,
+.game-over {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-game button,
+.game-over button {
+  border: 2.5px solid rgb(45, 45, 45);
+  font-size: 40px;
+  font-weight: 500;
+  margin-top: 40px;
+  margin-bottom: 24px;
+  font-family: "Grenze Gotisch", serif;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.ingame-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ingame-btn button {
+  border: 2.5px solid rgb(45, 45, 45);
+  font-size: 36px;
+  font-weight: 500;
+  margin-top: 16px;
+  margin-bottom: 20px;
+  font-family: "Grenze Gotisch", serif;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.igual {
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.final-msg {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 6px;
+  font-family: "Grenze Gotisch", serif;
+}
+
+.msg {
+  font-size: 30px;
+  font-weight: 500;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
+}
+
+.resultado {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.start-game button:hover,
+.game-over button:hover {
+  transform: scale(1.05);
+  transition: 0.4s;
 }

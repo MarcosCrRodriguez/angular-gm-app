@@ -1,54 +1,92 @@
 <div class="mayor-menor-container">
   <div class="inicio">
     <h1 class="title-app" routerLink="/home" routerLinkActive="active">
-      Mayor Menor
+      Perfect
+      <img class="home-icon" src="assets/icon-clean.png" alt="icono" />Game
     </h1>
   </div>
 </div>
-<div class="mesa-juego">
-  <button *ngIf="!empezoJuego && !terminoJuego" (click)="startGame()">
-    Start
-  </button>
+<div class="mesa-bg">
+  <div class="card text-bg-dark">
+    <div class="game-title">
+      <h1 class="title-mm">Mayor - Menor</h1>
+    </div>
+    <div class="dorso" *ngIf="!empezoJuego && !terminoJuego">
+      <img class="dorso-ia" [src]="dorsoCarta" alt="Carta IA" />
+      <img class="dorso-jugador" [src]="dorsoCarta" alt="Carta Jugador" />
+    </div>
+    <div class="cartas" *ngIf="empezoJuego || terminoJuego">
+      <div class="info-ia">
+        <img
+          class="cartas-ia"
+          [src]="cartasCargadas ? cartaUno?.image : dorsoCarta"
+          alt="Carta IA"
+        />
+        <p class="p-oponente" *ngIf="empezoJuego || terminoJuego">
+          Oponente: {{ puntosIA }}
+        </p>
+      </div>
+      <div class="info-jugador">
+        <img
+          class="cartas-jugador"
+          [src]="cartasCargadas ? cartaDos?.image : dorsoCarta"
+          alt="Carta Jugador"
+        />
+        <p class="p-jugador" *ngIf="empezoJuego || terminoJuego">
+          Jugador: {{ puntosJugador }}
+        </p>
+      </div>
+    </div>
 
-  <div *ngIf="!empezoJuego && !terminoJuego">
-    <img [src]="dorsoCarta" alt="Carta IA" />
-    <img [src]="dorsoCarta" alt="Carta Jugador" />
+    <div class="start-game">
+      <button
+        class="btn btn-warning"
+        *ngIf="!empezoJuego && !terminoJuego"
+        (click)="startGame()"
+      >
+        Start
+      </button>
+    </div>
+    <div class="game-over">
+      <button
+        class="btn btn-warning"
+        *ngIf="terminoJuego"
+        (click)="handleNewDeck()"
+      >
+        Volver a jugar
+      </button>
+    </div>
+
+    <div class="ingame-btn">
+      <button
+        class="btn btn-secondary alto"
+        *ngIf="empezoJuego && !noMasCartas"
+        [disabled]="terminoJuego"
+        (click)="eleccionJugador('alto')"
+      >
+        Alto
+      </button>
+      <button
+        class="btn btn-secondary igual"
+        *ngIf="empezoJuego && !noMasCartas"
+        [disabled]="terminoJuego"
+        (click)="eleccionJugador('igual')"
+      >
+        Igual
+      </button>
+      <button
+        class="btn btn-secondary bajo"
+        *ngIf="empezoJuego && !noMasCartas"
+        [disabled]="terminoJuego"
+        (click)="eleccionJugador('bajo')"
+      >
+        Bajo
+      </button>
+    </div>
+
+    <div class="final-msg">
+      <p class="msg">{{ mensaje }}</p>
+      <p class="resultado">{{ resultado }}</p>
+    </div>
   </div>
-
-  <div *ngIf="empezoJuego || terminoJuego">
-    <img [src]="cartasCargadas ? cartaUno?.image : dorsoCarta" alt="Carta IA" />
-    <img
-      [src]="cartasCargadas ? cartaDos?.image : dorsoCarta"
-      alt="Carta Jugador"
-    />
-  </div>
-
-  <p *ngIf="empezoJuego || terminoJuego">Máquina: {{ puntosIA }}</p>
-  <p *ngIf="empezoJuego || terminoJuego">Jugador: {{ puntosJugador }}</p>
-
-  <button
-    *ngIf="empezoJuego && !noMasCartas"
-    [disabled]="terminoJuego"
-    (click)="eleccionJugador('alto')"
-  >
-    Alto
-  </button>
-  <button
-    *ngIf="empezoJuego && !noMasCartas"
-    [disabled]="terminoJuego"
-    (click)="eleccionJugador('igual')"
-  >
-    Igual
-  </button>
-  <button
-    *ngIf="empezoJuego && !noMasCartas"
-    [disabled]="terminoJuego"
-    (click)="eleccionJugador('bajo')"
-  >
-    Bajo
-  </button>
-
-  <button *ngIf="terminoJuego" (click)="handleNewDeck()">Volver a jugar</button>
-
-  <p>{{ mensaje }}</p>
 </div>

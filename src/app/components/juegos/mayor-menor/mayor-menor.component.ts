@@ -10,20 +10,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './mayor-menor.component.css',
 })
 export class MayorMenorComponent implements OnInit {
-  mazoID: string = '';
-  cartaUno: any = null;
-  cartaDos: any = null;
-  puntosJugador: number = 0;
-  puntosIA: number = 0;
-  noMasCartas: boolean = false;
-  mensaje: string = '';
-  visibilidadCarta: boolean = false;
-  primeraRonda: boolean = true;
-  terminoJuego: boolean = false;
-  empezoJuego: boolean = false;
-  cartasCargadas: boolean = false;
-  cartasRestantes: number = 52;
-  dorsoCarta: string = 'https://deckofcardsapi.com/static/img/back.png';
+  public mazoID: string = '';
+  public cartaUno: any = null;
+  public cartaDos: any = null;
+  public puntosJugador: number = 0;
+  public puntosIA: number = 0;
+  public noMasCartas: boolean = false;
+  public mensaje: string = '';
+  public resultado: string = '';
+  public visibilidadCarta: boolean = false;
+  public primeraRonda: boolean = true;
+  public terminoJuego: boolean = false;
+  public empezoJuego: boolean = false;
+  public cartasCargadas: boolean = false;
+  public cartasRestantes: number = 52;
+  public dorsoCarta: string = 'https://deckofcardsapi.com/static/img/back.png';
 
   constructor(private cardService: CardService) {}
 
@@ -38,6 +39,7 @@ export class MayorMenorComponent implements OnInit {
       this.puntosJugador = 0;
       this.puntosIA = 0;
       this.mensaje = '';
+      this.resultado = '';
       this.visibilidadCarta = false;
       this.primeraRonda = true;
       this.terminoJuego = false;
@@ -117,11 +119,14 @@ export class MayorMenorComponent implements OnInit {
     this.terminoJuego = true;
 
     if (this.puntosJugador > this.puntosIA) {
-      this.mensaje = `¡Ganaste! Puntaje: Jugador ${this.puntosJugador} - Máquina ${this.puntosIA}`;
+      this.mensaje = '¡Ganaste!';
+      this.resultado = `Puntaje: Jugador ${this.puntosJugador} - Máquina ${this.puntosIA}`;
     } else if (this.puntosJugador < this.puntosIA) {
-      this.mensaje = `¡Perdiste! Puntaje: Jugador ${this.puntosJugador} - Máquina ${this.puntosIA}`;
+      this.mensaje = '¡Perdiste!';
+      this.resultado = `Puntaje: Jugador ${this.puntosJugador} - Máquina ${this.puntosIA}`;
     } else {
-      this.mensaje = `¡Empate! Puntaje: Jugador ${this.puntosJugador} - Máquina ${this.puntosIA}`;
+      this.mensaje = '¡Empate!';
+      this.resultado = `Puntaje: Jugador ${this.puntosJugador} - Máquina ${this.puntosIA}`;
     }
 
     // Deshabilitar los botones después de la última mano
