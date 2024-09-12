@@ -82,11 +82,11 @@
 }
 
 .dorso-ia {
-  margin-right: 70px;
+  margin-right: 80px;
 }
 
 .dorso-jugador {
-  margin-left: 70px;
+  margin-left: 80px;
 }
 
 .cartas {
@@ -131,7 +131,7 @@
   border: 2.5px solid rgb(45, 45, 45);
   font-size: 40px;
   font-weight: 500;
-  margin-top: 40px;
+  margin-top: 44px;
   margin-bottom: 24px;
   font-family: "Grenze Gotisch", serif;
   cursor: pointer;
@@ -184,4 +184,159 @@
 .game-over button:hover {
   transform: scale(1.05);
   transition: 0.4s;
+}
+
+@media (max-width: 1280px) {
+  .title-app {
+    font-size: 62px;
+  }
+
+  .home-icon {
+    height: 64px;
+    width: 64px;
+    margin-left: -13px;
+    margin-right: 5px;
+  }
+
+  .card {
+    width: 84%;
+    margin-left: 7%;
+    margin-right: 7%;
+  }
+
+  .title-mm {
+    font-size: 52px;
+  }
+
+  .cartas img {
+    width: 200px;
+    height: auto;
+  }
+
+  .dorso img {
+    width: 200px;
+    height: auto;
+  }
+
+  .dorso-ia {
+    margin-right: 60px;
+  }
+
+  .dorso-jugador {
+    margin-left: 60px;
+  }
+
+  .info-ia {
+    margin-right: 60px;
+  }
+
+  .info-jugador {
+    margin-left: 60px;
+  }
+
+  .info-ia p,
+  .info-jugador p {
+    font-size: 30px;
+  }
+
+  .start-game button,
+  .game-over button {
+    font-size: 36px;
+  }
+
+  .ingame-btn button {
+    font-size: 32px;
+  }
+
+  .igual {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .msg {
+    font-size: 26px;
+  }
+
+  .resultado {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title-app {
+    font-size: 54px;
+  }
+
+  .home-icon {
+    height: 56px;
+    width: 56px;
+    margin-left: -11px;
+    margin-right: 4px;
+  }
+
+  .card {
+    width: 96%;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  .title-mm {
+    font-size: 44px;
+  }
+
+  .cartas img {
+    width: 150px;
+    height: auto;
+  }
+
+  .dorso img {
+    width: 150px;
+    height: auto;
+  }
+
+  .dorso-ia {
+    margin-right: 42px;
+  }
+
+  .dorso-jugador {
+    margin-left: 42px;
+  }
+
+  .info-ia {
+    margin-right: 42px;
+  }
+
+  .info-jugador {
+    margin-left: 42px;
+  }
+
+  .info-ia p,
+  .info-jugador p {
+    font-size: 26px;
+  }
+
+  .start-game button,
+  .game-over button {
+    font-size: 32px;
+    margin-bottom: 4px;
+  }
+
+  .ingame-btn button {
+    font-size: 32px;
+    margin-top: 4px;
+    margin-bottom: 6px;
+  }
+
+  .igual {
+    margin-left: 18px;
+    margin-right: 18px;
+  }
+
+  .msg {
+    font-size: 24px;
+  }
+
+  .resultado {
+    font-size: 20px;
+  }
 }
