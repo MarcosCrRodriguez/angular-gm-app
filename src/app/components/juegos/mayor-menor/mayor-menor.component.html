@@ -1,9 +1,54 @@
-<section class="seccion-imagen">
-  <div class="mayor-menor-container">
-    <div class="inicio">
-      <h1 class="title-app" routerLink="/home" routerLinkActive="active">
-        Mayor Menor
-      </h1>
-    </div>
+<div class="mayor-menor-container">
+  <div class="inicio">
+    <h1 class="title-app" routerLink="/home" routerLinkActive="active">
+      Mayor Menor
+    </h1>
   </div>
-</section>
+</div>
+<div class="mesa-juego">
+  <button *ngIf="!empezoJuego && !terminoJuego" (click)="startGame()">
+    Start
+  </button>
+
+  <div *ngIf="!empezoJuego && !terminoJuego">
+    <img [src]="dorsoCarta" alt="Carta IA" />
+    <img [src]="dorsoCarta" alt="Carta Jugador" />
+  </div>
+
+  <div *ngIf="empezoJuego || terminoJuego">
+    <img [src]="cartasCargadas ? cartaUno?.image : dorsoCarta" alt="Carta IA" />
+    <img
+      [src]="cartasCargadas ? cartaDos?.image : dorsoCarta"
+      alt="Carta Jugador"
+    />
+  </div>
+
+  <p *ngIf="empezoJuego || terminoJuego">Máquina: {{ puntosIA }}</p>
+  <p *ngIf="empezoJuego || terminoJuego">Jugador: {{ puntosJugador }}</p>
+
+  <button
+    *ngIf="empezoJuego && !noMasCartas"
+    [disabled]="terminoJuego"
+    (click)="eleccionJugador('alto')"
+  >
+    Alto
+  </button>
+  <button
+    *ngIf="empezoJuego && !noMasCartas"
+    [disabled]="terminoJuego"
+    (click)="eleccionJugador('igual')"
+  >
+    Igual
+  </button>
+  <button
+    *ngIf="empezoJuego && !noMasCartas"
+    [disabled]="terminoJuego"
+    (click)="eleccionJugador('bajo')"
+  >
+    Bajo
+  </button>
+
+  <button *ngIf="terminoJuego" (click)="handleNewDeck()">Volver a jugar</button>
+
+  <p>{{ mensaje }}</p>
+</div>

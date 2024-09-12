@@ -2,13 +2,13 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
+import { JuegoComponent } from './components/juegos/juego/juego.component';
 import {
   RouterOutlet,
   RouterLink,
   RouterLinkActive,
   Router,
 } from '@angular/router';
-import { JuegosModule } from './modules/juegos/juegos.module';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +19,7 @@ import { JuegosModule } from './modules/juegos/juegos.module';
     RouterLink,
     RouterLinkActive,
     CommonModule,
-    JuegosModule,
+    JuegoComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

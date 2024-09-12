@@ -16,19 +16,31 @@ export class HomeComponent {
     this.router.navigate(['/quien-soy']);
   }
 
+  // ingresoAhorcado() {
+  //   this.router.navigate(['/juegos/ahorcado']);
+  // }
   ingresoAhorcado() {
-    this.router.navigate(['/juegos/ahorcado']);
+    this.router.navigate(['ahorcado']);
   }
 
+  // ingresoMayorMenor() {
+  //   this.router.navigate(['/juegos/mayor-menor']);
+  // }
   ingresoMayorMenor() {
-    this.router.navigate(['/juegos/mayor-menor']);
+    this.router.navigate(['mayor-menor']);
   }
 
+  // ingresoPreguntados() {
+  //   this.router.navigate(['/juegos/preguntados']);
+  // }
   ingresoPreguntados() {
-    this.router.navigate(['/juegos/preguntados']);
+    this.router.navigate(['preguntados']);
   }
 
+  // ingresoGenerala() {
+  //   this.router.navigate(['/juegos/generala']);
+  // }
   ingresoGenerala() {
-    this.router.navigate(['/juegos/generala']);
+    this.router.navigate(['generala']);
   }
 }
