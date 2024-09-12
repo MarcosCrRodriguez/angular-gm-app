@@ -33,7 +33,7 @@
 }
 
 .card {
-  background: url("./../../../../assets/bg-cartas.jpg") no-repeat center fixed;
+  background: url("./../../../../assets/bg-cartas.jpg") no-repeat center;
   background-size: cover;
   min-height: 100%;
   width: 100%;
@@ -264,7 +264,7 @@
 
 @media (max-width: 768px) {
   .title-app {
-    font-size: 54px;
+    display: none;
   }
 
   .home-icon {
@@ -275,6 +275,7 @@
   }
 
   .card {
+    margin-top: -24px;
     width: 96%;
     margin-left: 2%;
     margin-right: 2%;
@@ -285,29 +286,29 @@
   }
 
   .cartas img {
-    width: 150px;
+    width: 146px;
     height: auto;
   }
 
   .dorso img {
-    width: 150px;
+    width: 146px;
     height: auto;
   }
 
   .dorso-ia {
-    margin-right: 42px;
+    margin-right: 36px;
   }
 
   .dorso-jugador {
-    margin-left: 42px;
+    margin-left: 36px;
   }
 
   .info-ia {
-    margin-right: 42px;
+    margin-right: 36px;
   }
 
   .info-jugador {
-    margin-left: 42px;
+    margin-left: 36px;
   }
 
   .info-ia p,
