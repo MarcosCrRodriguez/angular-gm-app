@@ -1,4 +1,7 @@
 .seccion-imagen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: url("./../../../assets/atroz.jpg") no-repeat center;
   background-size: cover;
   height: auto;
@@ -82,6 +85,9 @@
 }
 
 .card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 2.5px solid white;
   background: rgba(136, 134, 134, 0.4);
   font-family: "Grenze Gotisch", serif;

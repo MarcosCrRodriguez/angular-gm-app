@@ -50,36 +50,46 @@
         <div class="columna-actual">
           <img [src]="cartaActual.image" alt="Carta actual" />
           <p>Carta actual: {{ cartaActual.value }} of {{ cartaActual.suit }}</p>
-          <p class="msg">{{ mensajeResultado }}</p>
         </div>
       </div>
     </div>
 
     <!-- Botones Alto, Igual, Bajo -->
-    <div *ngIf="juegoIniciado && cartaActual && cartasRestantes > 0">
-      <button
-        (click)="eleccionJugador('alto')"
-        [disabled]="cargando || botonesDeshabilitados"
-      >
-        Alto
-      </button>
-      <button
-        (click)="eleccionJugador('igual')"
-        [disabled]="cargando || botonesDeshabilitados"
-      >
-        Igual
-      </button>
-      <button
-        (click)="eleccionJugador('bajo')"
-        [disabled]="cargando || botonesDeshabilitados"
-      >
-        Bajo
-      </button>
+    <div
+      class="ingame-btn"
+      *ngIf="juegoIniciado && cartaActual && cartasRestantes > 0"
+    >
+      <div class="btn-opciones">
+        <button
+          class="btn btn-secondary"
+          (click)="eleccionJugador('alto')"
+          [disabled]="cargando || botonesDeshabilitados"
+        >
+          Alto
+        </button>
+        <button
+          class="btn btn-secondary igual"
+          (click)="eleccionJugador('igual')"
+          [disabled]="cargando || botonesDeshabilitados"
+        >
+          Igual
+        </button>
+        <button
+          class="btn btn-secondary"
+          (click)="eleccionJugador('bajo')"
+          [disabled]="cargando || botonesDeshabilitados"
+        >
+          Bajo
+        </button>
+      </div>
+      <p class="msg">{{ mensajeResultado }}</p>
     </div>
 
     <!-- Mensaje cuando no quedan más cartas -->
     <div *ngIf="juegoIniciado && cartasRestantes === 0">
-      <p>¡El juego ha terminado, no quedan más cartas!</p>
+      <p class="btn btn-warning final-msg">
+        ¡El juego ha terminado, no quedan más cartas!
+      </p>
       <div class="game-over">
         <button (click)="volverAlMenu()">Volver al menú</button>
       </div>

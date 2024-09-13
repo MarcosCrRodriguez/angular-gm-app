@@ -92,51 +92,19 @@
   display: flex;
   align-items: center !important;
   justify-content: space-between;
+  margin-top: 36px;
 }
 
 .carta-anterior img {
-  width: 210px !important;
+  width: 205px !important;
   height: auto;
   transition: 0.5s;
 }
-
-/* 
-.dorso-ia {
-  margin-right: 80px;
-}
-
-.dorso-jugador {
-  margin-left: 80px;
-} */
 
 .cartas {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.info-ia,
-.info-jugador {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-/* 
-.info-ia {
-  margin-right: 80px;
-}
-
-.info-jugador {
-  margin-left: 80px;
-} */
-
-.info-ia p,
-.info-jugador p {
-  font-size: 30px;
-  font-weight: 500;
-  padding: 32px;
-  font-family: "Grenze Gotisch", serif;
 }
 
 .start-game,
@@ -152,7 +120,7 @@
   font-size: 40px;
   font-weight: 500;
   margin-top: 44px;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   font-family: "Grenze Gotisch", serif;
   cursor: pointer;
   transition: 0.4s;
@@ -166,11 +134,11 @@
 }
 
 .columna-actual {
-  margin-left: 40px;
+  margin-left: 50px;
 }
 
 .columna-anterior {
-  margin-right: 40px;
+  margin-right: 50px;
 }
 
 .columna-actual p,
@@ -178,38 +146,66 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.carta-anterior p {
   font-size: 28px;
   font-weight: 600;
   font-family: "Grenze Gotisch", serif;
-  margin-top: 12px;
+  margin-top: 6px;
   text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
     2px 2px 0 #000;
+}
+
+.columna-actual p {
+  font-size: 24px;
+  font-weight: 500;
+  font-family: "Grenze Gotisch", serif;
+  margin-top: 8px;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
+    -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
 }
 
 .puntos {
-  font-size: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid white;
+  background: rgba(136, 134, 134, 0.4);
+  width: 14%;
+  padding-top: 10px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+}
+
+.puntos p {
+  font-size: 36px;
   font-weight: 500;
   font-family: "Grenze Gotisch", serif;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
     2px 2px 0 #000;
 }
 
-.msg {
-  margin-top: -16px !important;
+.btn-opciones {
+  margin-top: 28px;
+  margin-bottom: 10px;
 }
 
 .ingame-btn {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .ingame-btn button {
-  border: 2.5px solid rgb(45, 45, 45);
-  font-size: 36px;
+  border: 2.5px solid rgb(42, 42, 42);
+  background-color: rgb(171, 171, 171);
+  color: #000;
+  font-size: 42px;
   font-weight: 500;
-  margin-top: 16px;
+  margin-top: -2px;
   margin-bottom: 20px;
   font-family: "Grenze Gotisch", serif;
   cursor: pointer;
@@ -217,17 +213,33 @@
 }
 
 .igual {
-  margin-left: 24px;
-  margin-right: 24px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.msg {
+  font-size: 28px;
+  font-weight: 600;
+  font-family: "Grenze Gotisch", serif;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
+  margin-top: -16px !important;
+  margin-bottom: 12px;
 }
 
 .final-msg {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 6px;
+  font-size: 26px;
+  font-weight: 600;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
+  padding-top: 8px;
+  margin-bottom: -10px;
   font-family: "Grenze Gotisch", serif;
 }
+
 .card-como-jugar {
   border: 2.5px solid white;
   background: rgba(136, 134, 134, 0.4);
@@ -286,7 +298,8 @@
 
 .start-game button:hover,
 .game-over button:hover,
-.card-info a:hover {
+.card-info a:hover,
+.ingame-btn button:hover {
   transform: scale(1.05);
   transition: 0.4s;
 }
@@ -320,35 +333,19 @@
     font-size: 52px;
   }
 
-  .cartas img {
-    width: 200px;
+  .dorso img,
+  .carta-actual img {
+    width: 220px !important;
     height: auto;
   }
 
-  .dorso img {
-    width: 200px;
+  .cartas-juego {
+    margin-top: 36px;
+  }
+
+  .carta-anterior img {
+    width: 160px !important;
     height: auto;
-  }
-
-  .dorso-ia {
-    margin-right: 60px;
-  }
-
-  .dorso-jugador {
-    margin-left: 60px;
-  }
-
-  .info-ia {
-    margin-right: 60px;
-  }
-
-  .info-jugador {
-    margin-left: 60px;
-  }
-
-  .info-ia p,
-  .info-jugador p {
-    font-size: 30px;
   }
 
   .start-game button,
@@ -356,21 +353,54 @@
     font-size: 36px;
   }
 
-  .ingame-btn button {
+  .columna-actual {
+    margin-left: 45px;
+  }
+
+  .columna-anterior {
+    margin-right: 45px;
+  }
+
+  .carta-anterior p {
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .columna-actual p {
+    font-size: 20px;
+  }
+
+  .puntos {
+    padding-top: 8px;
+    width: 18%;
+  }
+
+  .puntos p {
     font-size: 32px;
   }
 
+  .btn-opciones {
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
+
+  .ingame-btn button {
+    font-size: 36px;
+  }
+
   .igual {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
   }
 
   .msg {
-    font-size: 26px;
+    font-size: 24px;
+    font-weight: 500;
   }
 
-  .resultado {
-    font-size: 24px;
+  .final-msg {
+    font-size: 22px;
+    font-weight: 500;
   }
 
   .card-como-jugar {
@@ -422,60 +452,75 @@
     font-size: 44px;
   }
 
-  .cartas img {
-    width: 136px;
+  .dorso img,
+  .carta-actual img {
+    width: 180px !important;
     height: auto;
   }
 
-  .dorso img {
-    width: 136px;
+  .cartas-juego {
+    margin-top: 36px;
+  }
+
+  .carta-anterior img {
+    width: 125px !important;
     height: auto;
-  }
-
-  .dorso-ia {
-    margin-right: 32px;
-  }
-
-  .dorso-jugador {
-    margin-left: 32px;
-  }
-
-  .info-ia {
-    margin-right: 32px;
-  }
-
-  .info-jugador {
-    margin-left: 32px;
-  }
-
-  .info-ia p,
-  .info-jugador p {
-    font-size: 22px;
   }
 
   .start-game button,
   .game-over button {
     font-size: 32px;
-    margin-bottom: 4px;
+    margin-top: 38px;
+  }
+
+  .columna-actual {
+    margin-left: 32px;
+  }
+
+  .columna-anterior {
+    margin-right: 32px;
+  }
+
+  .carta-anterior p {
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .columna-actual p {
+    font-size: 17px;
+  }
+
+  .puntos {
+    padding-top: 8px;
+    width: 32%;
+  }
+
+  .puntos p {
+    font-size: 26px;
+  }
+
+  .btn-opciones {
+    margin-top: 28px;
+    margin-bottom: 10px;
   }
 
   .ingame-btn button {
     font-size: 32px;
-    margin-top: 4px;
-    margin-bottom: 6px;
   }
 
   .igual {
-    margin-left: 18px;
-    margin-right: 18px;
+    margin-left: 25px;
+    margin-right: 25px;
   }
 
   .msg {
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: 500;
   }
 
-  .resultado {
-    font-size: 20px;
+  .final-msg {
+    font-size: 18px;
+    font-weight: 500;
   }
 
   .card-como-jugar {
