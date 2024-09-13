@@ -88,6 +88,20 @@
     </div>
   </div>
 </div>
+<div
+  class="ranking"
+  *ngIf="rankingData && rankingData.length > 0; else noDataTemplate"
+>
+  <h3>Ranking del Juego Mayor-Menor</h3>
+  <ul>
+    <li *ngFor="let item of rankingData">
+      Usuario: {{ item.usuario }} - Puntos: {{ item.puntos }}
+    </li>
+  </ul>
+</div>
+<ng-template #noDataTemplate>
+  <p>No hay datos de ranking disponibles.</p>
+</ng-template>
 <div class="como-jugar">
   <div class="card card-como-jugar">
     <div class="card-header">Como Jugar</div>

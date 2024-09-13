@@ -2,22 +2,8 @@ import 'toastify-js/src/toastify.css';
 import Toastify from 'toastify-js';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from '../../models/usuario';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { Subscription } from 'rxjs';
-import {
-  addDoc,
-  collection,
-  Firestore,
-  where,
-  query,
-  limit,
-  orderBy,
-  collectionData,
-} from '@angular/fire/firestore';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
-import { signOut } from '@firebase/auth';
 
 @Component({
   selector: 'app-login',

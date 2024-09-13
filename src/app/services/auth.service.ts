@@ -134,10 +134,42 @@ export class AuthService {
     );
   }
 
+  getRankingJuegos(tipoJuego: string): Observable<any> {
+    let col = collection(this.firestore, tipoJuego);
+
+    // Filtrar y ordenar por puntos, límite de 3
+    const filteredQuery = query(col, orderBy('puntos', 'desc'), limit(3));
+
+    return collectionData(filteredQuery).pipe(
+      map((respuesta: any[]) => {
+        if (respuesta.length > 0) {
+          return respuesta.map((userData) => ({
+            usuario: userData.usuario, // Aquí aseguramos que "usuario" esté presente
+            puntos: userData.puntos,
+          }));
+        } else {
+          return [
+            {
+              usuario: 'No hay datos',
+              puntos: 'No hay datos',
+            },
+          ];
+        }
+      })
+    );
+  }
+
   // Guardar logs de usuarios en Firebase
   private logUserActivity(email: string) {
     const col = collection(this.firestore, 'logins');
     addDoc(col, { fecha: new Date(), user: email });
+  }
+
+  // Guardar puntos en Firebase
+  scoreMayorMenor(email: string, puntos: number, tipoJuego: string) {
+    const col = collection(this.firestore, tipoJuego);
+    addDoc(col, { fecha: new Date(), usuario: email, puntos: puntos });
+    console.log('Entramos a mayor-menor firebufga');
   }
 
   // Datos opcionales registro de datos en Firebase

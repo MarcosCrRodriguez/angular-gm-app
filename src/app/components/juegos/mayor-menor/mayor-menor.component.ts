@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CardService } from './../../../services/card.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from './../../../services/auth.service';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -21,12 +22,32 @@ export class MayorMenorComponent implements OnInit {
   public botonesDeshabilitados: boolean = false;
   public cartaAnterior: any = null;
   public esPrimeraRonda: boolean = true;
+  public rankingData: any;
+  public usuarioLogueado: any = null;
   public dorsoCarta: string = 'https://deckofcardsapi.com/static/img/back.png';
 
-  constructor(private cartaService: CardService) {}
+  constructor(
+    private cartaService: CardService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.crearNuevoMazo();
+
+    this.authService.usuarioLogueado$.subscribe((usuario) => {
+      if (usuario) {
+        console.log('Usuario logueado:', usuario.email); // Mostrar el email del usuario
+      }
+      this.usuarioLogueado = usuario;
+    });
+
+    this.authService.getRankingJuegos('mayor-menor').subscribe((data) => {
+      if (data) {
+        this.rankingData = data;
+      } else {
+        console.log('No se encontraron datos opcionales para este usuario.');
+      }
+    });
   }
 
   crearNuevoMazo(): void {
@@ -96,7 +117,17 @@ export class MayorMenorComponent implements OnInit {
 
   async eleccionJugador(opcion: string): Promise<void> {
     if (this.cartasRestantes > 0) {
+      console.log('Hay ' + this.cartasRestantes + ' cartas');
       if (this.cartaActual && this.cartaSiguiente) {
+        if (this.cartasRestantes === 1) {
+          if (this.usuarioLogueado && this.usuarioLogueado.email) {
+            this.authService.scoreMayorMenor(
+              this.usuarioLogueado.email,
+              this.puntos,
+              'mayor-menor'
+            );
+          }
+        }
         this.botonesDeshabilitados = true;
 
         await this.delay(500);

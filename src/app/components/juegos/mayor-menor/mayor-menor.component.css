@@ -258,6 +258,26 @@
   max-width: 1000px;
 }
 
+.ranking {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 54px;
+  font-family: "Grenze Gotisch", serif;
+  color: #fff;
+}
+
+.ranking h3 {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.ranking li {
+  font-size: 24px;
+  font-weight: 500;
+}
+
 .card-como-jugar {
   border: 2.5px solid white;
   background: rgba(136, 134, 134, 0.4);
@@ -539,6 +559,14 @@
   .final-msg {
     font-size: 18px;
     font-weight: 500;
+  }
+
+  .ranking h3 {
+    font-size: 26px;
+  }
+
+  .ranking li {
+    font-size: 18px;
   }
 
   .card-como-jugar {
