@@ -28,6 +28,9 @@
         {{ cargando ? "Cargando..." : "Start" }}
       </button>
     </div>
+    <div class="notificacion" *ngIf="cargando">
+      <img src="assets/shuffle.gif" alt="Cargando..." />
+    </div>
     <div class="cartas-juego" *ngIf="juegoIniciado && cartaActual">
       <div class="carta-anterior">
         <div class="columna-anterior">

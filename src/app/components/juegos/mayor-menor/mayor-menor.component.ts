@@ -17,11 +17,11 @@ export class MayorMenorComponent implements OnInit {
   public cartasRestantes: number = 0;
   public puntos: number = 0;
   public cargando: boolean = false;
-  public dorsoCarta: string = 'https://deckofcardsapi.com/static/img/back.png';
   public mensajeResultado: string = '';
   public botonesDeshabilitados: boolean = false;
   public cartaAnterior: any = null;
   public esPrimeraRonda: boolean = true;
+  public dorsoCarta: string = 'https://deckofcardsapi.com/static/img/back.png';
 
   constructor(private cartaService: CardService) {}
 
@@ -40,8 +40,11 @@ export class MayorMenorComponent implements OnInit {
     if (!this.idMazo) return;
 
     this.cargando = true;
-    this.juegoIniciado = true;
-    this.sacarDosCartas();
+
+    setTimeout(() => {
+      this.juegoIniciado = true;
+      this.sacarDosCartas();
+    }, 3000);
   }
 
   sacarDosCartas(): void {
