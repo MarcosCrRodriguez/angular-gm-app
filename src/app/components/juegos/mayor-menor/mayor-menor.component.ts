@@ -15,18 +15,17 @@ export class MayorMenorComponent implements OnInit {
   public cartaSiguiente: any = null;
   public juegoIniciado: boolean = false;
   public cartasRestantes: number = 0;
-  public puntos: number = 0; // Puntos del jugador
+  public puntos: number = 0;
   public cargando: boolean = false;
   public dorsoCarta: string = 'https://deckofcardsapi.com/static/img/back.png';
-  public mensajeResultado: string = ''; // Mensaje de resultado de la elección
-  public botonesDeshabilitados: boolean = false; // Estado de los botones
+  public mensajeResultado: string = '';
+  public botonesDeshabilitados: boolean = false;
   public cartaAnterior: any = null;
   public esPrimeraRonda: boolean = true;
 
   constructor(private cartaService: CardService) {}
 
   ngOnInit(): void {
-    // Creamos el mazo al iniciar el componente
     this.crearNuevoMazo();
   }
 
@@ -42,10 +41,9 @@ export class MayorMenorComponent implements OnInit {
 
     this.cargando = true;
     this.juegoIniciado = true;
-    this.sacarDosCartas(); // Sacar dos cartas para iniciar el juego
+    this.sacarDosCartas();
   }
 
-  // Método para sacar dos cartas del mazo
   sacarDosCartas(): void {
     if (!this.idMazo) {
       console.log('No se ha creado un mazo.');
@@ -55,25 +53,23 @@ export class MayorMenorComponent implements OnInit {
     this.cartaService.sacarDosCartas(this.idMazo).subscribe((respuesta) => {
       if (respuesta.cards.length === 2) {
         if (this.esPrimeraRonda) {
-          // En la primera ronda, mostramos el dorso como carta anterior
           this.cartaAnterior = { image: this.dorsoCarta };
           this.esPrimeraRonda = false;
         } else {
-          // En rondas siguientes, guardamos la carta actual en cartaAnterior
           this.cartaAnterior = this.cartaActual;
         }
 
-        this.cartaActual = respuesta.cards[0]; // La primera carta se muestra al jugador
-        this.cartaSiguiente = respuesta.cards[1]; // La segunda carta se usa para comparación inicial
-        this.cartasRestantes = respuesta.remaining - 2; // Actualizamos el número de cartas restantes
+        this.cartaActual = respuesta.cards[0];
+        this.cartaSiguiente = respuesta.cards[1];
+        this.cartasRestantes = respuesta.remaining - 2;
         this.cargando = false;
-        this.mensajeResultado = ''; // Limpiamos el mensaje de resultado
+        this.mensajeResultado = '';
       } else {
         console.log('No se pudieron sacar las dos cartas.');
       }
     });
   }
-  // Método para sacar una nueva carta del mazo
+
   sacarCarta(): void {
     if (!this.idMazo) {
       console.log('No se ha creado un mazo.');
@@ -82,7 +78,7 @@ export class MayorMenorComponent implements OnInit {
 
     this.cartaService.sacarCarta(this.idMazo).subscribe((respuesta) => {
       if (respuesta.cards.length > 0) {
-        this.cartaSiguiente = respuesta.cards[0]; // La nueva carta se convierte en la siguiente
+        this.cartaSiguiente = respuesta.cards[0];
         this.cartasRestantes = respuesta.remaining;
         this.cargando = false;
       } else {
@@ -91,29 +87,31 @@ export class MayorMenorComponent implements OnInit {
     });
   }
 
-  // Método que maneja la elección del jugador
-  eleccionJugador(opcion: string): void {
+  delay(milisegundos: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, milisegundos));
+  }
+
+  async eleccionJugador(opcion: string): Promise<void> {
     if (this.cartasRestantes > 0) {
       if (this.cartaActual && this.cartaSiguiente) {
-        this.botonesDeshabilitados = true; // Deshabilitar botones
-        setTimeout(() => {
-          // Evaluamos la elección del jugador después de un retraso de 500 ms
-          const resultadoCorrecto = this.evaluarResultado(opcion);
-          if (resultadoCorrecto) {
-            this.puntos++; // Sumamos puntos si la elección fue correcta
-            this.mensajeResultado = '¡Acertaste!';
-          } else {
-            this.mensajeResultado = '¡Fallaste!';
-          }
+        this.botonesDeshabilitados = true;
 
-          // Guarda la carta actual en cartaAnterior antes de actualizar
-          this.cartaAnterior = this.cartaActual;
-          this.cartaActual = this.cartaSiguiente;
-          this.cartaSiguiente = null; // Limpiamos la carta siguiente para la próxima comparación
-          this.sacarCarta();
+        await this.delay(1000);
 
-          this.botonesDeshabilitados = false; // Habilitar botones después del retraso
-        }, 500); // Retraso de 500 ms
+        const resultadoCorrecto = this.evaluarResultado(opcion);
+        if (resultadoCorrecto) {
+          this.puntos++;
+          this.mensajeResultado = '¡Acertaste!';
+        } else {
+          this.mensajeResultado = '¡Fallaste!';
+        }
+
+        this.cartaAnterior = this.cartaActual;
+        this.cartaActual = this.cartaSiguiente;
+        this.cartaSiguiente = null;
+        this.sacarCarta();
+
+        this.botonesDeshabilitados = false;
       } else {
         console.log('No se pueden evaluar las cartas porque faltan cartas.');
       }
@@ -122,22 +120,20 @@ export class MayorMenorComponent implements OnInit {
     }
   }
 
-  // Método para evaluar si la elección fue correcta
   evaluarResultado(opcion: string): boolean {
     const valorActual = this.obtenerValorCarta(this.cartaActual.value);
     const valorSiguiente = this.obtenerValorCarta(this.cartaSiguiente.value);
 
     if (opcion === 'alto' && valorActual > valorSiguiente) {
-      return true; // La carta siguiente es mayor, opción "alto" es correcta
+      return true;
     } else if (opcion === 'bajo' && valorActual < valorSiguiente) {
-      return true; // La carta siguiente es menor, opción "bajo" es correcta
+      return true;
     } else if (opcion === 'igual' && valorActual === valorSiguiente) {
-      return true; // Las cartas son iguales, opción "igual" es correcta
+      return true;
     }
-    return false; // La elección fue incorrecta
+    return false;
   }
 
-  // Convertir el valor de la carta a un número para comparar (A=1, J=11, Q=12, K=13)
   obtenerValorCarta(valor: string): number {
     switch (valor) {
       case 'ACE':
@@ -153,7 +149,6 @@ export class MayorMenorComponent implements OnInit {
     }
   }
 
-  // Método para volver al menú principal
   volverAlMenu(): void {
     this.cartaActual = null;
     this.cartaSiguiente = null;
@@ -164,7 +159,6 @@ export class MayorMenorComponent implements OnInit {
     this.puntos = 0;
     this.cargando = false;
     this.mensajeResultado = '';
-    // Aquí puedes agregar la lógica para reiniciar el mazo si es necesario
     this.cartaService.crearMazo().subscribe((respuesta) => {
       this.idMazo = respuesta.deck_id;
       this.cartasRestantes = respuesta.remaining;

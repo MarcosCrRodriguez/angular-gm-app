@@ -11,17 +11,14 @@
     <div class="game-title">
       <h1 class="title-mm">Mayor - Menor</h1>
     </div>
-    <!-- Mostrar los puntos actuales del jugador -->
     <div class="puntos" *ngIf="juegoIniciado">
       <p>Puntos: {{ puntos }}</p>
     </div>
-    <!-- Mostrar el dorso de la carta antes de iniciar el juego -->
     <div class="dorso" *ngIf="!juegoIniciado">
       <div class="carta-dorso-inicio">
         <img [src]="dorsoCarta" alt="Dorso de la carta" />
       </div>
     </div>
-
     <div class="start-game" *ngIf="!juegoIniciado">
       <button
         class="btn btn-warning"
@@ -31,10 +28,7 @@
         {{ cargando ? "Cargando..." : "Start" }}
       </button>
     </div>
-
-    <!-- Mostrar la carta actual una vez que el juego haya comenzado -->
     <div class="cartas-juego" *ngIf="juegoIniciado && cartaActual">
-      <!-- Mostrar la carta anterior a la derecha de la carta actual -->
       <div class="carta-anterior">
         <div class="columna-anterior">
           <img
@@ -45,7 +39,6 @@
           <p>Carta anterior</p>
         </div>
       </div>
-
       <div class="carta-actual">
         <div class="columna-actual">
           <img [src]="cartaActual.image" alt="Carta actual" />
@@ -53,8 +46,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Botones Alto, Igual, Bajo -->
     <div
       class="ingame-btn"
       *ngIf="juegoIniciado && cartaActual && cartasRestantes > 0"
@@ -84,8 +75,6 @@
       </div>
       <p class="msg">{{ mensajeResultado }}</p>
     </div>
-
-    <!-- Mensaje cuando no quedan más cartas -->
     <div *ngIf="juegoIniciado && cartasRestantes === 0">
       <p class="btn btn-warning final-msg">
         ¡El juego ha terminado, no quedan más cartas!

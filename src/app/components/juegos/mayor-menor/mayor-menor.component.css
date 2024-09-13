@@ -158,7 +158,7 @@
 }
 
 .columna-actual p {
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 500;
   font-family: "Grenze Gotisch", serif;
   margin-top: 8px;
@@ -172,7 +172,7 @@
   justify-content: center;
   border: 2.5px solid white;
   background: rgba(136, 134, 134, 0.4);
-  width: 14%;
+  width: 19%;
   padding-top: 10px;
   margin-bottom: 8px;
   border-radius: 12px;

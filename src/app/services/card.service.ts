@@ -11,7 +11,7 @@ export class CardService {
 
   constructor(private http: HttpClient) {}
 
-  // Crea un nuevo mazo de cartas y lo baraja
+  // retorna un Observable que emite el resultado de la petición HTTP
   crearMazo(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/new/shuffle/?deck_count=1`).pipe(
       catchError((error) => {
