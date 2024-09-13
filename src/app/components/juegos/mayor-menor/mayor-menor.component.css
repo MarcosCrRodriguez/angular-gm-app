@@ -78,16 +78,36 @@
 .dorso {
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.dorso img,
+.carta-actual img {
+  width: 280px !important;
+  height: auto;
+  transition: 0.5s;
+}
+
+.cartas-juego {
+  display: flex;
+  align-items: center !important;
   justify-content: space-between;
 }
 
+.carta-anterior img {
+  width: 210px !important;
+  height: auto;
+  transition: 0.5s;
+}
+
+/* 
 .dorso-ia {
   margin-right: 80px;
 }
 
 .dorso-jugador {
   margin-left: 80px;
-}
+} */
 
 .cartas {
   display: flex;
@@ -102,14 +122,14 @@
   justify-content: center;
   flex-direction: column;
 }
-
+/* 
 .info-ia {
   margin-right: 80px;
 }
 
 .info-jugador {
   margin-left: 80px;
-}
+} */
 
 .info-ia p,
 .info-jugador p {
@@ -136,6 +156,47 @@
   font-family: "Grenze Gotisch", serif;
   cursor: pointer;
   transition: 0.4s;
+}
+
+.columna-actual,
+.columna-anterior {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.columna-actual {
+  margin-left: 40px;
+}
+
+.columna-anterior {
+  margin-right: 40px;
+}
+
+.columna-actual p,
+.columna-anterior p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-weight: 600;
+  font-family: "Grenze Gotisch", serif;
+  margin-top: 12px;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
+}
+
+.puntos {
+  font-size: 34px;
+  font-weight: 500;
+  font-family: "Grenze Gotisch", serif;
+  margin-bottom: 20px;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
+}
+
+.msg {
+  margin-top: -16px !important;
 }
 
 .ingame-btn {
@@ -167,19 +228,6 @@
   padding: 6px;
   font-family: "Grenze Gotisch", serif;
 }
-
-.msg {
-  font-size: 30px;
-  font-weight: 500;
-  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
-    2px 2px 0 #000;
-}
-
-.resultado {
-  font-size: 26px;
-  font-weight: 500;
-}
-
 .card-como-jugar {
   border: 2.5px solid white;
   background: rgba(136, 134, 134, 0.4);
@@ -241,6 +289,13 @@
 .card-info a:hover {
   transform: scale(1.05);
   transition: 0.4s;
+}
+
+.dorso img:hover,
+.carta-actual img:hover,
+.carta-anterior img:hover {
+  transform: scale(1.02);
+  transition: 0.5s;
 }
 
 @media (max-width: 1280px) {

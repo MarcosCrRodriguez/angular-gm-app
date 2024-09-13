@@ -10,126 +10,164 @@ import { CommonModule } from '@angular/common';
   styleUrl: './mayor-menor.component.css',
 })
 export class MayorMenorComponent implements OnInit {
-  public mazoID: string = '';
-  public cartaUno: any = null;
-  public cartaDos: any = null;
-  public puntosJugador: number = 0;
-  public puntosIA: number = 0;
-  public noMasCartas: boolean = false;
-  public mensaje: string = '';
-  public resultado: string = '';
-  public visibilidadCarta: boolean = false;
-  public primeraRonda: boolean = true;
-  public terminoJuego: boolean = false;
-  public empezoJuego: boolean = false;
-  public cartasCargadas: boolean = false;
-  public cartasRestantes: number = 52;
+  public idMazo: string = '';
+  public cartaActual: any = null;
+  public cartaSiguiente: any = null;
+  public juegoIniciado: boolean = false;
+  public cartasRestantes: number = 0;
+  public puntos: number = 0; // Puntos del jugador
+  public cargando: boolean = false;
   public dorsoCarta: string = 'https://deckofcardsapi.com/static/img/back.png';
+  public mensajeResultado: string = ''; // Mensaje de resultado de la elección
+  public botonesDeshabilitados: boolean = false; // Estado de los botones
+  public cartaAnterior: any = null;
+  public esPrimeraRonda: boolean = true;
 
-  constructor(private cardService: CardService) {}
+  constructor(private cartaService: CardService) {}
 
   ngOnInit(): void {
-    this.initializeDeck();
+    // Creamos el mazo al iniciar el componente
+    this.crearNuevoMazo();
   }
 
-  initializeDeck(): void {
-    this.cardService.crearMazo().subscribe((response) => {
-      this.mazoID = response.deck_id;
-      this.noMasCartas = false;
-      this.puntosJugador = 0;
-      this.puntosIA = 0;
-      this.mensaje = '';
-      this.resultado = '';
-      this.visibilidadCarta = false;
-      this.primeraRonda = true;
-      this.terminoJuego = false;
-      this.empezoJuego = false;
-      this.cartasCargadas = false;
-      this.cartasRestantes = 52;
+  crearNuevoMazo(): void {
+    this.cartaService.crearMazo().subscribe((respuesta) => {
+      this.idMazo = respuesta.deck_id;
+      this.cartasRestantes = respuesta.remaining;
     });
   }
 
-  startGame(): void {
-    this.empezoJuego = true;
-    this.visibilidadCarta = false;
-    this.primeraRonda = true;
-    this.cartasCargadas = false;
+  iniciarJuego(): void {
+    if (!this.idMazo) return;
+
+    this.cargando = true;
+    this.juegoIniciado = true;
+    this.sacarDosCartas(); // Sacar dos cartas para iniciar el juego
   }
 
-  eleccionJugador(eleccion: 'alto' | 'igual' | 'bajo'): void {
-    if (!this.mazoID || this.terminoJuego || !this.empezoJuego) return;
-
-    this.visibilidadCarta = false;
-    this.primeraRonda = false;
-
-    this.cardService.repartirCartas(this.mazoID).subscribe((response) => {
-      if (response.cards.length === 0 || this.cartasRestantes < 2) {
-        this.noMasCartas = true;
-        this.declararGanador();
-        return;
-      }
-
-      this.cartaUno = response.cards[0];
-      this.cartaDos = response.cards[1];
-
-      this.cartasCargadas = true;
-
-      const cardUnoValue = this.getValorCarta(this.cartaUno.value);
-      const cardDosValue = this.getValorCarta(this.cartaDos.value);
-
-      let esCorrecto = false;
-
-      if (eleccion === 'alto' && cardDosValue > cardUnoValue) {
-        esCorrecto = true;
-      } else if (eleccion === 'igual' && cardDosValue === cardUnoValue) {
-        esCorrecto = true;
-      } else if (eleccion === 'bajo' && cardDosValue < cardUnoValue) {
-        esCorrecto = true;
-      }
-
-      if (esCorrecto) {
-        this.puntosJugador++;
-      } else {
-        this.puntosIA++;
-      }
-
-      this.visibilidadCarta = true;
-
-      this.cartasRestantes -= 2;
-
-      if (this.cartasRestantes < 2) {
-        this.noMasCartas = true;
-        this.declararGanador();
-      }
-    });
-  }
-
-  getValorCarta(value: string): number {
-    if (value === 'ACE') return 14;
-    if (value === 'KING') return 13;
-    if (value === 'QUEEN') return 12;
-    if (value === 'JACK') return 11;
-    return parseInt(value, 10);
-  }
-
-  declararGanador(): void {
-    this.terminoJuego = true;
-
-    if (this.puntosJugador > this.puntosIA) {
-      this.mensaje = '¡Ganaste!';
-      this.resultado = `Puntaje: Jugador ${this.puntosJugador} - Máquina ${this.puntosIA}`;
-    } else if (this.puntosJugador < this.puntosIA) {
-      this.mensaje = '¡Perdiste!';
-      this.resultado = `Puntaje: Jugador ${this.puntosJugador} - Máquina ${this.puntosIA}`;
-    } else {
-      this.mensaje = '¡Empate!';
-      this.resultado = `Puntaje: Jugador ${this.puntosJugador} - Máquina ${this.puntosIA}`;
+  // Método para sacar dos cartas del mazo
+  sacarDosCartas(): void {
+    if (!this.idMazo) {
+      console.log('No se ha creado un mazo.');
+      return;
     }
 
-    this.empezoJuego = false;
+    this.cartaService.sacarDosCartas(this.idMazo).subscribe((respuesta) => {
+      if (respuesta.cards.length === 2) {
+        if (this.esPrimeraRonda) {
+          // En la primera ronda, mostramos el dorso como carta anterior
+          this.cartaAnterior = { image: this.dorsoCarta };
+          this.esPrimeraRonda = false;
+        } else {
+          // En rondas siguientes, guardamos la carta actual en cartaAnterior
+          this.cartaAnterior = this.cartaActual;
+        }
+
+        this.cartaActual = respuesta.cards[0]; // La primera carta se muestra al jugador
+        this.cartaSiguiente = respuesta.cards[1]; // La segunda carta se usa para comparación inicial
+        this.cartasRestantes = respuesta.remaining - 2; // Actualizamos el número de cartas restantes
+        this.cargando = false;
+        this.mensajeResultado = ''; // Limpiamos el mensaje de resultado
+      } else {
+        console.log('No se pudieron sacar las dos cartas.');
+      }
+    });
+  }
+  // Método para sacar una nueva carta del mazo
+  sacarCarta(): void {
+    if (!this.idMazo) {
+      console.log('No se ha creado un mazo.');
+      return;
+    }
+
+    this.cartaService.sacarCarta(this.idMazo).subscribe((respuesta) => {
+      if (respuesta.cards.length > 0) {
+        this.cartaSiguiente = respuesta.cards[0]; // La nueva carta se convierte en la siguiente
+        this.cartasRestantes = respuesta.remaining;
+        this.cargando = false;
+      } else {
+        console.log('No se pudieron sacar cartas.');
+      }
+    });
   }
 
-  handleNewDeck(): void {
-    this.initializeDeck();
+  // Método que maneja la elección del jugador
+  eleccionJugador(opcion: string): void {
+    if (this.cartasRestantes > 0) {
+      if (this.cartaActual && this.cartaSiguiente) {
+        this.botonesDeshabilitados = true; // Deshabilitar botones
+        setTimeout(() => {
+          // Evaluamos la elección del jugador después de un retraso de 500 ms
+          const resultadoCorrecto = this.evaluarResultado(opcion);
+          if (resultadoCorrecto) {
+            this.puntos++; // Sumamos puntos si la elección fue correcta
+            this.mensajeResultado = '¡Acertaste!';
+          } else {
+            this.mensajeResultado = '¡Fallaste!';
+          }
+
+          // Guarda la carta actual en cartaAnterior antes de actualizar
+          this.cartaAnterior = this.cartaActual;
+          this.cartaActual = this.cartaSiguiente;
+          this.cartaSiguiente = null; // Limpiamos la carta siguiente para la próxima comparación
+          this.sacarCarta();
+
+          this.botonesDeshabilitados = false; // Habilitar botones después del retraso
+        }, 500); // Retraso de 500 ms
+      } else {
+        console.log('No se pueden evaluar las cartas porque faltan cartas.');
+      }
+    } else {
+      console.log('No quedan más cartas en el mazo');
+    }
+  }
+
+  // Método para evaluar si la elección fue correcta
+  evaluarResultado(opcion: string): boolean {
+    const valorActual = this.obtenerValorCarta(this.cartaActual.value);
+    const valorSiguiente = this.obtenerValorCarta(this.cartaSiguiente.value);
+
+    if (opcion === 'alto' && valorActual > valorSiguiente) {
+      return true; // La carta siguiente es mayor, opción "alto" es correcta
+    } else if (opcion === 'bajo' && valorActual < valorSiguiente) {
+      return true; // La carta siguiente es menor, opción "bajo" es correcta
+    } else if (opcion === 'igual' && valorActual === valorSiguiente) {
+      return true; // Las cartas son iguales, opción "igual" es correcta
+    }
+    return false; // La elección fue incorrecta
+  }
+
+  // Convertir el valor de la carta a un número para comparar (A=1, J=11, Q=12, K=13)
+  obtenerValorCarta(valor: string): number {
+    switch (valor) {
+      case 'ACE':
+        return 1;
+      case 'JACK':
+        return 11;
+      case 'QUEEN':
+        return 12;
+      case 'KING':
+        return 13;
+      default:
+        return parseInt(valor);
+    }
+  }
+
+  // Método para volver al menú principal
+  volverAlMenu(): void {
+    this.cartaActual = null;
+    this.cartaSiguiente = null;
+    this.cartaAnterior = null;
+    this.juegoIniciado = false;
+    this.esPrimeraRonda = true;
+    this.cartasRestantes = 0;
+    this.puntos = 0;
+    this.cargando = false;
+    this.mensajeResultado = '';
+    // Aquí puedes agregar la lógica para reiniciar el mazo si es necesario
+    this.cartaService.crearMazo().subscribe((respuesta) => {
+      this.idMazo = respuesta.deck_id;
+      this.cartasRestantes = respuesta.remaining;
+    });
   }
 }

@@ -11,82 +11,78 @@
     <div class="game-title">
       <h1 class="title-mm">Mayor - Menor</h1>
     </div>
-    <div class="dorso" *ngIf="!empezoJuego && !terminoJuego">
-      <img class="dorso-ia" [src]="dorsoCarta" alt="Carta IA" />
-      <img class="dorso-jugador" [src]="dorsoCarta" alt="Carta Jugador" />
+    <!-- Mostrar los puntos actuales del jugador -->
+    <div class="puntos" *ngIf="juegoIniciado">
+      <p>Puntos: {{ puntos }}</p>
     </div>
-    <div class="cartas" *ngIf="empezoJuego || terminoJuego">
-      <div class="info-ia">
-        <img
-          class="cartas-ia"
-          [src]="cartasCargadas ? cartaUno?.image : dorsoCarta"
-          alt="Carta IA"
-        />
-        <p class="p-oponente" *ngIf="empezoJuego || terminoJuego">
-          Oponente: {{ puntosIA }}
-        </p>
-      </div>
-      <div class="info-jugador">
-        <img
-          class="cartas-jugador"
-          [src]="cartasCargadas ? cartaDos?.image : dorsoCarta"
-          alt="Carta Jugador"
-        />
-        <p class="p-jugador" *ngIf="empezoJuego || terminoJuego">
-          Jugador: {{ puntosJugador }}
-        </p>
+    <!-- Mostrar el dorso de la carta antes de iniciar el juego -->
+    <div class="dorso" *ngIf="!juegoIniciado">
+      <div class="carta-dorso-inicio">
+        <img [src]="dorsoCarta" alt="Dorso de la carta" />
       </div>
     </div>
 
-    <div class="start-game">
+    <div class="start-game" *ngIf="!juegoIniciado">
       <button
         class="btn btn-warning"
-        *ngIf="!empezoJuego && !terminoJuego"
-        (click)="startGame()"
+        (click)="iniciarJuego()"
+        [disabled]="cargando || !idMazo"
       >
-        Start
-      </button>
-    </div>
-    <div class="game-over">
-      <button
-        class="btn btn-warning"
-        *ngIf="terminoJuego"
-        (click)="handleNewDeck()"
-      >
-        Volver a jugar
+        {{ cargando ? "Cargando..." : "Start" }}
       </button>
     </div>
 
-    <div class="ingame-btn">
+    <!-- Mostrar la carta actual una vez que el juego haya comenzado -->
+    <div class="cartas-juego" *ngIf="juegoIniciado && cartaActual">
+      <!-- Mostrar la carta anterior a la derecha de la carta actual -->
+      <div class="carta-anterior">
+        <div class="columna-anterior">
+          <img
+            *ngIf="cartaAnterior"
+            [src]="cartaAnterior.image"
+            alt="Carta anterior"
+          />
+          <p>Carta anterior</p>
+        </div>
+      </div>
+
+      <div class="carta-actual">
+        <div class="columna-actual">
+          <img [src]="cartaActual.image" alt="Carta actual" />
+          <p>Carta actual: {{ cartaActual.value }} of {{ cartaActual.suit }}</p>
+          <p class="msg">{{ mensajeResultado }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones Alto, Igual, Bajo -->
+    <div *ngIf="juegoIniciado && cartaActual && cartasRestantes > 0">
       <button
-        class="btn btn-secondary alto"
-        *ngIf="empezoJuego && !noMasCartas"
-        [disabled]="terminoJuego"
         (click)="eleccionJugador('alto')"
+        [disabled]="cargando || botonesDeshabilitados"
       >
         Alto
       </button>
       <button
-        class="btn btn-secondary igual"
-        *ngIf="empezoJuego && !noMasCartas"
-        [disabled]="terminoJuego"
         (click)="eleccionJugador('igual')"
+        [disabled]="cargando || botonesDeshabilitados"
       >
         Igual
       </button>
       <button
-        class="btn btn-secondary bajo"
-        *ngIf="empezoJuego && !noMasCartas"
-        [disabled]="terminoJuego"
         (click)="eleccionJugador('bajo')"
+        [disabled]="cargando || botonesDeshabilitados"
       >
         Bajo
       </button>
     </div>
 
-    <div class="final-msg">
-      <p class="msg">{{ mensaje }}</p>
-      <p class="resultado">{{ resultado }}</p>
+    <!-- Mensaje cuando no quedan más cartas -->
+    <div *ngIf="juegoIniciado && cartasRestantes === 0">
+      <p>¡El juego ha terminado, no quedan más cartas!</p>
+      <div class="game-over">
+        <button (click)="volverAlMenu()">Volver al menú</button>
+      </div>
     </div>
   </div>
 </div>
