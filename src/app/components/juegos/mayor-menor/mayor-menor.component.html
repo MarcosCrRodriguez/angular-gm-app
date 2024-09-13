@@ -76,10 +76,8 @@
       <p class="msg">{{ mensajeResultado }}</p>
     </div>
     <div *ngIf="juegoIniciado && cartasRestantes === 0">
-      <p class="btn btn-warning final-msg">
-        ¡El juego ha terminado, no quedan más cartas!
-      </p>
-      <div class="game-over">
+      <p class="final-msg">¡El juego ha terminado, no quedan más cartas!</p>
+      <div class="btn btn-warning game-over">
         <button (click)="volverAlMenu()">Volver al menú</button>
       </div>
     </div>
