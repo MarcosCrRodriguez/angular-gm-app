@@ -96,7 +96,7 @@ export class MayorMenorComponent implements OnInit {
       if (this.cartaActual && this.cartaSiguiente) {
         this.botonesDeshabilitados = true;
 
-        await this.delay(1000);
+        await this.delay(500);
 
         const resultadoCorrecto = this.evaluarResultado(opcion);
         if (resultadoCorrecto) {
