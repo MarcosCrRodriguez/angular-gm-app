@@ -6,3 +6,105 @@
     </h1>
   </div>
 </div>
+<div class="ahorcado-bg">
+  <div class="card text-bg-dark">
+    <div class="game-title">
+      <h1 class="title-mm">Ahorcado</h1>
+    </div>
+    <div class="juego-ahorcado">
+      <!-- Mostrar puntuación -->
+      <div class="puntuacion">
+        <h2>Puntuación: {{ puntuacion }}</h2>
+      </div>
+
+      <!-- Mostrar la palabra oculta -->
+      <div class="palabra-oculta">
+        <h2>{{ palabraOculta.join(" ") }}</h2>
+      </div>
+
+      <!-- Mostrar letras incorrectas -->
+      <div class="letras-incorrectas">
+        <h3>Letras Incorrectas: {{ letrasIncorrectas.join(", ") }}</h3>
+        <h3>Intentos Restantes: {{ intentosRestantes }}</h3>
+      </div>
+
+      <!-- Botones para letras -->
+      <div class="botones-letras">
+        <button
+          class="btn btn-secondary"
+          *ngFor="let letra of alfabeto"
+          (click)="adivinarLetra(letra)"
+          [disabled]="
+            letrasIncorrectas.includes(letra) || palabraOculta.includes(letra)
+          "
+        >
+          {{ letra }}
+        </button>
+      </div>
+
+      <!-- Mensajes adicionales -->
+      <div class="mensajes">
+        <!-- Puedes agregar otros mensajes aquí si es necesario -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div
+  class="ranking"
+  *ngIf="rankingData && rankingData.length > 0; else noDataTemplate"
+>
+  <h3>Ranking del Juego Mayor-Menor</h3>
+  <div class="ranking-container">
+    <table class="ranking-table">
+      <thead class="header-tabla">
+        <tr>
+          <th>Usuario</th>
+          <th>Puntos</th>
+        </tr>
+      </thead>
+      <tbody class="body-tabla">
+        <tr *ngFor="let item of rankingData">
+          <td>{{ item.usuario }}</td>
+          <td>{{ item.puntos }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> -->
+<ng-template #noDataTemplate>
+  <p>No hay datos de ranking disponibles.</p>
+</ng-template>
+<div class="como-jugar">
+  <div class="card card-como-jugar">
+    <div class="card-header">Como Jugar</div>
+    <div class="card-info">
+      <p class="exp-general">
+        El "Ahorcado" es un juego de palabras clásico en el que un jugador
+        intenta adivinar una palabra letra por letra. Las reglas básicas son las
+        siguientes:
+      </p>
+      <p class="info-pto">
+        1- Se dibuja una serie de guiones, uno por cada letra de la palabra.
+      </p>
+      <p class="info-pto">
+        2- El jugador que adivina propone letras una a una. Si la letra está en
+        la palabra, se coloca en los espacios correctos. Si no, se dibuja una
+        parte del "ahorcado".
+      </p>
+      <p class="info-pto">
+        3- El juego continúa hasta que el jugador adivine la palabra completa o
+        se termine el dibujo del ahorcado
+      </p>
+      <p class="info-pto">
+        4- El jugador gana un punto por cada letra correcta seleccionada y
+        pierde uno por cada incorrecta. Por cada palabra completada ganara
+        puntos equivalentes al largo de la palabra, si no la adivina antes de
+        quedarse sin intentos pederan los puntos equivalentes al largo de
+        palabra.
+      </p>
+      <p class="exp-general">
+        El juego continúa hasta que se acaban las cartas del mazo.
+      </p>
+    </div>
+  </div>
+</div>
