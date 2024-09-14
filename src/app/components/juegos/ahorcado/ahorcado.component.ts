@@ -64,9 +64,11 @@ export class AhorcadoComponent implements OnInit {
 
     if (!this.palabraOculta.includes('_')) {
       await this.mostrarUltimaImagen();
+      this.puntuacion += this.palabraActual.length;
       this.juegoTerminado = true;
     } else if (this.intentosRestantes <= 0) {
       await this.mostrarUltimaImagen();
+      this.puntuacion -= this.palabraActual.length;
       this.juegoTerminado = true;
     }
   }
