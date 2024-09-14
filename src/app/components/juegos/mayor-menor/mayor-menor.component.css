@@ -614,11 +614,20 @@
   }
 
   .ranking h3 {
-    font-size: 26px;
+    font-size: 26px !important;
+    font-weight: 600;
   }
 
-  .ranking li {
+  .header-tabla {
+    font-size: 22px;
+  }
+
+  .body-tabla {
     font-size: 18px;
+  }
+
+  .ranking-table {
+    width: 70%;
   }
 
   .card-como-jugar {
