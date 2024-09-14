@@ -76,6 +76,45 @@
   transition: 0.4s;
 }
 
+.quick-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.quick-access-left {
+  margin-left: 18px;
+}
+
+.quick-access-right {
+  margin-right: 18px;
+}
+
+.quick-access-left,
+.quick-access-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2px;
+}
+
+.quick-access-left p,
+.quick-access-right {
+  color: rgba(251, 251, 251, 0.85);
+  font-size: 22px;
+  font-family: "Grenze Gotisch", serif;
+}
+
+.quick-access-left img,
+.quick-access-right img {
+  height: auto;
+  width: 54px;
+  margin-bottom: 12px;
+  margin-left: 6px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
 .register-info {
   display: flex;
   align-items: center;
@@ -110,6 +149,12 @@
 }
 
 .login-btn button:hover {
+  transform: scale(1.04);
+  transition: 0.4s;
+}
+
+.quick-access-left img:hover,
+.quick-access-right img:hover {
   transform: scale(1.04);
   transition: 0.4s;
 }
@@ -155,6 +200,16 @@
 
   .login-btn button {
     font-size: 26px;
+  }
+
+  .quick-access-left p,
+  .quick-access-right {
+    font-size: 20px;
+  }
+
+  .quick-access-left img,
+  .quick-access-right img {
+    width: 44px;
   }
 
   .register-info {

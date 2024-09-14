@@ -21,8 +21,20 @@ export class LoginComponent {
   public msjError: string = '';
   public contError: number = 0;
   public limitErrors: number = 5;
+  public accessoRapidoUser = 'piedecamello@gmail.com';
+  public accessoRapidoPassword = 'piedecamello';
 
   constructor(private authService: AuthService, private router: Router) {
+    this.userIngresado = '';
+    this.claveIngresado = '';
+  }
+
+  accessoRapido() {
+    this.userIngresado = this.accessoRapidoUser;
+    this.claveIngresado = this.accessoRapidoPassword;
+  }
+
+  limpiarInputs() {
     this.userIngresado = '';
     this.claveIngresado = '';
   }
