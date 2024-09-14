@@ -9,7 +9,11 @@
 <div class="ahorcado-bg">
   <div class="card text-bg-dark">
     <div class="game-title">
-      <h1 class="title-mm">Ahorcado</h1>
+      <img
+        class="img-ahorcado"
+        [src]="'assets/ahorcado-' + (6 - intentosRestantes) + '.png'"
+        alt="Ahorcado"
+      />
     </div>
     <div class="juego-ahorcado">
       <!-- Mostrar puntuación -->
@@ -25,7 +29,17 @@
       <!-- Mostrar letras incorrectas -->
       <div class="letras-incorrectas">
         <h3>Letras Incorrectas: {{ letrasIncorrectas.join(", ") }}</h3>
-        <h3>Intentos Restantes: {{ intentosRestantes }}</h3>
+        <div class="estado-juego">
+          <button
+            class="btn btn-warning"
+            [disabled]="!juegoTerminado"
+            (click)="continuar()"
+            *ngIf="juegoTerminado"
+          >
+            Continuar
+          </button>
+          <p *ngIf="!juegoTerminado">En juego...</p>
+        </div>
       </div>
 
       <!-- Botones para letras -->

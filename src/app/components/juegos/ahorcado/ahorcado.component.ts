@@ -17,6 +17,7 @@ export class AhorcadoComponent implements OnInit {
   intentosRestantes: number = 6;
   puntuacion: number = 0;
   alfabeto: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  juegoTerminado: boolean = false; // Variable que controla el estado del juego
 
   constructor(private ahorcadoService: AhorcadoService) {}
 
@@ -42,8 +43,8 @@ export class AhorcadoComponent implements OnInit {
     }
   }
 
-  adivinarLetra(letra: string) {
-    if (!this.palabraActual) return;
+  async adivinarLetra(letra: string) {
+    if (!this.palabraActual || this.juegoTerminado) return;
 
     const indices = [];
     for (let i = 0; i < this.palabraActual.length; i++) {
@@ -62,13 +63,22 @@ export class AhorcadoComponent implements OnInit {
     }
 
     if (!this.palabraOculta.includes('_')) {
-      alert('¡Felicidades! Has adivinado la palabra.');
-      this.puntuacion += this.palabraActual.length;
-      this.seleccionarPalabra();
+      await this.mostrarUltimaImagen();
+      this.juegoTerminado = true;
     } else if (this.intentosRestantes <= 0) {
-      alert('¡Has perdido! La palabra era ' + this.palabraActual);
-      this.puntuacion -= this.palabraActual.length;
-      this.seleccionarPalabra();
+      await this.mostrarUltimaImagen();
+      this.juegoTerminado = true;
     }
+  }
+
+  // Función para dibujar la última imagen antes de que el juego termine
+  mostrarUltimaImagen() {
+    this.intentosRestantes = 0;
+  }
+
+  // Esta función se ejecutará cuando el usuario presione "Continuar"
+  continuar() {
+    this.juegoTerminado = false; // Restablecemos el estado del juego
+    this.seleccionarPalabra(); // Reiniciamos el juego
   }
 }

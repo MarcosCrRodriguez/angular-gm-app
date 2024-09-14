@@ -56,16 +56,9 @@
   justify-content: center;
 }
 
-.title-mm {
-  text-decoration: none;
-  color: white;
-  font-size: 62px;
-  padding-top: 30px;
-  padding-bottom: 20px;
-  font-family: "Grenze Gotisch", serif;
-  margin: 0;
-  text-shadow: -2.5px -2.5px 0 #000, 2.5px -2.5px 0 #000,
-    -2.5px 2.5px 0 hsl(0, 0%, 0%), 2.5px 2.5px 0 #000;
+.game-title img {
+  display: flex;
+  justify-content: flex-start !important;
 }
 
 .juego-ahorcado {
@@ -90,6 +83,20 @@
 
 .letras-incorrectas {
   margin: 20px 0;
+}
+
+.estado-juego {
+  margin-top: 8px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.estado-juego button {
+  border: 2px solid black;
+  margin-top: 8px;
+  font-size: 22px;
+  font-weight: 600;
+  transition: 0.4s;
 }
 
 .botones-letras button {
@@ -157,7 +164,8 @@
   padding-left: 24px !important;
 }
 
-.botones-letras button:hover {
+.botones-letras button:hover,
+.estado-juego button:hover {
   transform: scale(1.04);
   transition: 0.4s;
 }
@@ -178,10 +186,6 @@
     width: 84%;
     margin-left: 7%;
     margin-right: 7%;
-  }
-
-  .title-mm {
-    font-size: 52px;
   }
 
   .botones-letras button {
@@ -240,8 +244,12 @@
     margin-right: 2%;
   }
 
-  .title-mm {
-    font-size: 44px;
+  .estado-juego {
+    font-size: 20px;
+  }
+
+  .estado-juego button {
+    font-size: 18px;
   }
 
   .botones-letras button {
