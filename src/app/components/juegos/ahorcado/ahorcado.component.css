@@ -61,6 +61,19 @@
   justify-content: flex-start !important;
 }
 
+.btn-home {
+  margin-top: 180px;
+  margin-bottom: 180px;
+  font-size: 32px;
+}
+
+.btn-home button {
+  border: 2px solid black;
+  font-size: 28px;
+  font-weight: 600;
+  transition: 0.4s;
+}
+
 .juego-ahorcado {
   text-align: center;
 }
@@ -117,8 +130,24 @@
   transition: 0.4s;
 }
 
-.mensajes {
+.mensajes-finales {
+  margin-top: 152px;
+  margin-bottom: 60px;
+}
+
+.mensajes-finales p {
   margin-top: 20px;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.mensajes-finales button {
+  border: 2px solid black;
+  color: #000;
+  margin-top: 40px;
+  font-size: 28px;
+  font-weight: 600;
+  transition: 0.4s;
 }
 
 .card-como-jugar {
@@ -172,7 +201,9 @@
 }
 
 .botones-letras button:hover,
-.estado-juego button:hover {
+.estado-juego button:hover,
+.btn-home button:hover,
+.mensajes-finales button:hover {
   transform: scale(1.04);
   transition: 0.4s;
 }

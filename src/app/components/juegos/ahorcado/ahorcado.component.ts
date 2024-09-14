@@ -16,15 +16,19 @@ export class AhorcadoComponent implements OnInit {
   letrasIncorrectas: string[] = [];
   intentosRestantes: number = 6;
   puntuacion: number = 0;
+  rondaTerminada: boolean = false;
+  juegoIniciado: boolean = false;
+  juegoTerminado: boolean = false;
+  palabrasJugadas: number = 0;
+  maxPalabras: number = 5;
+  mostrarMensajeFinal: boolean = false;
   alfabeto: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
-  juegoTerminado: boolean = false; // Variable que controla el estado del juego
 
   constructor(private ahorcadoService: AhorcadoService) {}
 
   ngOnInit() {
     this.ahorcadoService.obtenerPalabras().subscribe((palabras) => {
       this.palabras = palabras;
-      this.seleccionarPalabra();
     });
 
     window.scrollTo(0, 0);
@@ -43,8 +47,8 @@ export class AhorcadoComponent implements OnInit {
     }
   }
 
-  async adivinarLetra(letra: string) {
-    if (!this.palabraActual || this.juegoTerminado) return;
+  adivinarLetra(letra: string) {
+    if (!this.palabraActual || this.rondaTerminada) return;
 
     const indices = [];
     for (let i = 0; i < this.palabraActual.length; i++) {
@@ -63,24 +67,54 @@ export class AhorcadoComponent implements OnInit {
     }
 
     if (!this.palabraOculta.includes('_')) {
-      await this.mostrarUltimaImagen();
+      this.mostrarUltimaImagen();
       this.puntuacion += this.palabraActual.length;
-      this.juegoTerminado = true;
+      this.rondaTerminada = true;
+      this.palabrasJugadas++;
+      this.verificarFinDelJuego();
     } else if (this.intentosRestantes <= 0) {
-      await this.mostrarUltimaImagen();
+      this.mostrarUltimaImagen();
       this.puntuacion -= this.palabraActual.length;
-      this.juegoTerminado = true;
+      this.rondaTerminada = true;
+      this.palabrasJugadas++;
+      this.verificarFinDelJuego();
     }
   }
 
-  // Función para dibujar la última imagen antes de que el juego termine
   mostrarUltimaImagen() {
     this.intentosRestantes = 0;
   }
 
-  // Esta función se ejecutará cuando el usuario presione "Continuar"
   continuar() {
-    this.juegoTerminado = false; // Restablecemos el estado del juego
-    this.seleccionarPalabra(); // Reiniciamos el juego
+    if (this.palabrasJugadas < this.maxPalabras) {
+      this.rondaTerminada = false;
+      this.seleccionarPalabra();
+    }
+  }
+
+  comenzar() {
+    this.juegoIniciado = true;
+    this.juegoTerminado = false;
+    this.palabrasJugadas = 0;
+    this.mostrarMensajeFinal = false;
+    this.seleccionarPalabra();
+  }
+
+  verificarFinDelJuego() {
+    if (this.palabrasJugadas >= this.maxPalabras) {
+      this.rondaTerminada = false;
+      this.juegoTerminado = true;
+      this.mostrarMensajeFinal = true;
+    }
+  }
+
+  volverInicio() {
+    this.puntuacion = 0;
+    this.palabras = [];
+    this.juegoIniciado = false;
+    this.mostrarMensajeFinal = false;
+    this.ahorcadoService.obtenerPalabras().subscribe((palabras) => {
+      this.palabras = palabras;
+    });
   }
 }

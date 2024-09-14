@@ -11,7 +11,7 @@ export class AhorcadoService {
 
   constructor(private http: HttpClient) {}
 
-  obtenerPalabras(cantidad: number = 10): Observable<string[]> {
+  obtenerPalabras(cantidad: number = 5): Observable<string[]> {
     return this.http
       .get<string[]>(`${this.apiUrl}?c=${cantidad}`)
       .pipe(

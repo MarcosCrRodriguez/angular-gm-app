@@ -8,61 +8,78 @@
 </div>
 <div class="ahorcado-bg">
   <div class="card text-bg-dark">
-    <div class="game-title">
-      <img
-        class="img-ahorcado"
-        [src]="'assets/ahorcado-' + (6 - intentosRestantes) + '.png'"
-        alt="Ahorcado"
-      />
+    <div *ngIf="!juegoIniciado">
+      <div class="game-title">
+        <img class="img-ahorcado" src="assets/ahorcado-6.png" alt="Ahorcado" />
+      </div>
+      <div class="btn-home">
+        <button class="btn btn-warning" (click)="comenzar()">Comenzar</button>
+      </div>
     </div>
-    <div class="juego-ahorcado">
-      <!-- Mostrar puntuación -->
-      <div class="puntuacion">
-        <h2>Puntuación: {{ puntuacion }}</h2>
+    <div *ngIf="juegoIniciado">
+      <div class="game-title">
+        <img
+          class="img-ahorcado"
+          [src]="'assets/ahorcado-' + (6 - intentosRestantes) + '.png'"
+          alt="Ahorcado"
+        />
       </div>
-
-      <!-- Mostrar la palabra oculta -->
-      <div class="palabra-oculta">
-        <h2>{{ palabraOculta.join(" ") }}</h2>
-      </div>
-
-      <!-- Mostrar letras incorrectas -->
-      <div class="letras-incorrectas">
-        <h3>Letras Incorrectas: {{ letrasIncorrectas.join(", ") }}</h3>
-        <div class="estado-juego">
-          <button
-            class="btn btn-warning"
-            [disabled]="!juegoTerminado"
-            (click)="continuar()"
-            *ngIf="juegoTerminado"
-          >
-            Continuar
-          </button>
-          <p *ngIf="!juegoTerminado">En juego...</p>
+      <div class="juego-ahorcado">
+        <!-- Mostrar puntuación -->
+        <div class="puntuacion">
+          <h2>Puntuación: {{ puntuacion }}</h2>
         </div>
-      </div>
 
-      <!-- Botones para letras -->
-      <div class="botones-letras">
-        <button
-          class="btn btn-secondary"
-          *ngFor="let letra of alfabeto"
-          (click)="adivinarLetra(letra)"
-          [disabled]="
-            letrasIncorrectas.includes(letra) || palabraOculta.includes(letra)
-          "
-        >
-          {{ letra }}
-        </button>
-      </div>
+        <div *ngIf="!juegoTerminado">
+          <!-- Mostrar la palabra oculta -->
+          <div class="palabra-oculta">
+            <h2>{{ palabraOculta.join(" ") }}</h2>
+          </div>
 
-      <!-- Mensajes adicionales -->
-      <div class="mensajes">
-        <!-- Puedes agregar otros mensajes aquí si es necesario -->
+          <!-- Mostrar letras incorrectas -->
+          <div class="letras-incorrectas">
+            <h3>Letras Incorrectas: {{ letrasIncorrectas.join(", ") }}</h3>
+            <div class="estado-juego">
+              <button
+                class="btn btn-warning"
+                [disabled]="!rondaTerminada"
+                (click)="continuar()"
+                *ngIf="rondaTerminada"
+              >
+                Continuar
+              </button>
+              <p *ngIf="!rondaTerminada">En juego...</p>
+            </div>
+          </div>
+
+          <!-- Botones para letras -->
+          <div class="botones-letras">
+            <button
+              class="btn btn-secondary"
+              *ngFor="let letra of alfabeto"
+              (click)="adivinarLetra(letra)"
+              [disabled]="
+                letrasIncorrectas.includes(letra) ||
+                palabraOculta.includes(letra)
+              "
+            >
+              {{ letra }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Mensajes adicionales -->
+        <div class="mensajes-finales" *ngIf="mostrarMensajeFinal">
+          <h2>¡Has terminado el juego!</h2>
+          <button class="btn btn-success" (click)="volverInicio()">
+            Volver al Inicio
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 <!-- <div
   class="ranking"
   *ngIf="rankingData && rankingData.length > 0; else noDataTemplate"
