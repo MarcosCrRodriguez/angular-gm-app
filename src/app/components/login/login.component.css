@@ -1,5 +1,5 @@
 .img-login {
-  background: url("./../../../assets/chill-bg.jpg") no-repeat center fixed;
+  background: url("./../../../assets/doom.jpg") no-repeat center fixed;
   background-size: cover;
   min-height: 100%;
   width: 100%;
@@ -19,8 +19,8 @@
 }
 
 .card {
-  border: 2.5px solid white;
-  background: rgba(136, 134, 134, 0.4);
+  border: 2.5px solid black;
+  background: rgba(42, 42, 42, 0.4);
 }
 
 .title {
@@ -100,9 +100,11 @@
 
 .quick-access-left p,
 .quick-access-right {
-  color: rgba(251, 251, 251, 0.85);
+  color: #fff;
   font-size: 22px;
   font-family: "Grenze Gotisch", serif;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
 }
 
 .quick-access-left img,
@@ -120,10 +122,12 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: rgba(251, 251, 251, 0.85);
+  color: #fff;
   font-size: 22px;
   font-family: "Grenze Gotisch", serif;
   margin-bottom: 12px;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
 }
 
 .register-info p {
@@ -137,11 +141,13 @@
 }
 
 .register-info a {
-  color: #ffc371;
+  color: #fff;
   text-decoration: none;
   font-weight: bold;
   font-family: "Metal Mania", cursive;
   cursor: pointer;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
 }
 
 .register-info a:hover {
@@ -217,5 +223,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
   }
 }
