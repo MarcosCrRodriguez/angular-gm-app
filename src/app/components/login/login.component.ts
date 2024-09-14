@@ -1,6 +1,6 @@
 import 'toastify-js/src/toastify.css';
 import Toastify from 'toastify-js';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   public title = 'Login';
   public txtPrimero = 'Usuario';
   public txtSegundo = 'Contraseña';
@@ -27,6 +27,10 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {
     this.userIngresado = '';
     this.claveIngresado = '';
+  }
+
+  ngOnInit() {
+    window.scrollTo(0, 0);
   }
 
   accessoRapido() {

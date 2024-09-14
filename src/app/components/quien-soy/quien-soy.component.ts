@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-quien-soy',
@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
   templateUrl: './quien-soy.component.html',
   styleUrl: './quien-soy.component.css',
 })
-export class QuienSoyComponent {
+export class QuienSoyComponent implements OnInit {
   email: string = 'rodriguezmarcoscruz@gmail.com';
+
+  ngOnInit() {
+    window.scrollTo(0, 0);
+  }
 }

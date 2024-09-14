@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,8 +8,12 @@ import { Router } from '@angular/router';
   templateUrl: './page-not-found.component.html',
   styleUrl: './page-not-found.component.css',
 })
-export class PageNotFoundComponent {
+export class PageNotFoundComponent implements OnInit {
   constructor(private router: Router) {}
+
+  ngOnInit() {
+    window.scrollTo(0, 0);
+  }
 
   home() {
     this.router.navigate(['/home']);

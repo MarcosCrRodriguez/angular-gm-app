@@ -48,6 +48,8 @@ export class MayorMenorComponent implements OnInit {
         console.log('No se encontraron datos opcionales para este usuario.');
       }
     });
+
+    window.scrollTo(0, 0);
   }
 
   crearNuevoMazo(): void {

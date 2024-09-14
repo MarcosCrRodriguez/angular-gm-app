@@ -1,6 +1,6 @@
 import 'toastify-js/src/toastify.css';
 import Toastify from 'toastify-js';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
@@ -14,7 +14,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css',
 })
-export class RegistroComponent {
+export class RegistroComponent implements OnInit {
   public title = 'Registro';
   public txtPrimero = 'Nombre';
   public txtSegundo = 'Apellido';
@@ -49,6 +49,10 @@ export class RegistroComponent {
     this.msjNombre = 'Nombre completo del usuario';
     this.msjApellido = 'Apellido completo del usuario';
     this.msjEdad = 'La edad del usuario debe ser mayor a 18';
+  }
+
+  ngOnInit() {
+    window.scrollTo(0, 0);
   }
 
   verificarLargoCadena(cadena: string, tipo: string): string {

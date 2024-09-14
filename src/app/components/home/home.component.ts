@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,8 +9,12 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   constructor(private router: Router) {}
+
+  ngOnInit() {
+    window.scrollTo(0, 0);
+  }
 
   quienSoy() {
     this.router.navigate(['/quien-soy']);

@@ -41,6 +41,8 @@ export class ProfileComponent implements OnInit {
         console.log('No hay usuario logueado');
       }
     });
+
+    window.scrollTo(0, 0);
   }
 
   ngOnDestroy(): void {
