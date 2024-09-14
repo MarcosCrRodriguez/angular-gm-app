@@ -14,18 +14,16 @@ export class AhorcadoComponent implements OnInit {
   palabraActual: string | null = null;
   palabraOculta: string[] = [];
   letrasIncorrectas: string[] = [];
-  intentosRestantes: number = 6; // Puedes ajustar el número de intentos
+  intentosRestantes: number = 6;
   puntuacion: number = 0;
   alfabeto: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
   constructor(private ahorcadoService: AhorcadoService) {}
 
   ngOnInit() {
-    // Llama al servicio para obtener las palabras cuando el componente carga
     this.ahorcadoService.obtenerPalabras().subscribe((palabras) => {
       this.palabras = palabras;
-      console.log(this.palabras);
-      this.seleccionarPalabra(); // Seleccionar una palabra al cargar
+      this.seleccionarPalabra();
     });
 
     window.scrollTo(0, 0);
@@ -37,7 +35,7 @@ export class AhorcadoComponent implements OnInit {
         this.palabras[Math.floor(Math.random() * this.palabras.length)];
       this.palabraOculta = this.palabraActual.split('').map(() => '_');
       this.letrasIncorrectas = [];
-      this.intentosRestantes = 6; // Reiniciar intentos
+      this.intentosRestantes = 6;
     } else {
       this.palabraActual = null;
       this.palabraOculta = [];
@@ -56,20 +54,20 @@ export class AhorcadoComponent implements OnInit {
 
     if (indices.length > 0) {
       indices.forEach((index) => (this.palabraOculta[index] = letra));
-      this.puntuacion += 1; // Sumar punto por letra correcta
+      this.puntuacion += 1;
     } else {
       this.letrasIncorrectas.push(letra);
       this.intentosRestantes--;
-      this.puntuacion -= 1; // Restar punto por letra incorrecta
+      this.puntuacion -= 1;
     }
 
     if (!this.palabraOculta.includes('_')) {
       alert('¡Felicidades! Has adivinado la palabra.');
-      this.puntuacion += this.palabraActual.length; // Sumar puntos por adivinar la palabra
+      this.puntuacion += this.palabraActual.length;
       this.seleccionarPalabra();
     } else if (this.intentosRestantes <= 0) {
       alert('¡Has perdido! La palabra era ' + this.palabraActual);
-      this.puntuacion -= this.palabraActual.length; // Restar puntos por perder
+      this.puntuacion -= this.palabraActual.length;
       this.seleccionarPalabra();
     }
   }
