@@ -158,11 +158,11 @@ export class MayorMenorComponent implements OnInit {
     const valorActual = this.obtenerValorCarta(this.cartaActual.value);
     const valorSiguiente = this.obtenerValorCarta(this.cartaSiguiente.value);
 
-    if (opcion === 'alto' && valorActual > valorSiguiente) {
+    if (opcion === 'alto' && valorSiguiente > valorActual) {
       return true;
-    } else if (opcion === 'bajo' && valorActual < valorSiguiente) {
+    } else if (opcion === 'bajo' && valorSiguiente < valorActual) {
       return true;
-    } else if (opcion === 'igual' && valorActual === valorSiguiente) {
+    } else if (opcion === 'igual' && valorSiguiente === valorActual) {
       return true;
     }
     return false;

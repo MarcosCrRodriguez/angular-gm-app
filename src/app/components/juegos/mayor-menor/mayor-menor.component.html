@@ -45,7 +45,7 @@
       <div class="carta-actual">
         <div class="columna-actual">
           <img [src]="cartaActual.image" alt="Carta actual" />
-          <p>Carta actual: {{ cartaActual.value }} of {{ cartaActual.suit }}</p>
+          <p>{{ cartaActual.value }} of {{ cartaActual.suit }}</p>
         </div>
       </div>
     </div>
@@ -93,11 +93,27 @@
   *ngIf="rankingData && rankingData.length > 0; else noDataTemplate"
 >
   <h3>Ranking del Juego Mayor-Menor</h3>
-  <ul>
+  <div class="ranking-container">
+    <table class="ranking-table">
+      <thead class="header-tabla">
+        <tr>
+          <th>Usuario</th>
+          <th>Puntos</th>
+        </tr>
+      </thead>
+      <tbody class="body-tabla">
+        <tr *ngFor="let item of rankingData">
+          <td>{{ item.usuario }}</td>
+          <td>{{ item.puntos }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- <ul>
     <li *ngFor="let item of rankingData">
       Usuario: {{ item.usuario }} - Puntos: {{ item.puntos }}
     </li>
-  </ul>
+  </ul> -->
 </div>
 <ng-template #noDataTemplate>
   <p>No hay datos de ranking disponibles.</p>
