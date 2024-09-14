@@ -69,4 +69,8 @@ export class LoginComponent {
   registro() {
     this.router.navigate(['/registro']);
   }
+
+  home() {
+    this.router.navigate(['/home']);
+  }
 }

@@ -22,7 +22,7 @@ export class RegistroComponent {
   // public txtCuarto = 'Dia';
   // public txtQuinto = 'Mes';
   // public txtSexto = 'Año';
-  public txtSeptimo = 'Usuario';
+  public txtSeptimo = 'Correo';
   public txtOctavo = 'Contraseña';
 
   public userIngresado!: string;
@@ -39,6 +39,9 @@ export class RegistroComponent {
   constructor(private authService: AuthService, private router: Router) {
     this.userIngresado = '';
     this.claveIngresado = '';
+    this.nombreIngresado = '';
+    this.apellidoIngresado = '';
+    this.edadIngresada = '';
   }
 
   register() {
@@ -82,10 +85,17 @@ export class RegistroComponent {
 
         this.userIngresado = '';
         this.claveIngresado = '';
+        this.nombreIngresado = '';
+        this.apellidoIngresado = '';
+        this.edadIngresada = '';
       });
   }
 
   loguear() {
     this.router.navigate(['/login']);
+  }
+
+  home() {
+    this.router.navigate(['/home']);
   }
 }
