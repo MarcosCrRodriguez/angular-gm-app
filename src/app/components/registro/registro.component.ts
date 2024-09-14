@@ -35,6 +35,9 @@ export class RegistroComponent {
   // public anioIngresado!: number;
 
   public msjError: string = '';
+  public msjNombre: string = '';
+  public msjApellido: string = '';
+  public msjEdad: string = '';
 
   constructor(private authService: AuthService, private router: Router) {
     this.userIngresado = '';
@@ -42,53 +45,101 @@ export class RegistroComponent {
     this.nombreIngresado = '';
     this.apellidoIngresado = '';
     this.edadIngresada = '';
+
+    this.msjNombre = 'Nombre completo del usuario';
+    this.msjApellido = 'Apellido completo del usuario';
+    this.msjEdad = 'La edad del usuario debe ser mayor a 18';
+  }
+
+  verificarLargoCadena(cadena: string, tipo: string): string {
+    if ((cadena.length > 2 && cadena.length < 17) || cadena === '') {
+      return 'Correctamente Ingresado';
+    } else {
+      return `El ${tipo} ingresado debe tener entre 3 y 16 caracteres`;
+    }
+  }
+
+  verificarNumero(numero: string, tipo: string) {
+    if (numero === '') {
+      return 'Correctamente Ingresado';
+    }
+    const numericAge = Number(numero);
+    if (isNaN(numericAge)) {
+      return `La ${tipo} ingresada debe ser un número`;
+    } else if (numericAge < 18 || numericAge > 99) {
+      return `La ${tipo} ingresada debe tener entre 18 y 99 años`;
+    } else {
+      return 'Correctamente Ingresado';
+    }
   }
 
   register() {
-    this.authService
-      .register(this.userIngresado, this.claveIngresado)
-      .then(() => {
-        if (
-          this.nombreIngresado &&
-          this.apellidoIngresado &&
-          this.edadIngresada
-        ) {
-          console.log('Se cagragon los datos opcionales correctamente');
-        } else {
+    this.msjNombre = this.verificarLargoCadena(this.nombreIngresado, 'Nombre');
+    this.msjApellido = this.verificarLargoCadena(
+      this.apellidoIngresado,
+      'Apellido'
+    );
+    this.msjEdad = this.verificarNumero(this.edadIngresada, 'Edad');
+    console.log(this.msjNombre, this.msjApellido, this.msjEdad);
+    if (
+      this.msjNombre === 'Correctamente Ingresado' &&
+      this.msjApellido === 'Correctamente Ingresado' &&
+      this.msjEdad === 'Correctamente Ingresado'
+    ) {
+      this.authService
+        .register(this.userIngresado, this.claveIngresado)
+        .then(() => {
+          if (
+            this.nombreIngresado &&
+            this.apellidoIngresado &&
+            this.edadIngresada
+          ) {
+            console.log('Se cagragon los datos opcionales correctamente');
+          } else {
+            Toastify({
+              text: 'Algunos datos opcionales no fueron proporcionados',
+              duration: 4000,
+              close: true,
+              gravity: 'top',
+              position: 'center',
+              backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
+            }).showToast();
+          }
+          this.authService.optionalRegisterData(
+            this.userIngresado,
+            this.nombreIngresado,
+            this.apellidoIngresado,
+            this.edadIngresada
+          );
+        })
+        .catch((error: string) => {
+          this.msjError = error;
+
           Toastify({
-            text: 'Algunos datos opcionales no fueron proporcionados',
+            text: this.msjError,
             duration: 4000,
             close: true,
             gravity: 'top',
             position: 'center',
             backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
           }).showToast();
-        }
-        this.authService.optionalRegisterData(
-          this.userIngresado,
-          this.nombreIngresado,
-          this.apellidoIngresado,
-          this.edadIngresada
-        );
-      })
-      .catch((error: string) => {
-        this.msjError = error;
 
-        Toastify({
-          text: this.msjError,
-          duration: 4000,
-          close: true,
-          gravity: 'top',
-          position: 'center',
-          backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
-        }).showToast();
-
-        this.userIngresado = '';
-        this.claveIngresado = '';
-        this.nombreIngresado = '';
-        this.apellidoIngresado = '';
-        this.edadIngresada = '';
-      });
+          this.userIngresado = '';
+          this.claveIngresado = '';
+          this.nombreIngresado = '';
+          this.apellidoIngresado = '';
+          this.edadIngresada = '';
+        });
+    } else {
+      Toastify({
+        text: 'Reingrese los datos opcionales',
+        duration: 4000,
+        close: true,
+        gravity: 'top',
+        position: 'center',
+        backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
+      }).showToast();
+    }
   }
 
   loguear() {

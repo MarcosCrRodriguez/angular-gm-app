@@ -51,9 +51,7 @@
               placeholder="{{ txtPrimero }}"
               [(ngModel)]="nombreIngresado"
             />
-            <small class="form-text text-muted"
-              >Nombre completo del usuario</small
-            >
+            <small class="form-text text-muted">{{ this.msjNombre }}</small>
           </div>
           <div class="columna-input">
             <input
@@ -64,9 +62,7 @@
               placeholder="{{ txtSegundo }}"
               [(ngModel)]="apellidoIngresado"
             />
-            <small class="form-text text-muted"
-              >Apellido completo del usuario</small
-            >
+            <small class="form-text text-muted">{{ this.msjApellido }}</small>
           </div>
         </div>
         <div class="registro-input-medio">
@@ -78,9 +74,9 @@
               placeholder="{{ txtTercero }}"
               [(ngModel)]="edadIngresada"
             />
-            <small class="form-text text-muted small-medio"
-              >La edad del usuario debe ser mayor a 18</small
-            >
+            <small class="form-text text-muted small-medio">{{
+              this.msjEdad
+            }}</small>
           </div>
         </div>
         <!-- <div class="registro-input-pequenio">
