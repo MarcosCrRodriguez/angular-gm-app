@@ -38,7 +38,13 @@
 
           <!-- Mostrar letras incorrectas -->
           <div class="letras-incorrectas">
-            <h3>Letras Incorrectas: {{ letrasIncorrectas.join(", ") }}</h3>
+            <h3 *ngIf="!rondaTerminada">
+              Letras Incorrectas: {{ letrasIncorrectas.join(", ") }}
+            </h3>
+            <div *ngIf="rondaTerminada">
+              <h3 *ngIf="!rondaGanda">La palabra era: {{ palabraActual }}</h3>
+              <h3 *ngIf="rondaGanda">¡Correcto!</h3>
+            </div>
             <div class="estado-juego">
               <button
                 class="btn btn-warning"

@@ -17,6 +17,7 @@ export class AhorcadoComponent implements OnInit {
   intentosRestantes: number = 6;
   puntuacion: number = 0;
   rondaTerminada: boolean = false;
+  rondaGanda: boolean = false;
   juegoIniciado: boolean = false;
   juegoTerminado: boolean = false;
   palabrasJugadas: number = 0;
@@ -36,8 +37,12 @@ export class AhorcadoComponent implements OnInit {
 
   seleccionarPalabra() {
     if (this.palabras.length > 0) {
-      this.palabraActual =
-        this.palabras[Math.floor(Math.random() * this.palabras.length)];
+      // Selecciona una palabra aleatoria
+      const indice = Math.floor(Math.random() * this.palabras.length);
+      this.palabraActual = this.palabras[indice];
+
+      this.palabras.splice(indice, 1);
+
       this.palabraOculta = this.palabraActual.split('').map(() => '_');
       this.letrasIncorrectas = [];
       this.intentosRestantes = 6;
@@ -70,6 +75,7 @@ export class AhorcadoComponent implements OnInit {
       this.mostrarUltimaImagen();
       this.puntuacion += this.palabraActual.length;
       this.rondaTerminada = true;
+      this.rondaGanda = true;
       this.palabrasJugadas++;
       this.verificarFinDelJuego();
     } else if (this.intentosRestantes <= 0) {
@@ -88,6 +94,7 @@ export class AhorcadoComponent implements OnInit {
   continuar() {
     if (this.palabrasJugadas < this.maxPalabras) {
       this.rondaTerminada = false;
+      this.rondaGanda = false;
       this.seleccionarPalabra();
     }
   }
