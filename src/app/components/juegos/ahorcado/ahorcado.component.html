@@ -76,6 +76,10 @@
 
         <!-- Mensajes adicionales -->
         <div class="mensajes-finales" *ngIf="mostrarMensajeFinal">
+          <div class="letras-incorrectas">
+            <h3 *ngIf="!rondaGanda">La palabra era: {{ palabraActual }}</h3>
+            <h3 *ngIf="rondaGanda">¡Correcto!</h3>
+          </div>
           <h2>¡Has terminado el juego!</h2>
           <button class="btn btn-success" (click)="volverInicio()">
             Volver al Inicio

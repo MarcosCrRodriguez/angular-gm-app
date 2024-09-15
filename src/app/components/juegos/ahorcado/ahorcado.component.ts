@@ -28,16 +28,17 @@ export class AhorcadoComponent implements OnInit {
   constructor(private ahorcadoService: AhorcadoService) {}
 
   ngOnInit() {
-    this.ahorcadoService.obtenerPalabras().subscribe((palabras) => {
-      this.palabras = palabras;
-    });
+    this.ahorcadoService
+      .obtenerPalabras(this.maxPalabras)
+      .subscribe((palabras) => {
+        this.palabras = palabras;
+      });
 
     window.scrollTo(0, 0);
   }
 
   seleccionarPalabra() {
     if (this.palabras.length > 0) {
-      // Selecciona una palabra aleatoria
       const indice = Math.floor(Math.random() * this.palabras.length);
       this.palabraActual = this.palabras[indice];
 
@@ -118,6 +119,7 @@ export class AhorcadoComponent implements OnInit {
   volverInicio() {
     this.puntuacion = 0;
     this.palabras = [];
+    this.rondaGanda = false;
     this.juegoIniciado = false;
     this.mostrarMensajeFinal = false;
     this.ahorcadoService.obtenerPalabras().subscribe((palabras) => {
