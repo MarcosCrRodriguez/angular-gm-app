@@ -25,18 +25,13 @@
         />
       </div>
       <div class="juego-ahorcado">
-        <!-- Mostrar puntuación -->
         <div class="puntuacion">
           <h2>Puntuación: {{ puntuacion }}</h2>
         </div>
-
         <div *ngIf="!juegoTerminado">
-          <!-- Mostrar la palabra oculta -->
           <div class="palabra-oculta">
             <h2>{{ palabraOculta.join(" ") }}</h2>
           </div>
-
-          <!-- Mostrar letras incorrectas -->
           <div class="letras-incorrectas">
             <h3 *ngIf="!rondaTerminada">
               Letras Incorrectas: {{ letrasIncorrectas.join(", ") }}
@@ -57,8 +52,6 @@
               <p *ngIf="!rondaTerminada">En juego...</p>
             </div>
           </div>
-
-          <!-- Botones para letras -->
           <div class="botones-letras">
             <button
               class="btn btn-secondary"
@@ -73,8 +66,6 @@
             </button>
           </div>
         </div>
-
-        <!-- Mensajes adicionales -->
         <div class="mensajes-finales" *ngIf="mostrarMensajeFinal">
           <div class="letras-incorrectas">
             <h3 *ngIf="!rondaGanda">La palabra era: {{ palabraActual }}</h3>
@@ -89,8 +80,7 @@
     </div>
   </div>
 </div>
-
-<!-- <div
+<div
   class="ranking"
   *ngIf="rankingData && rankingData.length > 0; else noDataTemplate"
 >
@@ -111,7 +101,7 @@
       </tbody>
     </table>
   </div>
-</div> -->
+</div>
 <ng-template #noDataTemplate>
   <p>No hay datos de ranking disponibles.</p>
 </ng-template>

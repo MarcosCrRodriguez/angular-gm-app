@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AhorcadoService } from '../../../services/ahorcado.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-ahorcado',
@@ -10,24 +11,42 @@ import { CommonModule } from '@angular/common';
   styleUrl: './ahorcado.component.css',
 })
 export class AhorcadoComponent implements OnInit {
-  palabras: string[] = [];
-  palabraActual: string | null = null;
-  palabraOculta: string[] = [];
-  letrasIncorrectas: string[] = [];
-  intentosRestantes: number = 6;
-  puntuacion: number = 0;
-  rondaTerminada: boolean = false;
-  rondaGanda: boolean = false;
-  juegoIniciado: boolean = false;
-  juegoTerminado: boolean = false;
-  palabrasJugadas: number = 0;
-  maxPalabras: number = 5;
-  mostrarMensajeFinal: boolean = false;
-  alfabeto: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  public palabras: string[] = [];
+  public palabraActual: string | null = null;
+  public palabraOculta: string[] = [];
+  public letrasIncorrectas: string[] = [];
+  public intentosRestantes: number = 6;
+  public puntuacion: number = 0;
+  public rondaTerminada: boolean = false;
+  public rondaGanda: boolean = false;
+  public juegoIniciado: boolean = false;
+  public juegoTerminado: boolean = false;
+  public palabrasJugadas: number = 0;
+  public maxPalabras: number = 5;
+  public mostrarMensajeFinal: boolean = false;
+  public rankingData: any;
+  public usuarioLogueado: any = null;
+  public alfabeto: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
-  constructor(private ahorcadoService: AhorcadoService) {}
+  constructor(
+    private ahorcadoService: AhorcadoService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
+    this.authService.usuarioLogueado$.subscribe((usuario) => {
+      if (usuario) {
+        console.log('Usuario logueado:', usuario.email); // Mostrar el email del usuario
+      }
+      this.usuarioLogueado = usuario;
+    });
+    this.authService.getRankingJuegos('ahorcado').subscribe((data) => {
+      if (data) {
+        this.rankingData = data;
+      } else {
+        console.log('No se encontraron datos opcionales para este usuario.');
+      }
+    });
     this.ahorcadoService
       .obtenerPalabras(this.maxPalabras)
       .subscribe((palabras) => {
@@ -113,6 +132,13 @@ export class AhorcadoComponent implements OnInit {
       this.rondaTerminada = false;
       this.juegoTerminado = true;
       this.mostrarMensajeFinal = true;
+      if (this.usuarioLogueado && this.usuarioLogueado.email) {
+        this.authService.scoreJuegos(
+          this.usuarioLogueado.email,
+          this.puntuacion,
+          'ahorcado'
+        );
+      }
     }
   }
 

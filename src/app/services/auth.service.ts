@@ -166,7 +166,7 @@ export class AuthService {
   }
 
   // Guardar puntos en Firebase
-  scoreMayorMenor(email: string, puntos: number, tipoJuego: string) {
+  scoreJuegos(email: string, puntos: number, tipoJuego: string) {
     const col = collection(this.firestore, tipoJuego);
     addDoc(col, { fecha: new Date(), usuario: email, puntos: puntos });
     console.log('Entramos a mayor-menor firebufga');

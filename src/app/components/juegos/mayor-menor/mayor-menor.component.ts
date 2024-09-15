@@ -123,7 +123,7 @@ export class MayorMenorComponent implements OnInit {
       if (this.cartaActual && this.cartaSiguiente) {
         if (this.cartasRestantes === 1) {
           if (this.usuarioLogueado && this.usuarioLogueado.email) {
-            this.authService.scoreMayorMenor(
+            this.authService.scoreJuegos(
               this.usuarioLogueado.email,
               this.puntos,
               'mayor-menor'
