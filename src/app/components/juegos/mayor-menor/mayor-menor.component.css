@@ -272,6 +272,8 @@
   font-size: 36px !important;
   font-weight: 600;
   margin-bottom: 28px;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
+    -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
 }
 
 .ranking-container {
@@ -309,15 +311,15 @@
   padding: 12px 20px;
   text-align: center;
   color: white;
-  border: 2px solid #1a1a1a; /* Bordes oscuros */
+  border: 2px solid #1a1a1a;
 }
 
 .ranking-table th {
-  background-color: #2a2a2a; /* Color más oscuro para el encabezado */
+  background-color: #2a2a2a;
 }
 
 .ranking-table td {
-  background-color: #333; /* Color negro claro para las celdas */
+  background-color: #333;
 }
 
 .ranking-table tr:first-child th {

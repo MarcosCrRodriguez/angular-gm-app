@@ -64,6 +64,8 @@
   font-size: 36px !important;
   font-weight: 600;
   margin-bottom: 28px;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
+    -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
 }
 
 .ranking-container {
