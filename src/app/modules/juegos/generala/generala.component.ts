@@ -1,0 +1,36 @@
+import { Component, OnInit } from '@angular/core';
+import { AhorcadoService } from '../../../services/ahorcado.service';
+import { AuthService } from '../../../services/auth.service';
+
+@Component({
+  selector: 'app-generala',
+  standalone: false,
+  templateUrl: './generala.component.html',
+  styleUrl: './generala.component.css',
+})
+export class GeneralaComponent implements OnInit {
+  public usuarioLogueado: any = null;
+  public rankingData: any;
+
+  constructor(
+    private ahorcadoService: AhorcadoService,
+    private authService: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.authService.usuarioLogueado$.subscribe((usuario) => {
+      if (usuario) {
+        console.log('Usuario logueado:', usuario.email);
+      }
+      this.usuarioLogueado = usuario;
+    });
+    this.authService.getRankingJuegos('generala').subscribe((data) => {
+      if (data) {
+        this.rankingData = data;
+      } else {
+        console.log('No se encontraron datos opcionales para este usuario.');
+      }
+    });
+    window.scrollTo(0, 0);
+  }
+}

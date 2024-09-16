@@ -1,0 +1,69 @@
+<div class="preguntados-container">
+  <div class="inicio">
+    <h1 class="title-app" routerLink="/home" routerLinkActive="active">
+      Perfect
+      <img class="home-icon" src="assets/icon-clean.png" alt="icono" />Game
+    </h1>
+  </div>
+</div>
+<div class="preguntados-bg">
+  <!-- Seccion del preguntados -->
+</div>
+<div
+  class="ranking"
+  *ngIf="rankingData && rankingData.length > 0; else noDataTemplate"
+>
+  <h3>Ranking del Juego Preguntados</h3>
+  <div class="ranking-container">
+    <table class="ranking-table">
+      <thead class="header-tabla">
+        <tr>
+          <th>Usuario</th>
+          <th>Puntos</th>
+        </tr>
+      </thead>
+      <tbody class="body-tabla">
+        <tr *ngFor="let item of rankingData">
+          <td>{{ item.usuario }}</td>
+          <td>{{ item.puntos }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<ng-template #noDataTemplate>
+  <p>No hay datos de ranking disponibles.</p>
+</ng-template>
+<div class="como-jugar">
+  <div class="card card-como-jugar">
+    <div class="card-header">Como Jugar</div>
+    <div class="card-info">
+      <p class="exp-general">
+        Preguntados es un juego de trivia que desafía a los jugadores en
+        distintas categorías de conocimiento. El objetivo del juego es conseguir
+        la mayor cantidad de respuestas correctas posibles, así sumar puntos y
+        intentar llegar hasta el final con la mayor suma de puntos que el
+        jugador pueda conseguir.
+      </p>
+      <p class="info-pto">
+        1- En cada turno, aparecerá una pregunta de 'categoría aleatoria' en
+        donde deberá responder correctamente eligiendo entre las opciones que se
+        le brindará al jugador.
+      </p>
+      <p class="info-pto">
+        2- Si respondes correctamente el jugador podrá seguir enfrentandose a
+        preguntas hasta que pierda.
+      </p>
+      <p class="info-pto">
+        3- Cabe destacar que el jugador tiene como máximo 10 preguntas que
+        responder, una vez responda correctamente las preguntas se terminará la
+        partida.
+      </p>
+      <p class="info-pto">
+        4- El jugador sumará puntos cada vez que responda correctamente las
+        preguntas, ademas se le sumara el tiempo restante (en caso de que haya
+        respondido correctamente) en cada ronda.
+      </p>
+    </div>
+  </div>
+</div>
