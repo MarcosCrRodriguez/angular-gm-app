@@ -169,7 +169,7 @@ export class AuthService {
   scoreJuegos(email: string, puntos: number, tipoJuego: string) {
     const col = collection(this.firestore, tipoJuego);
     addDoc(col, { fecha: new Date(), usuario: email, puntos: puntos });
-    console.log('Entramos a mayor-menor firebufga');
+    console.log('Registramos el puntaje en firebase');
   }
 
   // Datos opcionales registro de datos en Firebase

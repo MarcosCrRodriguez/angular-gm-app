@@ -26,6 +26,9 @@ export class AhorcadoComponent implements OnInit {
   public mostrarMensajeFinal: boolean = false;
   public rankingData: any;
   public usuarioLogueado: any = null;
+  public opcionesIngles: boolean = false;
+  public idiomaBloqueado: boolean = false;
+  public tipoPalabras: string = 'Español: General';
   public alfabeto: string[] = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
   constructor(
@@ -36,7 +39,7 @@ export class AhorcadoComponent implements OnInit {
   ngOnInit() {
     this.authService.usuarioLogueado$.subscribe((usuario) => {
       if (usuario) {
-        console.log('Usuario logueado:', usuario.email); // Mostrar el email del usuario
+        console.log('Usuario logueado:', usuario.email);
       }
       this.usuarioLogueado = usuario;
     });
@@ -51,6 +54,7 @@ export class AhorcadoComponent implements OnInit {
       .obtenerPalabras(this.maxPalabras)
       .subscribe((palabras) => {
         this.palabras = palabras;
+        // console.log(this.palabras);
       });
 
     window.scrollTo(0, 0);
@@ -92,7 +96,7 @@ export class AhorcadoComponent implements OnInit {
     }
 
     if (!this.palabraOculta.includes('_')) {
-      this.mostrarUltimaImagen();
+      // this.mostrarUltimaImagen();
       this.puntuacion += this.palabraActual.length;
       this.rondaTerminada = true;
       this.rondaGanda = true;
@@ -125,6 +129,55 @@ export class AhorcadoComponent implements OnInit {
     this.palabrasJugadas = 0;
     this.mostrarMensajeFinal = false;
     this.seleccionarPalabra();
+  }
+
+  elegirCastellano() {
+    this.ahorcadoService.obtenerPalabras().subscribe((palabras) => {
+      this.palabras = palabras;
+      this.tipoPalabras = 'Español: General';
+      // console.log('Palabras:', this.palabras);
+    });
+  }
+
+  elegirIngles() {
+    this.opcionesIngles = true;
+    this.idiomaBloqueado = true;
+  }
+
+  chooseAdjectives() {
+    this.ahorcadoService
+      .getWordsAnjectives(this.maxPalabras)
+      .subscribe((palabras) => {
+        this.palabras = palabras;
+        this.tipoPalabras = 'English: Adjectives';
+        // console.log('Palabras:', this.palabras);
+      });
+    this.idiomaBloqueado = false;
+    this.opcionesIngles = false;
+  }
+
+  chooseNouns() {
+    this.ahorcadoService
+      .getWordsNouns(this.maxPalabras)
+      .subscribe((palabras) => {
+        this.palabras = palabras;
+        this.tipoPalabras = 'English: Nouns';
+        // console.log('Palabras:', this.palabras);
+      });
+    this.idiomaBloqueado = false;
+    this.opcionesIngles = false;
+  }
+
+  chooseAnimals() {
+    this.ahorcadoService
+      .getWordsAnimals(this.maxPalabras)
+      .subscribe((palabras) => {
+        this.palabras = palabras;
+        this.tipoPalabras = 'English: Animals';
+        // console.log('Palabras:', this.palabras);
+      });
+    this.idiomaBloqueado = false;
+    this.opcionesIngles = false;
   }
 
   verificarFinDelJuego() {

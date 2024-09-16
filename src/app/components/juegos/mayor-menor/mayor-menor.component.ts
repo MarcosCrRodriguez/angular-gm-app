@@ -11,7 +11,7 @@ import { AuthService } from './../../../services/auth.service';
   styleUrl: './mayor-menor.component.css',
 })
 export class MayorMenorComponent implements OnInit {
-  public idMazo: string = '';
+  public mazoCompleto: any[] = [];
   public cartaActual: any = null;
   public cartaSiguiente: any = null;
   public juegoIniciado: boolean = false;
@@ -25,122 +25,90 @@ export class MayorMenorComponent implements OnInit {
   public rankingData: any;
   public usuarioLogueado: any = null;
   public dorsoCarta: string = 'https://deckofcardsapi.com/static/img/back.png';
-
+  public idMazo: string = '';
   constructor(
     private cartaService: CardService,
     private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.crearNuevoMazo();
+    this.cartaService.obtenerMazoCompleto().subscribe((respuesta) => {
+      this.mazoCompleto = respuesta.cards;
+      this.cartasRestantes = this.mazoCompleto.length;
+      this.idMazo = respuesta.deck_id;
+      console.log(this.mazoCompleto);
+      console.log(this.cartasRestantes);
+    });
 
     this.authService.usuarioLogueado$.subscribe((usuario) => {
       if (usuario) {
-        console.log('Usuario logueado:', usuario.email); // Mostrar el email del usuario
+        console.log('Usuario logueado:', usuario.email);
       }
       this.usuarioLogueado = usuario;
     });
 
     this.authService.getRankingJuegos('mayor-menor').subscribe((data) => {
-      if (data) {
-        this.rankingData = data;
-      } else {
+      this.rankingData =
+        data ||
         console.log('No se encontraron datos opcionales para este usuario.');
-      }
     });
 
     window.scrollTo(0, 0);
   }
 
-  crearNuevoMazo(): void {
-    this.cartaService.crearMazo().subscribe((respuesta) => {
-      this.idMazo = respuesta.deck_id;
-      this.cartasRestantes = respuesta.remaining;
-    });
-  }
-
   iniciarJuego(): void {
-    if (!this.idMazo) return;
-
     this.cargando = true;
-
     setTimeout(() => {
       this.juegoIniciado = true;
-      this.sacarDosCartas();
+      this.cargarPrimerasCartas();
     }, 3000);
   }
 
-  sacarDosCartas(): void {
-    if (!this.idMazo) {
-      console.log('No se ha creado un mazo.');
-      return;
-    }
-
-    this.cartaService.sacarDosCartas(this.idMazo).subscribe((respuesta) => {
-      if (respuesta.cards.length === 2) {
-        if (this.esPrimeraRonda) {
-          this.cartaAnterior = { image: this.dorsoCarta };
-          this.esPrimeraRonda = false;
-        } else {
-          this.cartaAnterior = this.cartaActual;
-        }
-
-        this.cartaActual = respuesta.cards[0];
-        this.cartaSiguiente = respuesta.cards[1];
-        this.cartasRestantes = respuesta.remaining - 2;
-        this.cargando = false;
-        this.mensajeResultado = '';
+  cargarPrimerasCartas(): void {
+    if (this.mazoCompleto.length >= 2) {
+      if (this.esPrimeraRonda) {
+        this.cartaAnterior = { image: this.dorsoCarta };
+        this.esPrimeraRonda = false;
       } else {
-        console.log('No se pudieron sacar las dos cartas.');
+        this.cartaAnterior = this.cartaActual;
       }
-    });
+
+      this.cartaActual = this.mazoCompleto.shift();
+      this.cartaSiguiente = this.mazoCompleto.shift();
+      this.cartasRestantes -= 2;
+      // console.log(`Cartas restantes: ${this.cartasRestantes}`);
+      this.cargando = false;
+    }
   }
 
   sacarCarta(): void {
-    if (!this.idMazo) {
-      console.log('No se ha creado un mazo.');
-      return;
-    }
-
-    this.cartaService.sacarCarta(this.idMazo).subscribe((respuesta) => {
-      if (respuesta.cards.length > 0) {
-        this.cartaSiguiente = respuesta.cards[0];
-        this.cartasRestantes = respuesta.remaining;
-        this.cargando = false;
-      } else {
-        console.log('No se pudieron sacar cartas.');
+    if (this.mazoCompleto.length > 0) {
+      this.cartaSiguiente = this.mazoCompleto.shift();
+      this.cartasRestantes--;
+      // console.log(`Cartas restantes: ${this.cartasRestantes}`);
+      if (this.cartasRestantes === 0 && this.usuarioLogueado?.email) {
+        this.authService.scoreJuegos(
+          this.usuarioLogueado.email,
+          this.puntos,
+          'mayor-menor'
+        );
       }
-    });
-  }
-
-  delay(milisegundos: number): Promise<void> {
-    return new Promise((resolve) => setTimeout(resolve, milisegundos));
+    } else {
+      console.log('No quedan más cartas en el mazo');
+    }
   }
 
   async eleccionJugador(opcion: string): Promise<void> {
     if (this.cartasRestantes > 0) {
-      console.log('Hay ' + this.cartasRestantes + ' cartas');
       if (this.cartaActual && this.cartaSiguiente) {
-        if (this.cartasRestantes === 1) {
-          if (this.usuarioLogueado && this.usuarioLogueado.email) {
-            this.authService.scoreJuegos(
-              this.usuarioLogueado.email,
-              this.puntos,
-              'mayor-menor'
-            );
-          }
-        }
         this.botonesDeshabilitados = true;
-
         await this.delay(500);
 
         const resultadoCorrecto = this.evaluarResultado(opcion);
-        if (resultadoCorrecto) {
-          this.puntos++;
-          this.mensajeResultado = '¡Acertaste!';
-        } else {
-          this.mensajeResultado = '¡Fallaste!';
-        }
+        this.mensajeResultado = resultadoCorrecto
+          ? '¡Acertaste!'
+          : '¡Fallaste!';
+        if (resultadoCorrecto) this.puntos++;
 
         this.cartaAnterior = this.cartaActual;
         this.cartaActual = this.cartaSiguiente;
@@ -149,11 +117,15 @@ export class MayorMenorComponent implements OnInit {
 
         this.botonesDeshabilitados = false;
       } else {
-        console.log('No se pueden evaluar las cartas porque faltan cartas.');
+        console.log('Faltan cartas para continuar el juego.');
       }
     } else {
       console.log('No quedan más cartas en el mazo');
     }
+  }
+
+  delay(milisegundos: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, milisegundos));
   }
 
   evaluarResultado(opcion: string): boolean {
@@ -195,9 +167,18 @@ export class MayorMenorComponent implements OnInit {
     this.puntos = 0;
     this.cargando = false;
     this.mensajeResultado = '';
-    this.cartaService.crearMazo().subscribe((respuesta) => {
-      this.idMazo = respuesta.deck_id;
-      this.cartasRestantes = respuesta.remaining;
+
+    this.cartaService.obtenerMazoCompleto().subscribe({
+      next: (respuesta) => {
+        this.mazoCompleto = respuesta.cards;
+        this.cartasRestantes = this.mazoCompleto.length;
+        this.idMazo = respuesta.deck_id;
+      },
+      error: (err) => {
+        console.error('Error al obtener el mazo: ', err);
+        this.mensajeResultado =
+          'No se pudo obtener el mazo, intenta nuevamente.';
+      },
     });
   }
 }

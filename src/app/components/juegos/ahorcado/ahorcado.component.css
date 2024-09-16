@@ -61,9 +61,54 @@
   justify-content: flex-start !important;
 }
 
+.tipo-palabras {
+  margin-top: 145px;
+  margin-bottom: -155px;
+}
+
+.tipo-palabras h2 {
+  text-shadow: -2.5px -2.5px 0 #000, 2.5px -2.5px 0 #000,
+    -2.5px 2.5px 0 hsl(0, 0%, 0%), 2.5px 2.5px 0 #000;
+}
+
+.btns-home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.btn-eleccion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 190px;
+}
+
+.btn-eleccion button {
+  border: 2px solid black;
+  font-size: 24px;
+  font-weight: 600;
+  transition: 0.4s;
+}
+
+.opciones-ingles {
+  margin-top: 25px;
+  margin-bottom: -55px;
+}
+
+.opciones-ingles button {
+  border: 2px solid black;
+}
+
+.btn-midle {
+  margin-left: 14px;
+  margin-right: 14px;
+}
+
 .btn-home {
-  margin-top: 180px;
-  margin-bottom: 180px;
+  margin-top: 90px;
+  margin-bottom: 80px;
   font-size: 32px;
 }
 
@@ -72,6 +117,14 @@
   font-size: 28px;
   font-weight: 600;
   transition: 0.4s;
+}
+
+.btn-home-right {
+  margin-left: 20px;
+}
+
+.btn-home-left {
+  margin-right: 20px;
 }
 
 .juego-ahorcado {
@@ -148,6 +201,20 @@
   font-size: 28px;
   font-weight: 600;
   transition: 0.4s;
+}
+
+.ronda-ganada,
+.ronda-perdida {
+  text-shadow: -2.5px -2.5px 0 #000, 2.5px -2.5px 0 #000,
+    -2.5px 2.5px 0 hsl(0, 0%, 0%), 2.5px 2.5px 0 #000;
+}
+
+.ronda-ganada {
+  color: #1b9e39;
+}
+
+.ronda-perdida {
+  color: #ba362d;
 }
 
 .ranking {
@@ -275,7 +342,8 @@
 .botones-letras button:hover,
 .estado-juego button:hover,
 .btn-home button:hover,
-.mensajes-finales button:hover {
+.mensajes-finales button:hover,
+.btn-eleccion button:hover {
   transform: scale(1.04);
   transition: 0.4s;
 }
