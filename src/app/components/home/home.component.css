@@ -111,6 +111,8 @@
 .card p {
   font-family: "Grenze Gotisch", serif;
   font-size: 28px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 hsl(0, 0%, 0%),
+    1px 1px 0 #000;
 }
 
 .card button {
