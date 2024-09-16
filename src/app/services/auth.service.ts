@@ -25,7 +25,6 @@ import {
 import { Router } from '@angular/router';
 import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
 
-// indica que el servicio -> singleton y se proporciona en el nivel raíz de la aplicación.
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private usuarioLogueado = new BehaviorSubject<User | null>(null);
@@ -41,11 +40,10 @@ export class AuthService {
   ) {
     // Monitorea el estado de autenticación
     onAuthStateChanged(this.auth, (user) => {
-      this.usuarioLogueado.next(user); // Actualiza el usuario logueado
+      this.usuarioLogueado.next(user);
     });
   }
 
-  // Función para loguear usuarios
   login(email: string, password: string): Promise<void> {
     return signInWithEmailAndPassword(this.auth, email, password)
       .then((res) => {
@@ -57,8 +55,8 @@ export class AuthService {
           position: 'center',
           backgroundColor: 'linear-gradient(to right, #4caf50, #81c784)',
         }).showToast();
-        this.logUserActivity(res.user.email!); // Guardar log
-        this.router.navigate(['/home']); // Redireccionar al home
+        this.logUserActivity(res.user.email!);
+        this.router.navigate(['/home']);
       })
       .catch((error) => {
         return Promise.reject(this.getErrorMessage(error.code));
@@ -69,40 +67,20 @@ export class AuthService {
   register(email: string, password: string): Promise<void> {
     return createUserWithEmailAndPassword(this.auth, email, password)
       .then((res) => {
-        this.logUserActivity(res.user.email!); // Guardar log
+        this.logUserActivity(res.user.email!);
         this.login(email, password);
-        // this.router.navigate(['/login']); // Redireccionar al login
       })
       .catch((error) => {
         return Promise.reject(this.getErrorMessage(error.code));
       });
   }
 
-  // Cerrar sesión
-  closeSession(): Promise<void> {
-    return signOut(this.auth);
-  }
-
-  // Cerrar sesión
   logout(): Promise<void> {
     return signOut(this.auth);
   }
 
-  // Obtener el estado actual del usuario logueado
   getUsuarioLogueado(): User | null {
     return this.usuarioLogueado.value;
-  }
-
-  // Obtener los datos del usuario desde Firestore
-  getUsuarioRegistrado(usuario: string): Observable<any[]> {
-    const col = collection(this.firestore, 'registro');
-
-    const filteredQuery = query(col, where('user', '==', usuario));
-
-    // this.getUser(usuario);
-
-    // Retornamos el observable de los datos
-    return collectionData(filteredQuery);
   }
 
   getUserRegistrado(usuario: string): Observable<any> {
@@ -110,7 +88,6 @@ export class AuthService {
 
     const filteredQuery = query(col, where('usuario', '==', usuario));
 
-    // Retornamos el observable en lugar de usar un Subject
     return collectionData(filteredQuery).pipe(
       map((respuesta: any[]) => {
         if (respuesta.length > 0) {
@@ -141,7 +118,6 @@ export class AuthService {
 
     const filteredQuery = query(col, where('usuario', '==', usuario));
 
-    // Retornamos el observable en lugar de usar un Subject
     return collectionData(filteredQuery).pipe(
       map((respuesta: any[]) => {
         if (respuesta.length > 0) {
@@ -164,14 +140,13 @@ export class AuthService {
   getRankingJuegos(tipoJuego: string): Observable<any> {
     let col = collection(this.firestore, tipoJuego);
 
-    // Filtrar y ordenar por puntos, límite de 3
     const filteredQuery = query(col, orderBy('puntos', 'desc'), limit(3));
 
     return collectionData(filteredQuery).pipe(
       map((respuesta: any[]) => {
         if (respuesta.length > 0) {
           return respuesta.map((userData) => ({
-            usuario: userData.usuario, // Aquí aseguramos que "usuario" esté presente
+            usuario: userData.usuario,
             puntos: userData.puntos,
           }));
         } else {
@@ -186,20 +161,17 @@ export class AuthService {
     );
   }
 
-  // Guardar logs de usuarios en Firebase
   private logUserActivity(email: string) {
     const col = collection(this.firestore, 'logins');
     addDoc(col, { fecha: new Date(), user: email });
   }
 
-  // Guardar puntos en Firebase
   scoreJuegos(email: string, puntos: number, tipoJuego: string) {
     const col = collection(this.firestore, tipoJuego);
     addDoc(col, { fecha: new Date(), usuario: email, puntos: puntos });
-    console.log('Registramos el puntaje en firebase');
+    console.log('Registramos el puntaje en la DB');
   }
 
-  // Datos opcionales registro de datos en Firebase
   optionalRegisterData(
     usuario: string,
     nombre: string,
@@ -208,7 +180,6 @@ export class AuthService {
   ) {
     const col = collection(this.firestore, 'registro');
 
-    // Agregar validación extra si fuera necesario
     addDoc(col, {
       usuario: usuario || 'Desconocido',
       nombre: nombre || 'Desconocido',
@@ -223,7 +194,6 @@ export class AuthService {
       });
   }
 
-  // Manejar mensajes de error de Firebase
   private getErrorMessage(ex: string): string {
     switch (ex) {
       case 'auth/invalid-credential':
