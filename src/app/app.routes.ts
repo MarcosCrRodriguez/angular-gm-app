@@ -55,7 +55,7 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'mayor-menor',
+        path: 'generala',
         // title: 'Juego - Generala',
         loadComponent: () =>
           import('./components/juegos/generala/generala.component').then(
