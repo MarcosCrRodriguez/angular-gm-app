@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
   public msjError: string = '';
   public contError: number = 0;
   public limitErrors: number = 5;
-  public accessoRapidoUser = 'piedecamello@gmail.com';
-  public accessoRapidoPassword = 'piedecamello';
+  public accessoRapidoUser = 'quicklogin@gmail.com';
+  public accessoRapidoPassword = 'quicklogin';
 
   constructor(private authService: AuthService, private router: Router) {
     this.userIngresado = '';
