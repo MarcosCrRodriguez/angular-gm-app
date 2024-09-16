@@ -12,10 +12,14 @@ import { Subscription } from 'rxjs';
   styleUrl: './profile.component.css',
 })
 export class ProfileComponent implements OnInit {
-  usuarioLogueado: any = null;
-  userData: any; // Aquí guardamos los datos del usuario
-  msjError: string = '';
-  sub: Subscription | null = null;
+  public usuarioLogueado: any = null;
+  public userData: any; // Aquí guardamos los datos del usuario
+  public rankAhorcado: any;
+  public rankMayorMenor: any;
+  public rankPreguntados: any;
+  public rankGenerala: any;
+  public msjError: string = '';
+  public sub: Subscription | null = null;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -37,6 +41,57 @@ export class ProfileComponent implements OnInit {
               );
             }
           });
+
+        this.authService
+          .getRankingUsuarioEspecifico(this.usuarioLogueado.email, 'ahorcado')
+          .subscribe((rankAhorcado) => {
+            if (rankAhorcado) {
+              this.rankAhorcado = rankAhorcado;
+            } else {
+              console.log(
+                'No se encontraron datos opcionales para este usuario.'
+              );
+            }
+          });
+        this.authService
+          .getRankingUsuarioEspecifico(
+            this.usuarioLogueado.email,
+            'mayor-menor'
+          )
+          .subscribe((rankMayorMenor) => {
+            if (rankMayorMenor) {
+              this.rankMayorMenor = rankMayorMenor;
+            } else {
+              console.log(
+                'No se encontraron datos opcionales para este usuario.'
+              );
+            }
+          });
+        this.authService
+          .getRankingUsuarioEspecifico(
+            this.usuarioLogueado.email,
+            'preguntados'
+          )
+          .subscribe((rankPreguntados) => {
+            if (rankPreguntados) {
+              this.rankPreguntados = rankPreguntados;
+            } else {
+              console.log(
+                'No se encontraron datos opcionales para este usuario.'
+              );
+            }
+          });
+        this.authService
+          .getRankingUsuarioEspecifico(this.usuarioLogueado.email, 'generala')
+          .subscribe((rankGenerala) => {
+            if (rankGenerala) {
+              this.rankGenerala = rankGenerala;
+            } else {
+              console.log(
+                'No se encontraron datos opcionales para este usuario.'
+              );
+            }
+          });
       } else {
         console.log('No hay usuario logueado');
       }
@@ -50,5 +105,9 @@ export class ProfileComponent implements OnInit {
     if (this.sub) {
       this.sub.unsubscribe();
     }
+  }
+
+  volverHome() {
+    this.router.navigate(['/home']);
   }
 }

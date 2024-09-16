@@ -28,7 +28,6 @@ import { BehaviorSubject, map, Observable, Subscription } from 'rxjs';
 // indica que el servicio -> singleton y se proporciona en el nivel raíz de la aplicación.
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private usuarioLogueadoSubject = new BehaviorSubject<any>(null);
   private usuarioLogueado = new BehaviorSubject<User | null>(null);
   usuarioLogueado$ = this.usuarioLogueado.asObservable();
   private msjError: string = '';
@@ -128,6 +127,31 @@ export class AuthService {
             nombre: 'No hay datos',
             apellido: 'No hay datos',
             edad: 'No hay datos',
+          };
+        }
+      })
+    );
+  }
+
+  getRankingUsuarioEspecifico(
+    usuario: string,
+    tipoJuego: string
+  ): Observable<any> {
+    let col = collection(this.firestore, tipoJuego);
+
+    const filteredQuery = query(col, where('usuario', '==', usuario));
+
+    // Retornamos el observable en lugar de usar un Subject
+    return collectionData(filteredQuery).pipe(
+      map((respuesta: any[]) => {
+        if (respuesta.length > 0) {
+          const rankingData = respuesta[0];
+          return {
+            puntos: rankingData.puntos,
+          };
+        } else {
+          return {
+            puntos: 'Sin score cargado',
           };
         }
       })

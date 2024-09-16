@@ -15,13 +15,13 @@
             />
           </div>
           <div class="info">
-            <label for="disabledTextInput" class="form-label">Password</label>
+            <label for="disabledTextInput" class="form-label">Edad</label>
             <input
-              type="password"
-              id="txtPassword"
+              type="text"
+              id="txtEmail"
               class="form-control"
-              [(ngModel)]="usuarioLogueado.password"
               [readonly]="true"
+              [(ngModel)]="userData.edad"
             />
           </div>
         </div>
@@ -48,24 +48,69 @@
           </div>
         </div>
         <div class="card-row">
+          <div class="info"></div>
+        </div>
+      </div>
+      <div class="card-footer text-body-secondary">
+        Maximas puntuaciones personales de los Juegos
+      </div>
+      <div class="card-body">
+        <div class="card-row">
           <div class="info">
-            <label for="disabledTextInput" class="form-label">Edad</label>
+            <label for="disabledTextInput" class="form-label">Ahorcado</label>
+            <input
+              type="text"
+              id="txtUsername"
+              class="form-control"
+              [(ngModel)]="rankAhorcado.puntos"
+              [readonly]="true"
+            />
+          </div>
+          <div class="info">
+            <label for="disabledTextInput" class="form-label"
+              >Mayor_Menor</label
+            >
             <input
               type="text"
               id="txtEmail"
               class="form-control"
               [readonly]="true"
-              [(ngModel)]="userData.edad"
+              [(ngModel)]="rankMayorMenor.puntos"
             />
           </div>
         </div>
-      </div>
-      <div class="card-footer text-body-secondary">
-        Para poder modificar los datos del usuario debe ingresar la contraseña
-        del mismo
+        <div class="card-row">
+          <div class="info">
+            <label for="disabledTextInput" class="form-label">Generala</label>
+            <input
+              type="text"
+              id="txtNombre"
+              class="form-control"
+              [readonly]="true"
+              [(ngModel)]="rankGenerala.puntos"
+            />
+          </div>
+          <div class="info">
+            <label for="disabledTextInput" class="form-label"
+              >Preguntados</label
+            >
+            <input
+              type="text"
+              id="txtApellido"
+              class="form-control"
+              [readonly]="true"
+              [(ngModel)]="rankPreguntados.puntos"
+            />
+          </div>
+        </div>
+        <div class="card-row">
+          <div class="info"></div>
+        </div>
       </div>
       <div class="info-btn">
-        <button type="button" class="btn btn-warning">Modificar</button>
+        <button type="button" class="btn btn-warning" (click)="volverHome()">
+          Volver Home
+        </button>
       </div>
     </div>
   </div>
