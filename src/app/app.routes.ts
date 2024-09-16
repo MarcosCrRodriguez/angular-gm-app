@@ -14,10 +14,19 @@ import { GeneralaComponent } from './components/juegos/generala/generala.compone
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'ahorcado', component: AhorcadoComponent },
-  { path: 'mayor-menor', component: MayorMenorComponent },
-  { path: 'preguntados', component: PreguntadosComponent },
-  { path: 'generala', component: GeneralaComponent },
+  {
+    path: 'juegos',
+    children: [
+      { path: 'ahorcado', component: AhorcadoComponent },
+      { path: 'mayor-menor', component: MayorMenorComponent },
+      { path: 'preguntados', component: PreguntadosComponent },
+      { path: 'generala', component: GeneralaComponent },
+    ],
+  },
+  // { path: 'ahorcado', component: AhorcadoComponent },
+  // { path: 'mayor-menor', component: MayorMenorComponent },
+  // { path: 'preguntados', component: PreguntadosComponent },
+  // { path: 'generala', component: GeneralaComponent },
   // {
   //   path: 'juego',
   //   loadComponent: () =>

@@ -20,31 +20,19 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/quien-soy']);
   }
 
-  // ingresoAhorcado() {
-  //   this.router.navigate(['/juegos/ahorcado']);
-  // }
   ingresoAhorcado() {
-    this.router.navigate(['ahorcado']);
+    this.router.navigate(['juegos', 'ahorcado']);
   }
 
-  // ingresoMayorMenor() {
-  //   this.router.navigate(['/juegos/mayor-menor']);
-  // }
   ingresoMayorMenor() {
-    this.router.navigate(['mayor-menor']);
+    this.router.navigate(['juegos', 'mayor-menor']);
   }
 
-  // ingresoPreguntados() {
-  //   this.router.navigate(['/juegos/preguntados']);
-  // }
   ingresoPreguntados() {
-    this.router.navigate(['preguntados']);
+    this.router.navigate(['juegos', 'preguntados']);
   }
 
-  // ingresoGenerala() {
-  //   this.router.navigate(['/juegos/generala']);
-  // }
   ingresoGenerala() {
-    this.router.navigate(['generala']);
+    this.router.navigate(['juegos', 'generala']);
   }
 }
