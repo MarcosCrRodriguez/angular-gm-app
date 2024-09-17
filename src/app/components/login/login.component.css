@@ -105,7 +105,23 @@
     2px 2px 0 #000;
 }
 
-.quick-access-left img,
+.quick-access-left img {
+  margin-bottom: 12px;
+  margin-left: 6px;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.user-icon {
+  height: auto;
+  width: 60px;
+}
+
+.slayer-icon {
+  height: auto;
+  width: 64px;
+}
+
 .quick-access-right img {
   height: auto;
   width: 54px;
@@ -159,7 +175,7 @@
 
 .quick-access-left img:hover,
 .quick-access-right img:hover {
-  transform: scale(1.04);
+  transform: scale(1.08);
   transition: 0.4s;
 }
 
