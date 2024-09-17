@@ -34,7 +34,7 @@
 }
 
 .card {
-  background: url("./../../../../assets/dark-forest.jpg") no-repeat center;
+  background: url("./../../../../assets/bg-cubos.jpg") no-repeat center;
   background-size: cover;
   min-height: 100%;
   width: 100%;
@@ -49,6 +49,29 @@
   border: 3px solid black;
   margin-bottom: 70px;
   font-family: "Grenze Gotisch", serif;
+}
+
+.title-preguntados {
+  margin-top: 40px;
+  font-size: 62px;
+  font-weight: 600;
+  text-shadow: -2.5px -2.5px 0 #000, 2.5px -2.5px 0 #000,
+    -2.5px 2.5px 0 hsl(0, 0%, 0%), 2.5px 2.5px 0 #000;
+}
+
+.btn-home {
+  margin-top: 400px;
+  margin-bottom: 44px;
+}
+
+.btn-home button {
+  border: 2px solid black;
+  background: rgb(24, 139, 24);
+  font-size: 36px;
+  font-weight: 600;
+  text-shadow: -2.5px -2.5px 0 #000, 2.5px -2.5px 0 #000,
+    -2.5px 2.5px 0 hsl(0, 0%, 0%), 2.5px 2.5px 0 #000;
+  transition: 0.4s;
 }
 
 .ranking {
@@ -175,7 +198,8 @@
   padding-left: 24px !important;
 }
 
-.title-app:hover {
+.title-app:hover,
+.btn-home button:hover {
   transform: scale(1.04);
   transition: 0.4s;
 }
@@ -196,6 +220,10 @@
     width: 84%;
     margin-left: 7%;
     margin-right: 7%;
+  }
+
+  .title-preguntados {
+    font-size: 44px;
   }
 
   .card-como-jugar {
@@ -241,6 +269,16 @@
     width: 96%;
     margin-left: 2%;
     margin-right: 2%;
+  }
+
+  .title-preguntados {
+    font-size: 36px;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+      2px 2px 0 #000;
+  }
+
+  .btn-home button {
+    font-size: 26px;
   }
 
   .ranking h3 {

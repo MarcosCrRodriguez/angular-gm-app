@@ -24,6 +24,7 @@ export class MayorMenorComponent implements OnInit {
   public usuarioLogueado: any = null;
   public dorsoCarta: string = 'https://deckofcardsapi.com/static/img/back.png';
   public idMazo: string = '';
+
   constructor(
     private cartaService: CardService,
     private authService: AuthService
@@ -34,7 +35,7 @@ export class MayorMenorComponent implements OnInit {
       this.mazoCompleto = respuesta.cards;
       this.cartasRestantes = this.mazoCompleto.length;
       this.idMazo = respuesta.deck_id;
-      console.log(this.mazoCompleto);
+      // console.log(this.mazoCompleto);
       console.log(this.cartasRestantes);
     });
 
