@@ -203,7 +203,8 @@
 }
 
 .btn-left-two {
-  background: url("./../../../assets/preguntados-original.png") no-repeat center;
+  border: 4px solid black;
+  background: url("./../../../assets/pregunta2.jpg") no-repeat center;
 }
 
 .btn-left-one,
@@ -234,6 +235,7 @@
 }
 
 .btn-right-one {
+  border: 4px solid black;
   background: url("./../../../assets/mayor-menor-logo.jpg") no-repeat center;
 }
 
