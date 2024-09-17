@@ -21,8 +21,8 @@ export class LoginComponent implements OnInit {
   public msjError: string = '';
   public contError: number = 0;
   public limitErrors: number = 5;
-  public userQuickAcces = 'quicklogin@gmail.com';
-  public passwordUserQuickAcces = 'quicklogin';
+  // public userQuickAcces = 'quicklogin@gmail.com';
+  // public passwordUserQuickAcces = 'quicklogin';
   public slayerQuickAcces = 'doomslayer@hothell.com';
   public passwordSlayerQuickAcces = 'doomslayer';
 
@@ -35,10 +35,10 @@ export class LoginComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-  accessoRapidoUser() {
-    this.userIngresado = this.userQuickAcces;
-    this.claveIngresado = this.passwordUserQuickAcces;
-  }
+  // accessoRapidoUser() {
+  //   this.userIngresado = this.userQuickAcces;
+  //   this.claveIngresado = this.passwordUserQuickAcces;
+  // }
 
   accessoRapidoSlayer() {
     this.userIngresado = this.slayerQuickAcces;

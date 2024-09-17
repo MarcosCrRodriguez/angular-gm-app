@@ -12,10 +12,7 @@ export class PreguntadosComponent implements OnInit {
   public usuarioLogueado: any = null;
   public rankingData: any;
 
-  constructor(
-    private ahorcadoService: AhorcadoService,
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.usuarioLogueado$.subscribe((usuario) => {

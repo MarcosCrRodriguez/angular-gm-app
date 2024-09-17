@@ -121,7 +121,6 @@ export class AuthService {
     return collectionData(filteredQuery).pipe(
       map((respuesta: any[]) => {
         if (respuesta.length > 0) {
-          // Encontrar el valor más alto de puntos
           const maxPuntos = Math.max(
             ...respuesta.map((rankingData) => rankingData.puntos)
           );
@@ -130,7 +129,7 @@ export class AuthService {
           };
         } else {
           return {
-            puntos: 'Sin score cargado',
+            puntos: 'Sin score',
           };
         }
       })

@@ -116,6 +116,15 @@
   width: 47.5%;
 }
 
+/* .form-text {
+  display: none; 
+}
+
+input:hover + .form-text,
+input:focus + .form-text {
+  display: block; 
+} */
+
 .columna-centrada {
   display: flex;
   align-items: center;
