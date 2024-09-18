@@ -25,7 +25,8 @@ export class ForoComponent implements OnInit {
   public mensajes$!: Observable<any[]>;
   public mensajes: any[] = [];
   public isLoadingMensajes: boolean = true;
-  public usuarioEspecial: string = 'piedecamello@gmail.com';
+  public usuarioAdmin: string = 'piedecamello@gmail.com';
+  public usuarioEspecial: string = 'berrueberru@gmail.com';
 
   constructor(private firestore: Firestore, private authService: AuthService) {}
 

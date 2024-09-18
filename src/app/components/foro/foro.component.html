@@ -21,9 +21,10 @@
         <button class="btn btn-secondary" type="submit">Enviar</button>
       </form>
     </div>
-
+    <!-- Esta capa bloquea la interacción -->
+    <div class="bloquear"></div>
     <div *ngIf="isLoadingMensajes" class="notificacion">
-      <img src="/assets/moving-block.gif" alt="Loading" />
+      <img src="/assets/loading-react.gif" alt="Loading" />
     </div>
 
     <div *ngIf="!isLoadingMensajes" class="mensajes">
@@ -33,13 +34,23 @@
           role="alert"
           [ngStyle]="{
             'background-image':
-              mensaje.usuario === usuarioEspecial
+              mensaje.usuario === usuarioAdmin
                 ? 'url(/assets/doom.jpg)'
+                : mensaje.usuario === usuarioEspecial
+                ? 'url(/assets/devil.mcry.png)'
                 : 'none',
-            color: mensaje.usuario === usuarioEspecial ? '#fff' : '#000',
+            color:
+              mensaje.usuario === usuarioAdmin ||
+              mensaje.usuario === usuarioEspecial
+                ? '#fff'
+                : '#000',
             'background-color':
-              mensaje.usuario !== usuarioEspecial ? '#a0a0a0' : 'transparent',
+              mensaje.usuario === usuarioAdmin ||
+              mensaje.usuario === usuarioEspecial
+                ? 'transparent'
+                : '#a0a0a0',
             'text-shadow':
+              mensaje.usuario === usuarioAdmin ||
               mensaje.usuario === usuarioEspecial
                 ? '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
                 : 'none'

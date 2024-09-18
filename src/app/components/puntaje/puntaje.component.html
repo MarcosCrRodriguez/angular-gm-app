@@ -6,9 +6,10 @@
       </h1>
     </div>
   </div>
-
+  <!-- Esta capa bloquea la interacción -->
+  <div class="bloquear"></div>
   <div *ngIf="isLoading" class="notificacion">
-    <img src="assets/moving-block.gif" alt="Cargando..." />
+    <img src="assets/loading-react.gif" alt="Cargando..." />
   </div>
   <div class="tables-container" *ngIf="!isLoading">
     <div

@@ -75,8 +75,7 @@
 }
 
 .notificacion img {
-  width: 100%;
-  height: auto;
+  max-width: 1000px;
 }
 
 .tables-container {
