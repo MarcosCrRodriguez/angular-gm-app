@@ -71,4 +71,8 @@ export class AppComponent implements OnInit {
   ranking() {
     this.router.navigate(['/ranking']);
   }
+
+  foro() {
+    this.router.navigate(['/foro']);
+  }
 }

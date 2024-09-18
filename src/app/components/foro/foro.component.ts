@@ -6,6 +6,7 @@ import {
   collectionData,
   query,
   orderBy,
+  limit,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
@@ -20,15 +21,27 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './foro.component.css',
 })
 export class ForoComponent implements OnInit {
-  nuevoMensaje: string = '';
-  mensajes$!: Observable<any[]>;
+  public nuevoMensaje: string = '';
+  public mensajes$!: Observable<any[]>;
+  public mensajes: any[] = [];
+  public isLoadingMensajes: boolean = true;
+  public usuarioEspecial: string = 'piedecamello@gmail.com';
 
   constructor(private firestore: Firestore, private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.loadMensajes();
+  }
+
+  loadMensajes() {
     const mensajesRef = collection(this.firestore, 'mensajes');
-    const q = query(mensajesRef, orderBy('timestamp', 'desc'));
+    const q = query(mensajesRef, orderBy('timestamp', 'desc'), limit(15));
     this.mensajes$ = collectionData(q, { idField: 'id' });
+
+    this.mensajes$.subscribe((data) => {
+      this.mensajes = data;
+      this.isLoadingMensajes = false;
+    });
   }
 
   async enviarMensaje(): Promise<void> {
@@ -43,6 +56,7 @@ export class ForoComponent implements OnInit {
         timestamp: new Date(),
       });
       this.nuevoMensaje = '';
+      this.loadMensajes();
     }
   }
 }

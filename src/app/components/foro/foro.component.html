@@ -1,17 +1,56 @@
-<div class="foro-container">
-  <h2>Foro</h2>
-  <form (submit)="enviarMensaje()">
-    <textarea
-      [(ngModel)]="nuevoMensaje"
-      name="mensaje"
-      required
-      placeholder="Escribe tu mensaje..."
-    ></textarea>
-    <button type="submit">Enviar</button>
-  </form>
-  <div class="mensajes">
-    <div *ngFor="let mensaje of mensajes$ | async">
-      <strong>{{ mensaje.usuario }}:</strong> {{ mensaje.texto }}
+<div class="costados">
+  <div class="foro-container">
+    <div class="initial-container">
+      <h2 class="title">Foro</h2>
+      <p class="info">
+        Este es un espacio de interacción entre usuarios, permitiendo
+        discusiones, intercambio de ideas, resolución de problemas y la
+        construcción de una comunidad.
+      </p>
+    </div>
+
+    <div class="form-style">
+      <form (submit)="enviarMensaje()">
+        <textarea
+          class="form-control user-text"
+          [(ngModel)]="nuevoMensaje"
+          name="mensaje"
+          required
+          placeholder="Escribe tu mensaje..."
+        ></textarea>
+        <button class="btn btn-secondary" type="submit">Enviar</button>
+      </form>
+    </div>
+
+    <div *ngIf="isLoadingMensajes" class="notificacion">
+      <img src="/assets/moving-block.gif" alt="Loading" />
+    </div>
+
+    <div *ngIf="!isLoadingMensajes" class="mensajes">
+      <div *ngFor="let mensaje of mensajes">
+        <div
+          class="alert alert-dark"
+          role="alert"
+          [ngStyle]="{
+            'background-image':
+              mensaje.usuario === usuarioEspecial
+                ? 'url(/assets/doom.jpg)'
+                : 'none',
+            color: mensaje.usuario === usuarioEspecial ? '#fff' : '#000',
+            'background-color':
+              mensaje.usuario !== usuarioEspecial ? '#a0a0a0' : 'transparent',
+            'text-shadow':
+              mensaje.usuario === usuarioEspecial
+                ? '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'
+                : 'none'
+          }"
+        >
+          <p class="usuario">
+            <strong>{{ mensaje.usuario }}</strong>
+          </p>
+          <p class="texto-msj">{{ mensaje.texto }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
