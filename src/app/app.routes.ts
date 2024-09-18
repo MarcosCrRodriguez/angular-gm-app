@@ -7,6 +7,7 @@ import { QuienSoyComponent } from './components/quien-soy/quien-soy.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PuntajeComponent } from './components/puntaje/puntaje.component';
+import { ForoComponent } from './components/foro/foro.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -19,8 +20,9 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'ranking', component: PuntajeComponent },
-  { path: 'error', component: ErrorComponent },
+  { path: 'foro', component: ForoComponent },
   { path: 'quien-soy', component: QuienSoyComponent },
   { path: 'profile', component: ProfileComponent },
+  { path: 'error', component: ErrorComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

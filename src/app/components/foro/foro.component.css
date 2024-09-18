@@ -1,0 +1,18 @@
+.foro-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+}
+
+.mensajes {
+  margin-top: 20px;
+}
+
+.mensajes div {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}

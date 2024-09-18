@@ -1,1 +1,17 @@
-<p>foro works!</p>
+<div class="foro-container">
+  <h2>Foro</h2>
+  <form (submit)="enviarMensaje()">
+    <textarea
+      [(ngModel)]="nuevoMensaje"
+      name="mensaje"
+      required
+      placeholder="Escribe tu mensaje..."
+    ></textarea>
+    <button type="submit">Enviar</button>
+  </form>
+  <div class="mensajes">
+    <div *ngFor="let mensaje of mensajes$ | async">
+      <strong>{{ mensaje.usuario }}:</strong> {{ mensaje.texto }}
+    </div>
+  </div>
+</div>

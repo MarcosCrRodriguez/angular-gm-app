@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ForoComponent } from './foro.component';
+import { ForoComponent } from '../../services/ahorcado.service';
 
 describe('ForoComponent', () => {
   let component: ForoComponent;
@@ -8,9 +8,8 @@ describe('ForoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ForoComponent]
-    })
-    .compileComponents();
+      imports: [ForoComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ForoComponent);
     component = fixture.componentInstance;
