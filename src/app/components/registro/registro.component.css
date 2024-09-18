@@ -257,6 +257,14 @@ input:focus + .form-text {
     font-size: 60px;
   }
 
+  .notificacion {
+    background-color: rgba(0, 0, 0, 1);
+  }
+
+  .notificacion img {
+    max-width: 600px;
+  }
+
   .sub-title {
     font-size: 28px;
   }

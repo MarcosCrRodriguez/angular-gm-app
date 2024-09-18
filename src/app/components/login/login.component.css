@@ -237,6 +237,14 @@
     margin: 0;
   }
 
+  .notificacion {
+    background-color: rgba(0, 0, 0, 1);
+  }
+
+  .notificacion img {
+    max-width: 600px;
+  }
+
   .login-input {
     display: flex;
     align-items: center;
