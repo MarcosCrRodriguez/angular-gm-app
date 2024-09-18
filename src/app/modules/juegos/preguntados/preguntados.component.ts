@@ -21,13 +21,7 @@ export class PreguntadosComponent implements OnInit {
       }
       this.usuarioLogueado = usuario;
     });
-    this.authService.getRankingJuegos('preguntados').subscribe((data) => {
-      if (data) {
-        this.rankingData = data;
-      } else {
-        console.log('No se encontraron datos opcionales para este usuario.');
-      }
-    });
+
     window.scrollTo(0, 0);
   }
 }

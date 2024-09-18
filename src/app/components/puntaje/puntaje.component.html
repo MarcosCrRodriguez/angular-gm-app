@@ -1,0 +1,127 @@
+<div class="bg-img">
+  <div class="ahorcado-container">
+    <div class="inicio">
+      <h1 class="title-app" routerLink="/home" routerLinkActive="active">
+        Ranking
+      </h1>
+    </div>
+  </div>
+
+  <div *ngIf="isLoading" class="notificacion">
+    <img src="assets/moving-block.gif" alt="Cargando..." />
+  </div>
+  <div class="tables-container" *ngIf="!isLoading">
+    <div
+      class="ranking-left"
+      *ngIf="
+        rankingAhorcado && rankingAhorcado.length > 0;
+        else noAhorcadoDataTemplate
+      "
+    >
+      <h3>Ahorcado</h3>
+      <div class="ranking-container">
+        <table class="ranking-table">
+          <thead class="header-tabla">
+            <tr>
+              <th>Usuario</th>
+              <th>Puntos</th>
+            </tr>
+          </thead>
+          <tbody class="body-tabla">
+            <tr *ngFor="let item of rankingAhorcado">
+              <td>{{ item.usuario }}</td>
+              <td>{{ item.puntos }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #noAhorcadoDataTemplate>
+      <p>No hay datos de ranking disponibles.</p>
+    </ng-template>
+
+    <div
+      class="ranking-right"
+      *ngIf="
+        rankingMayorMenor && rankingMayorMenor.length > 0;
+        else noDataTemplate
+      "
+    >
+      <h3>Mayor-Menor</h3>
+      <div class="ranking-container">
+        <table class="ranking-table">
+          <thead class="header-tabla">
+            <tr>
+              <th>Usuario</th>
+              <th>Puntos</th>
+            </tr>
+          </thead>
+          <tbody class="body-tabla">
+            <tr *ngFor="let item of rankingMayorMenor">
+              <td>{{ item.usuario }}</td>
+              <td>{{ item.puntos }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #noDataTemplate>
+      <p>No hay datos de ranking disponibles.</p>
+    </ng-template>
+
+    <div
+      class="ranking-left"
+      *ngIf="
+        rankingPreguntados && rankingPreguntados.length > 0;
+        else noDataTemplate
+      "
+    >
+      <h3>Preguntados</h3>
+      <div class="ranking-container">
+        <table class="ranking-table">
+          <thead class="header-tabla">
+            <tr>
+              <th>Usuario</th>
+              <th>Puntos</th>
+            </tr>
+          </thead>
+          <tbody class="body-tabla">
+            <tr *ngFor="let item of rankingPreguntados">
+              <td>{{ item.usuario }}</td>
+              <td>{{ item.puntos }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #noDataTemplate>
+      <p>No hay datos de ranking disponibles.</p>
+    </ng-template>
+
+    <div
+      class="ranking-right"
+      *ngIf="rankingGenerala && rankingGenerala.length > 0; else noDataTemplate"
+    >
+      <h3>Generala</h3>
+      <div class="ranking-container">
+        <table class="ranking-table">
+          <thead class="header-tabla">
+            <tr>
+              <th>Usuario</th>
+              <th>Puntos</th>
+            </tr>
+          </thead>
+          <tbody class="body-tabla">
+            <tr *ngFor="let item of rankingGenerala">
+              <td>{{ item.usuario }}</td>
+              <td>{{ item.puntos }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #noDataTemplate>
+      <p>No hay datos de ranking disponibles.</p>
+    </ng-template>
+  </div>
+</div>

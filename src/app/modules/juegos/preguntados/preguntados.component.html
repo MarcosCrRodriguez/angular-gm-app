@@ -16,31 +16,6 @@
     </div>
   </div>
 </div>
-<div
-  class="ranking"
-  *ngIf="rankingData && rankingData.length > 0; else noDataTemplate"
->
-  <h3>Ranking del Juego Preguntados</h3>
-  <div class="ranking-container">
-    <table class="ranking-table">
-      <thead class="header-tabla">
-        <tr>
-          <th>Usuario</th>
-          <th>Puntos</th>
-        </tr>
-      </thead>
-      <tbody class="body-tabla">
-        <tr *ngFor="let item of rankingData">
-          <td>{{ item.usuario }}</td>
-          <td>{{ item.puntos }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<ng-template #noDataTemplate>
-  <p>No hay datos de ranking disponibles.</p>
-</ng-template>
 <div class="como-jugar">
   <div class="card card-como-jugar">
     <div class="card-header">Como Jugar</div>

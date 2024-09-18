@@ -4,6 +4,13 @@
       <div>
         <h1 class="title">{{ title }}</h1>
       </div>
+      <div *ngIf="showLoadingGif">
+        <!-- Esta capa bloquea la interacción -->
+        <div class="bloquear"></div>
+        <div class="notificacion">
+          <img src="assets/carga-login.gif" alt="Cargando..." />
+        </div>
+      </div>
       <div class="card-body">
         <div class="login-input">
           <input

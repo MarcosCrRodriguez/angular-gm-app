@@ -20,7 +20,6 @@ export class MayorMenorComponent implements OnInit {
   public botonesDeshabilitados: boolean = false;
   public cartaAnterior: any = null;
   public esPrimeraRonda: boolean = true;
-  public rankingData: any;
   public usuarioLogueado: any = null;
   public dorsoCarta: string = 'https://deckofcardsapi.com/static/img/back.png';
   public idMazo: string = '';
@@ -43,12 +42,6 @@ export class MayorMenorComponent implements OnInit {
         console.log('Usuario logueado:', usuario.email);
       }
       this.usuarioLogueado = usuario;
-    });
-
-    this.authService.getRankingJuegos('mayor-menor').subscribe((data) => {
-      this.rankingData =
-        data ||
-        console.log('No se encontraron datos opcionales para este usuario.');
     });
 
     window.scrollTo(0, 0);

@@ -6,11 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css',
 })
@@ -38,6 +39,7 @@ export class RegistroComponent implements OnInit {
   public msjNombre: string = '';
   public msjApellido: string = '';
   public msjEdad: string = '';
+  public showLoadingGif = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.userIngresado = '';
@@ -90,6 +92,7 @@ export class RegistroComponent implements OnInit {
       this.msjApellido === 'Correctamente Ingresado' &&
       this.msjEdad === 'Correctamente Ingresado'
     ) {
+      this.showLoadingGif = true;
       this.authService
         .register(this.userIngresado, this.claveIngresado)
         .then(() => {
@@ -115,6 +118,18 @@ export class RegistroComponent implements OnInit {
             this.apellidoIngresado,
             this.edadIngresada
           );
+          setTimeout(() => {
+            this.showLoadingGif = false;
+            Toastify({
+              text: '¡Usuario registrado correctamente! ',
+              duration: 4000,
+              close: true,
+              gravity: 'top',
+              position: 'center',
+              backgroundColor: 'linear-gradient(to right, #4caf50, #81c784)',
+            }).showToast();
+            this.router.navigate(['/home']);
+          }, 4000);
         })
         .catch((error: string) => {
           this.msjError = error;

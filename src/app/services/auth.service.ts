@@ -47,16 +47,8 @@ export class AuthService {
   login(email: string, password: string): Promise<void> {
     return signInWithEmailAndPassword(this.auth, email, password)
       .then((res) => {
-        Toastify({
-          text: '¡Usuario logeado correctamente! ',
-          duration: 4000,
-          close: true,
-          gravity: 'top',
-          position: 'center',
-          backgroundColor: 'linear-gradient(to right, #4caf50, #81c784)',
-        }).showToast();
         this.logUserActivity(res.user.email!);
-        this.router.navigate(['/home']);
+        // this.router.navigate(['/home']);
       })
       .catch((error) => {
         return Promise.reject(this.getErrorMessage(error.code));

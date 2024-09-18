@@ -13,7 +13,7 @@ export class AhorcadoService {
 
   constructor(private http: HttpClient) {}
 
-  // Usamos el operador pipe para transformar los resultados antes de que lleguen al consumidor de la función
+  // Usamos pipe para transformar los resultados antes de que lleguen al consumidor de la función
 
   getWordsAnjectives(cantidad: number = 5): Observable<string[]> {
     return this.http

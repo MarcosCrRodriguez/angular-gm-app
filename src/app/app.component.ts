@@ -2,7 +2,6 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { LoginComponent } from './components/login/login.component';
 import { CommonModule } from '@angular/common';
 import { AuthService } from './services/auth.service';
-import { JuegoComponent } from './components/juegos/juego/juego.component';
 import {
   RouterOutlet,
   RouterLink,
@@ -67,5 +66,9 @@ export class AppComponent implements OnInit {
 
   setMenu(menu: string) {
     this.menu = menu;
+  }
+
+  ranking() {
+    this.router.navigate(['/ranking']);
   }
 }

@@ -23,7 +23,6 @@ export class AhorcadoComponent implements OnInit {
   public palabrasJugadas: number = 0;
   public maxPalabras: number = 5;
   public mostrarMensajeFinal: boolean = false;
-  public rankingData: any;
   public usuarioLogueado: any = null;
   public opcionesIngles: boolean = false;
   public idiomaBloqueado: boolean = false;
@@ -42,13 +41,7 @@ export class AhorcadoComponent implements OnInit {
       }
       this.usuarioLogueado = usuario;
     });
-    this.authService.getRankingJuegos('ahorcado').subscribe((data) => {
-      if (data) {
-        this.rankingData = data;
-      } else {
-        console.log('No se encontraron datos opcionales para este usuario.');
-      }
-    });
+
     this.ahorcadoService
       .obtenerPalabras(this.maxPalabras)
       .subscribe((palabras) => {

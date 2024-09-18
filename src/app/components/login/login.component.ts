@@ -4,11 +4,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
   // public passwordUserQuickAcces = 'quicklogin';
   public slayerQuickAcces = 'doomslayer@hothell.com';
   public passwordSlayerQuickAcces = 'doomslayer';
+  public showLoadingGif = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.userIngresado = '';
@@ -51,8 +53,23 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.showLoadingGif = true;
     this.authService
       .login(this.userIngresado, this.claveIngresado)
+      .then(() => {
+        setTimeout(() => {
+          this.showLoadingGif = false;
+          Toastify({
+            text: '¡Usuario logeado correctamente! ',
+            duration: 4000,
+            close: true,
+            gravity: 'top',
+            position: 'center',
+            backgroundColor: 'linear-gradient(to right, #4caf50, #81c784)',
+          }).showToast();
+          this.router.navigate(['/home']);
+        }, 4000);
+      })
       .catch((error: string) => {
         this.msjError = error;
         this.contError += 1;
@@ -68,12 +85,16 @@ export class LoginComponent implements OnInit {
 
         if (this.contError == this.limitErrors) {
           this.router.navigate(['/error'], {
-            state: { error: 'Llegaste al limite de intentos' },
+            state: { error: 'Llegaste al límite de intentos' },
           });
         }
 
+        // Limpiar los campos de entrada
         this.userIngresado = '';
         this.claveIngresado = '';
+
+        // Asegurarse de que el GIF no se quede visible en caso de error
+        this.showLoadingGif = false;
       });
   }
 

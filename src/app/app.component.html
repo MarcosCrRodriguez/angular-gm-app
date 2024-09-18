@@ -46,6 +46,9 @@
           }}</a>
         </li>
         <li>
+          <a (click)="ranking()">Ranking</a>
+        </li>
+        <li>
           <a (click)="logout()">Log Out</a>
         </li>
       </ng-container>
@@ -99,6 +102,9 @@
             <a routerLink="/profile" routerLinkActive="active">{{
               usuarioLogueado.email
             }}</a>
+          </li>
+          <li>
+            <a (click)="ranking()">Ranking</a>
           </li>
           <li>
             <a (click)="logout()">Log Out</a>

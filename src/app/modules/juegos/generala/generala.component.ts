@@ -10,12 +10,8 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class GeneralaComponent implements OnInit {
   public usuarioLogueado: any = null;
-  public rankingData: any;
 
-  constructor(
-    private ahorcadoService: AhorcadoService,
-    private authService: AuthService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.usuarioLogueado$.subscribe((usuario) => {
@@ -24,13 +20,7 @@ export class GeneralaComponent implements OnInit {
       }
       this.usuarioLogueado = usuario;
     });
-    this.authService.getRankingJuegos('generala').subscribe((data) => {
-      if (data) {
-        this.rankingData = data;
-      } else {
-        console.log('No se encontraron datos opcionales para este usuario.');
-      }
-    });
+
     window.scrollTo(0, 0);
   }
 }
