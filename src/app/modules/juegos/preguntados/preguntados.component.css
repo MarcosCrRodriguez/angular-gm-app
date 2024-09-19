@@ -66,23 +66,46 @@
 
 .juego-terminado h2,
 .pregunta-container h2 {
+  text-align: center;
   font-size: 36px !important;
-  margin-top: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
     -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
+}
+
+.pregunta-container h2 {
+  margin-top: 36px;
+}
+
+.juego-terminado h2 {
+  margin-top: 20px;
 }
 
 .pregunta-container img {
   border: 2px solid #000;
 }
 
+.msj-vacio,
+.msj-exito,
+.msj-respuesta,
 .temporizador {
   text-align: center;
   font-size: 24px !important;
   font-weight: 500;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 hsl(0, 0%, 0%),
     1px 1px 0 #000;
+}
+
+.msj-vacio {
+  color: #fff;
+}
+
+.msj-exito {
+  color: rgb(16, 133, 16);
+}
+
+.msj-respuesta {
+  color: rgb(169, 32, 32);
 }
 
 .juego-terminado p,
@@ -93,6 +116,10 @@
   margin-bottom: 32px;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 hsl(0, 0%, 0%),
     1px 1px 0 #000;
+}
+
+.juego-terminado h2 {
+  margin-top: 90px;
 }
 
 .opciones-container {
@@ -110,8 +137,12 @@
   cursor: pointer;
 }
 
+.juego-terminado button {
+  margin-top: 180px;
+}
+
 .btn-home {
-  margin-top: 400px;
+  margin-top: 428px;
   margin-bottom: 44px;
 }
 
@@ -198,7 +229,7 @@
 }
 
 .temporizador {
-  margin-top: 20px;
+  margin-top: 4px;
   font-size: 18px;
   font-weight: bold;
 }

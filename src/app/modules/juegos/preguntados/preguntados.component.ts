@@ -13,9 +13,13 @@ export class PreguntadosComponent implements OnInit {
   public paises: any[] = [];
   public partidaActual: any[] = [];
   public preguntaActual: string = '';
-  public cantidadParaPartida: number = 1;
+  public cantidadParaPartida: number = 10;
   public opciones: string[] = [];
   public respuestaCorrecta: string = '';
+  public mensajeRespuesta: string = '';
+  public mensajeVacio: string = '¿ ?';
+  public jugadorExito: boolean = false;
+  public enEspera: boolean = false;
   public imagenBandera: string = '';
   public indicePregunta: number = 0;
   public juegoTerminado: boolean = false;
@@ -145,27 +149,34 @@ export class PreguntadosComponent implements OnInit {
 
   verificarRespuesta(opcionSeleccionada: string) {
     this.cancelarTemporizador(); // Cancela el temporizador al responder
+    this.enEspera = true;
 
     if (opcionSeleccionada === this.respuestaCorrecta) {
+      this.jugadorExito = true;
       this.puntaje += 10 + this.tiempoRestante;
-      alert('¡Correcto!');
+      this.mensajeRespuesta = '¡Correcto!';
+      // alert('¡Correcto!');
     } else {
+      this.jugadorExito = false;
       this.puntaje -= 20;
-      alert('Incorrecto, la respuesta correcta era ' + this.respuestaCorrecta);
+      this.mensajeRespuesta = `'La correcta es ${this.respuestaCorrecta}'`;
+      // alert('Incorrecto, la respuesta correcta era ' + this.respuestaCorrecta);
     }
 
-    this.indicePregunta++;
-
-    if (this.indicePregunta < this.partidaActual.length) {
-      this.generarPregunta();
-    } else {
-      this.juegoTerminado = true;
-      this.authService.scoreJuegos(
-        this.usuarioLogueado.email,
-        this.puntaje,
-        'preguntados'
-      );
-    }
+    setTimeout(() => {
+      this.indicePregunta++;
+      this.enEspera = false;
+      if (this.indicePregunta < this.partidaActual.length) {
+        this.generarPregunta();
+      } else {
+        this.juegoTerminado = true;
+        this.authService.scoreJuegos(
+          this.usuarioLogueado.email,
+          this.puntaje,
+          'preguntados'
+        );
+      }
+    }, 2500);
   }
 
   reiniciarJuego() {

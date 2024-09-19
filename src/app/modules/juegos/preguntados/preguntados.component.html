@@ -23,6 +23,17 @@
       <div class="temporizador">
         <p>Tiempo restante: {{ tiempoRestante }} segundos</p>
       </div>
+      <div *ngIf="enEspera">
+        <div *ngIf="jugadorExito" class="msj-exito">
+          <p>{{ mensajeRespuesta }}</p>
+        </div>
+        <div *ngIf="!jugadorExito" class="msj-respuesta">
+          <p>{{ mensajeRespuesta }}</p>
+        </div>
+      </div>
+      <div *ngIf="!enEspera" class="msj-vacio">
+        <p>{{ mensajeVacio }}</p>
+      </div>
       <div class="puntaje">
         <p>Puntaje: {{ puntaje }}</p>
       </div>
@@ -31,6 +42,7 @@
           class="btn btn-secondary"
           *ngFor="let opcion of opciones"
           (click)="verificarRespuesta(opcion)"
+          [disabled]="enEspera"
         >
           {{ opcion }}
         </button>
