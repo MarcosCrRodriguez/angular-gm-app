@@ -14,6 +14,7 @@
     <div *ngIf="!juegoIniciado && !juegoTerminado" class="btn-home">
       <button class="btn btn-secondary" (click)="comenzar()">Comenzar</button>
     </div>
+
     <!-- Contenedor de preguntas -->
     <div *ngIf="juegoIniciado && !juegoTerminado" class="pregunta-container">
       <h2>{{ preguntaActual }}</h2>
@@ -22,6 +23,9 @@
         alt="Bandera del país"
         class="imagen-bandera"
       />
+      <div class="temporizador">
+        <p>Tiempo restante: {{ tiempoRestante }} segundos</p>
+      </div>
 
       <div class="opciones-container">
         <button
@@ -32,6 +36,7 @@
         </button>
       </div>
     </div>
+
     <!-- Mensaje de juego terminado -->
     <div *ngIf="juegoTerminado" class="juego-terminado">
       <h2>¡Juego Terminado!</h2>

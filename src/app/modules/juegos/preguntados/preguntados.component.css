@@ -138,6 +138,12 @@
   cursor: pointer;
 }
 
+.temporizador {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .btn-home button:hover {
   transform: scale(1.04);
   transition: 0.4s;

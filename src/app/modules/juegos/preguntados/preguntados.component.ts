@@ -19,7 +19,9 @@ export class PreguntadosComponent implements OnInit {
   public imagenBandera: string = '';
   public indicePregunta: number = 0;
   public juegoTerminado: boolean = false;
-  public juegoIniciado: boolean = false; // Nueva variable
+  public juegoIniciado: boolean = false;
+  public tiempoRestante: number = 30; // Tiempo en segundos
+  private temporizador: any;
 
   constructor(
     private banderasService: BanderasService,
@@ -42,6 +44,7 @@ export class PreguntadosComponent implements OnInit {
   }
 
   iniciarPartida() {
+    // Selecciona 10 países únicos para la partida
     this.partidaActual = this.seleccionarPaisesAleatorios(10);
     this.indicePregunta = 0;
     this.juegoTerminado = false;
@@ -49,8 +52,23 @@ export class PreguntadosComponent implements OnInit {
   }
 
   seleccionarPaisesAleatorios(n: number): any[] {
+    // Asegúrate de que hay suficientes países
+    if (n > this.paises.length) {
+      console.error('No hay suficientes países disponibles para seleccionar.');
+      return [];
+    }
+
+    // Baraja los países y selecciona los primeros n países únicos
     const paisesAleatorios = [...this.paises];
-    return paisesAleatorios.sort(() => Math.random() - 0.5).slice(0, n);
+    const seleccionados = new Set<any>();
+    while (seleccionados.size < n) {
+      const pais = paisesAleatorios.splice(
+        Math.floor(Math.random() * paisesAleatorios.length),
+        1
+      )[0];
+      seleccionados.add(pais);
+    }
+    return Array.from(seleccionados);
   }
 
   generarPregunta() {
@@ -83,6 +101,7 @@ export class PreguntadosComponent implements OnInit {
     }
 
     this.imagenBandera = paisAleatorio.bandera;
+    this.iniciarTemporizador();
   }
 
   generarOpciones(campo: string, correcta: string): string[] {
@@ -91,13 +110,35 @@ export class PreguntadosComponent implements OnInit {
 
     while (opciones.size < 4) {
       const pais = this.paises[Math.floor(Math.random() * this.paises.length)];
-      opciones.add(pais[campo].toString());
+      if (pais[campo] !== correcta) {
+        opciones.add(pais[campo].toString());
+      }
     }
 
     return Array.from(opciones).sort(() => Math.random() - 0.5);
   }
 
+  iniciarTemporizador() {
+    this.tiempoRestante = 30;
+    this.temporizador = setInterval(() => {
+      this.tiempoRestante--;
+      if (this.tiempoRestante <= 0) {
+        this.cancelarTemporizador();
+        this.verificarRespuesta(''); // Pasa a la siguiente pregunta cuando el tiempo se agote
+      }
+    }, 1000);
+  }
+
+  cancelarTemporizador() {
+    if (this.temporizador) {
+      clearInterval(this.temporizador);
+      this.temporizador = null;
+    }
+  }
+
   verificarRespuesta(opcionSeleccionada: string) {
+    this.cancelarTemporizador(); // Cancela el temporizador al responder
+
     if (opcionSeleccionada === this.respuestaCorrecta) {
       alert('¡Correcto!');
     } else {
@@ -112,7 +153,6 @@ export class PreguntadosComponent implements OnInit {
       this.juegoTerminado = true;
     }
   }
-
   reiniciarJuego() {
     this.iniciarPartida();
   }
