@@ -6,7 +6,6 @@
   </div>
 </div>
 <div class="preguntados-bg">
-  <!-- Seccion del preguntados -->
   <div class="card text-bg-dark">
     <div class="game-title">
       <h1 class="title-preguntados">¿Podrás adivinar la respuesta correcta?</h1>
@@ -14,8 +13,6 @@
     <div *ngIf="!juegoIniciado && !juegoTerminado" class="btn-home">
       <button class="btn btn-secondary" (click)="comenzar()">Comenzar</button>
     </div>
-
-    <!-- Contenedor de preguntas -->
     <div *ngIf="juegoIniciado && !juegoTerminado" class="pregunta-container">
       <h2>{{ preguntaActual }}</h2>
       <img
@@ -26,13 +23,12 @@
       <div class="temporizador">
         <p>Tiempo restante: {{ tiempoRestante }} segundos</p>
       </div>
-
       <div class="puntaje">
         <p>Puntaje: {{ puntaje }}</p>
       </div>
-
       <div class="opciones-container">
         <button
+          class="btn btn-secondary"
           *ngFor="let opcion of opciones"
           (click)="verificarRespuesta(opcion)"
         >
@@ -40,8 +36,6 @@
         </button>
       </div>
     </div>
-
-    <!-- Mensaje de juego terminado -->
     <div *ngIf="juegoTerminado" class="juego-terminado">
       <h2>¡Juego Terminado!</h2>
       <p>Puntaje final: {{ puntaje }}</p>

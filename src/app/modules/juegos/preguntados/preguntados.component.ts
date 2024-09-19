@@ -40,6 +40,9 @@ export class PreguntadosComponent implements OnInit {
       this.paises = data;
     });
 
+    this.juegoIniciado = false;
+    this.juegoTerminado = false;
+
     window.scrollTo(0, 0);
   }
 
@@ -78,7 +81,7 @@ export class PreguntadosComponent implements OnInit {
     }
 
     const paisAleatorio = this.partidaActual[this.indicePregunta];
-    const tipoPregunta = Math.floor(Math.random() * 3);
+    const tipoPregunta = Math.floor(Math.random() * 2);
 
     if (tipoPregunta === 0) {
       this.preguntaActual = `¿De qué continente es la bandera?`;
@@ -91,14 +94,15 @@ export class PreguntadosComponent implements OnInit {
       this.preguntaActual = `¿De qué país es esta bandera?`;
       this.respuestaCorrecta = paisAleatorio.nombre;
       this.opciones = this.generarOpciones('nombre', paisAleatorio.nombre);
-    } else if (tipoPregunta === 2) {
-      this.preguntaActual = `¿Cuál es el tamaño de la población de este país?`;
-      this.respuestaCorrecta = paisAleatorio.poblacion.toString();
-      this.opciones = this.generarOpciones(
-        'poblacion',
-        paisAleatorio.poblacion.toString()
-      );
     }
+    // else if (tipoPregunta === 2) {
+    //   this.preguntaActual = `¿Cuál es el tamaño de la población de este país?`;
+    //   this.respuestaCorrecta = paisAleatorio.poblacion.toString();
+    //   this.opciones = this.generarOpciones(
+    //     'poblacion',
+    //     paisAleatorio.poblacion.toString()
+    //   );
+    // }
 
     this.imagenBandera = paisAleatorio.bandera;
     this.iniciarTemporizador();
@@ -166,6 +170,18 @@ export class PreguntadosComponent implements OnInit {
     this.juegoIniciado = false;
     this.juegoTerminado = false;
   }
+
+  // terminarJuego() {
+  //   this.juegoTerminado = true;
+  //   this.authService.scoreJuegos(
+  //     this.usuarioLogueado.email,
+  //     this.puntaje,
+  //     'preguntados'
+  //   );
+  //   this.juegoIniciado = false;
+  //   this.juegoTerminado = false;
+  //   this.puntaje = 0;
+  // }
 
   comenzar() {
     this.juegoIniciado = true; // Cambia el estado del juego a iniciado
