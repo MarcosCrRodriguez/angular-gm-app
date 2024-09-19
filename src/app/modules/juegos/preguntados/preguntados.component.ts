@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AhorcadoService } from '../../../services/ahorcado.service';
 import { AuthService } from '../../../services/auth.service';
 import { BanderasService } from '../../../services/banderas.service';
 
@@ -20,7 +19,8 @@ export class PreguntadosComponent implements OnInit {
   public indicePregunta: number = 0;
   public juegoTerminado: boolean = false;
   public juegoIniciado: boolean = false;
-  public tiempoRestante: number = 30; // Tiempo en segundos
+  public puntaje: number = 0;
+  public tiempoRestante: number = 30;
   private temporizador: any;
 
   constructor(
@@ -140,8 +140,10 @@ export class PreguntadosComponent implements OnInit {
     this.cancelarTemporizador(); // Cancela el temporizador al responder
 
     if (opcionSeleccionada === this.respuestaCorrecta) {
+      this.puntaje += 10 + this.tiempoRestante;
       alert('¡Correcto!');
     } else {
+      this.puntaje -= 20;
       alert('Incorrecto, la respuesta correcta era ' + this.respuestaCorrecta);
     }
 
@@ -151,10 +153,18 @@ export class PreguntadosComponent implements OnInit {
       this.generarPregunta();
     } else {
       this.juegoTerminado = true;
+      this.authService.scoreJuegos(
+        this.usuarioLogueado.email,
+        this.puntaje,
+        'preguntados'
+      );
     }
   }
+
   reiniciarJuego() {
-    this.iniciarPartida();
+    this.puntaje = 0;
+    this.juegoIniciado = false;
+    this.juegoTerminado = false;
   }
 
   comenzar() {

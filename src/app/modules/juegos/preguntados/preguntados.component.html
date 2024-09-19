@@ -27,6 +27,10 @@
         <p>Tiempo restante: {{ tiempoRestante }} segundos</p>
       </div>
 
+      <div class="puntaje">
+        <p>Puntaje: {{ puntaje }}</p>
+      </div>
+
       <div class="opciones-container">
         <button
           *ngFor="let opcion of opciones"
@@ -40,6 +44,7 @@
     <!-- Mensaje de juego terminado -->
     <div *ngIf="juegoTerminado" class="juego-terminado">
       <h2>¡Juego Terminado!</h2>
+      <p>Puntaje final: {{ puntaje }}</p>
       <button (click)="reiniciarJuego()">Comenzar nuevamente</button>
     </div>
   </div>
