@@ -11,8 +11,31 @@
     <div class="game-title">
       <h1 class="title-preguntados">¿Podrás adivinar la respuesta correcta?</h1>
     </div>
-    <div class="btn-home">
-      <button class="btn btn-secondary">Comenzar</button>
+    <div *ngIf="!juegoIniciado && !juegoTerminado" class="btn-home">
+      <button class="btn btn-secondary" (click)="comenzar()">Comenzar</button>
+    </div>
+    <!-- Contenedor de preguntas -->
+    <div *ngIf="juegoIniciado && !juegoTerminado" class="pregunta-container">
+      <h2>{{ preguntaActual }}</h2>
+      <img
+        [src]="imagenBandera"
+        alt="Bandera del país"
+        class="imagen-bandera"
+      />
+
+      <div class="opciones-container">
+        <button
+          *ngFor="let opcion of opciones"
+          (click)="verificarRespuesta(opcion)"
+        >
+          {{ opcion }}
+        </button>
+      </div>
+    </div>
+    <!-- Mensaje de juego terminado -->
+    <div *ngIf="juegoTerminado" class="juego-terminado">
+      <h2>¡Juego Terminado!</h2>
+      <button (click)="reiniciarJuego()">Comenzar nuevamente</button>
     </div>
   </div>
 </div>
