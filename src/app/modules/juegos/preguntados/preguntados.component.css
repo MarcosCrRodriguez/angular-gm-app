@@ -67,10 +67,10 @@
 .juego-terminado h2,
 .pregunta-container h2 {
   text-align: center;
-  font-size: 36px !important;
+  font-size: 56px !important;
   margin-bottom: 12px;
-  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
-    -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
 }
 
 .pregunta-container h2 {
@@ -123,6 +123,8 @@
 }
 
 .opciones-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin-bottom: 32px;
 }
 
@@ -142,7 +144,10 @@
 }
 
 .btn-home {
-  margin-top: 428px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 406px;
   margin-bottom: 44px;
 }
 
@@ -316,7 +321,7 @@
 
   .juego-terminado h2,
   .pregunta-container h2 {
-    font-size: 30px !important;
+    font-size: 36px !important;
   }
 
   .temporizador {

@@ -7,11 +7,15 @@
 </div>
 <div class="preguntados-bg">
   <div class="card text-bg-dark">
-    <div class="game-title">
-      <h1 class="title-preguntados">¿Podrás adivinar la respuesta correcta?</h1>
-    </div>
-    <div *ngIf="!juegoIniciado && !juegoTerminado" class="btn-home">
-      <button class="btn btn-secondary" (click)="comenzar()">Comenzar</button>
+    <div *ngIf="!juegoIniciado && !juegoTerminado">
+      <div class="game-title">
+        <h1 class="title-preguntados">
+          ¿Podrás adivinar la respuesta correcta?
+        </h1>
+      </div>
+      <div class="btn-home">
+        <button class="btn btn-secondary" (click)="comenzar()">Comenzar</button>
+      </div>
     </div>
     <div *ngIf="juegoIniciado && !juegoTerminado" class="pregunta-container">
       <h2>{{ preguntaActual }}</h2>
