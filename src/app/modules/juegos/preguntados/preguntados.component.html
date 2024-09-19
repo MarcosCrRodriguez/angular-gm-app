@@ -39,7 +39,9 @@
     <div *ngIf="juegoTerminado" class="juego-terminado">
       <h2>¡Juego Terminado!</h2>
       <p>Puntaje final: {{ puntaje }}</p>
-      <button (click)="reiniciarJuego()">Comenzar nuevamente</button>
+      <button class="btn btn-secondary" (click)="reiniciarJuego()">
+        Comenzar nuevamente
+      </button>
     </div>
   </div>
 </div>
@@ -48,16 +50,15 @@
     <div class="card-header">Como Jugar</div>
     <div class="card-info">
       <p class="exp-general">
-        Preguntados es un juego de trivia que desafía a los jugadores en
-        distintas categorías de conocimiento. El objetivo del juego es conseguir
-        la mayor cantidad de respuestas correctas posibles, así sumar puntos y
-        intentar llegar hasta el final con la mayor suma de puntos que el
-        jugador pueda conseguir.
+        Preguntados es un juego de responder preguntas. El objetivo del juego es
+        conseguir la mayor cantidad de respuestas correctas posibles, así sumar
+        puntos y intentar llegar hasta el final con la mayor suma de puntos que
+        el jugador pueda conseguir.
       </p>
       <p class="info-pto">
-        1- En cada turno, aparecerá una pregunta de 'categoría aleatoria' en
-        donde deberá responder correctamente eligiendo entre las opciones que se
-        le brindará al jugador.
+        1- En cada turno, aparecerá una pregunta de 'banderas' en donde deberá
+        responder correctamente eligiendo entre las opciones que se le brindará
+        al jugador.
       </p>
       <p class="info-pto">
         2- Si respondes correctamente el jugador podrá seguir enfrentandose a
@@ -69,9 +70,10 @@
         partida.
       </p>
       <p class="info-pto">
-        4- El jugador sumará puntos cada vez que responda correctamente las
+        4- El jugador sumarán 10 puntos cada vez que responda correctamente las
         preguntas, ademas se le sumara el tiempo restante (en caso de que haya
-        respondido correctamente) en cada ronda.
+        respondido correctamente) en cada ronda, en caso de responder
+        incorrectamente se le restarán 20 puntos.
       </p>
     </div>
   </div>

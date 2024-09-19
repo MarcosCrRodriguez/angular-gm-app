@@ -13,6 +13,7 @@ export class PreguntadosComponent implements OnInit {
   public paises: any[] = [];
   public partidaActual: any[] = [];
   public preguntaActual: string = '';
+  public cantidadParaPartida: number = 1;
   public opciones: string[] = [];
   public respuestaCorrecta: string = '';
   public imagenBandera: string = '';
@@ -48,7 +49,9 @@ export class PreguntadosComponent implements OnInit {
 
   iniciarPartida() {
     // Selecciona 10 países únicos para la partida
-    this.partidaActual = this.seleccionarPaisesAleatorios(10);
+    this.partidaActual = this.seleccionarPaisesAleatorios(
+      this.cantidadParaPartida
+    );
     this.indicePregunta = 0;
     this.juegoTerminado = false;
     this.generarPregunta();
