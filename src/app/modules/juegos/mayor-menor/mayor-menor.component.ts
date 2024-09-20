@@ -42,11 +42,6 @@ export class MayorMenorComponent implements OnInit {
     this.authService.usuarioLogueado$.subscribe((usuario) => {
       if (usuario) {
         console.log(`${usuario.email} ingreso al mayor menor`);
-      } else {
-        this.authService.mustrarMensajeError();
-        this.router.navigate(['/error'], {
-          state: { error: 'No puede ingresar si no está logeado' },
-        });
       }
       this.usuarioLogueado = usuario;
     });

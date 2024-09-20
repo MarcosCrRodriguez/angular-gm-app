@@ -42,11 +42,6 @@ export class ForoComponent implements OnInit {
     this.authService.usuarioLogueado$.subscribe((usuario) => {
       if (usuario) {
         console.log(`${usuario.email} ingreso al foro`);
-      } else {
-        this.authService.mustrarMensajeError();
-        this.router.navigate(['/error'], {
-          state: { error: 'No puede ingresar si no está logeado' },
-        });
       }
       this.usuarioLogueado = usuario;
     });

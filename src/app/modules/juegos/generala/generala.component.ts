@@ -18,11 +18,6 @@ export class GeneralaComponent implements OnInit {
     this.authService.usuarioLogueado$.subscribe((usuario) => {
       if (usuario) {
         console.log(`${usuario.email} ingreso al la generala`);
-      } else {
-        this.authService.mustrarMensajeError();
-        this.router.navigate(['/error'], {
-          state: { error: 'No puede ingresar si no está logeado' },
-        });
       }
       this.usuarioLogueado = usuario;
     });

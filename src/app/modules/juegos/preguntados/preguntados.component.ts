@@ -39,11 +39,6 @@ export class PreguntadosComponent implements OnInit {
     this.authService.usuarioLogueado$.subscribe((usuario) => {
       if (usuario) {
         console.log(`${usuario.email} ingreso al preguntados`);
-      } else {
-        this.authService.mustrarMensajeError();
-        this.router.navigate(['/error'], {
-          state: { error: 'No puede ingresar si no está logeado' },
-        });
       }
       this.usuarioLogueado = usuario;
     });
