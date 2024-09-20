@@ -1,5 +1,4 @@
-import 'toastify-js/src/toastify.css';
-import Toastify from 'toastify-js';
+import Swal from 'sweetalert2';
 import { Injectable } from '@angular/core';
 import {
   Auth,
@@ -207,5 +206,17 @@ export class AuthService {
         break;
     }
     return this.msjError;
+  }
+
+  mustrarMensajeError() {
+    Swal.fire({
+      title: 'Error',
+      text: 'Primero debe logearse / registrarse para poder ingresar a los juegos',
+      icon: 'error',
+      background: '#fff',
+      backdrop: 'rgba(0,0,123,0.3)',
+      timer: 4000,
+      timerProgressBar: true,
+    });
   }
 }

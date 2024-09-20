@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-puntaje',
@@ -17,16 +18,21 @@ export class PuntajeComponent implements OnInit {
   public usuarioLogueado: any = null;
   public isLoading: boolean = true;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.isLoading = true;
     this.authService.usuarioLogueado$.subscribe((usuario) => {
       if (usuario) {
-        console.log('Usuario logueado:', usuario.email);
+        console.log(`${usuario.email} ingreso al ranking`);
+      } else {
+        this.authService.mustrarMensajeError();
+        this.router.navigate(['/error'], {
+          state: { error: 'No puede ingresar si no está logeado' },
+        });
       }
       this.usuarioLogueado = usuario;
     });
+    this.isLoading = true;
 
     // Obtener rankings de Ahorcado
     this.authService.getRankingJuegos('ahorcado').subscribe((data) => {

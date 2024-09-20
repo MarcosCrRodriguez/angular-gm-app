@@ -13,6 +13,7 @@ import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-foro',
@@ -26,13 +27,29 @@ export class ForoComponent implements OnInit {
   public mensajes$!: Observable<any[]>;
   public mensajes: any[] = [];
   public isLoadingMensajes: boolean = true;
+  public usuarioLogueado: any = null;
   public usuarioAdmin: string = 'piedecamello@gmail.com';
   public usuarioEspecial: string = 'berrueberru@gmail.com';
   public usuarioSlayer: string = 'doomslayer@hothell.com';
 
-  constructor(private firestore: Firestore, private authService: AuthService) {}
+  constructor(
+    private firestore: Firestore,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    this.authService.usuarioLogueado$.subscribe((usuario) => {
+      if (usuario) {
+        console.log(`${usuario.email} ingreso al foro`);
+      } else {
+        this.authService.mustrarMensajeError();
+        this.router.navigate(['/error'], {
+          state: { error: 'No puede ingresar si no está logeado' },
+        });
+      }
+      this.usuarioLogueado = usuario;
+    });
     this.loadMensajes();
   }
 

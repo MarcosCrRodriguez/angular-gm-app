@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
 import { BanderasService } from '../../../services/banderas.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-preguntados',
@@ -30,13 +31,19 @@ export class PreguntadosComponent implements OnInit {
 
   constructor(
     private banderasService: BanderasService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.authService.usuarioLogueado$.subscribe((usuario) => {
       if (usuario) {
-        console.log('Usuario logueado:', usuario.email);
+        console.log(`${usuario.email} ingreso al preguntados`);
+      } else {
+        this.authService.mustrarMensajeError();
+        this.router.navigate(['/error'], {
+          state: { error: 'No puede ingresar si no está logeado' },
+        });
       }
       this.usuarioLogueado = usuario;
     });

@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +12,16 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router) {}
+  public usuarioLogueado: any = null;
+
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
+    this.authService.usuarioLogueado$.subscribe((user) => {
+      this.usuarioLogueado = user;
+      console.log(`${this.usuarioLogueado} esta en el home (⌐■_■)`);
+    });
+
     window.scrollTo(0, 0);
   }
 
@@ -20,19 +29,35 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/quien-soy']);
   }
 
-  ingresoAhorcado() {
-    this.router.navigate(['juegos', 'ahorcado']);
+  ingresarAhorcado() {
+    if (this.usuarioLogueado) {
+      this.router.navigate(['juegos', 'ahorcado']);
+    } else {
+      this.authService.mustrarMensajeError();
+    }
   }
 
-  ingresoMayorMenor() {
-    this.router.navigate(['juegos', 'mayor-menor']);
+  ingresarMayorMenor() {
+    if (this.usuarioLogueado) {
+      this.router.navigate(['juegos', 'mayor-menor']);
+    } else {
+      this.authService.mustrarMensajeError();
+    }
   }
 
-  ingresoPreguntados() {
-    this.router.navigate(['juegos', 'preguntados']);
+  ingresarPreguntados() {
+    if (this.usuarioLogueado) {
+      this.router.navigate(['juegos', 'preguntados']);
+    } else {
+      this.authService.mustrarMensajeError();
+    }
   }
 
-  ingresoGenerala() {
-    this.router.navigate(['juegos', 'generala']);
+  ingresarGenerala() {
+    if (this.usuarioLogueado) {
+      this.router.navigate(['juegos', 'generala']);
+    } else {
+      this.authService.mustrarMensajeError();
+    }
   }
 }
