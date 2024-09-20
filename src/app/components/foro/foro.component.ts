@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import Toastify from 'toastify-js';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-foro',
@@ -51,16 +51,17 @@ export class ForoComponent implements OnInit {
     const usuario = this.authService.getUsuarioLogueado();
     const mensaje = this.nuevoMensaje.trim();
 
-    if (mensaje.length > 250) {
+    if (mensaje.length > 200) {
       // Muestra mensaje de error con Toastify
-      Toastify({
-        text: 'Demasiados caracteres. ¡Máximo 250!',
-        duration: 4000,
-        close: true,
-        gravity: 'top',
-        position: 'center',
-        backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
-      }).showToast();
+      Swal.fire({
+        title: 'Error',
+        text: 'Demasiados caracteres. ¡Máximo 200!',
+        icon: 'error',
+        background: '#fff',
+        backdrop: 'rgba(0,0,123,0.3)',
+        timer: 4000,
+        timerProgressBar: true,
+      });
       return;
     }
 

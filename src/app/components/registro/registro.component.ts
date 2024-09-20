@@ -1,5 +1,3 @@
-import 'toastify-js/src/toastify.css';
-import Toastify from 'toastify-js';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +5,7 @@ import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -103,14 +102,15 @@ export class RegistroComponent implements OnInit {
           ) {
             console.log('Se cagragon los datos opcionales correctamente');
           } else {
-            Toastify({
+            Swal.fire({
+              title: 'Error',
               text: 'Algunos datos opcionales no fueron proporcionados',
-              duration: 4000,
-              close: true,
-              gravity: 'top',
-              position: 'center',
-              backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
-            }).showToast();
+              icon: 'error',
+              background: '#fff',
+              backdrop: 'rgba(0,0,123,0.3)',
+              timer: 4000,
+              timerProgressBar: true,
+            });
           }
           this.authService.optionalRegisterData(
             this.userIngresado,
@@ -120,28 +120,30 @@ export class RegistroComponent implements OnInit {
           );
           setTimeout(() => {
             this.showLoadingGif = false;
-            Toastify({
+            Swal.fire({
+              title: 'Éxito',
               text: '¡Usuario registrado correctamente! ',
-              duration: 4000,
-              close: true,
-              gravity: 'top',
-              position: 'center',
-              backgroundColor: 'linear-gradient(to right, #4caf50, #81c784)',
-            }).showToast();
+              icon: 'success',
+              background: '#fff',
+              backdrop: 'rgba(0, 123, 0, 0)',
+              timer: 4000,
+              timerProgressBar: true,
+            });
             this.router.navigate(['/home']);
           }, 4000);
         })
         .catch((error: string) => {
           this.msjError = error;
 
-          Toastify({
+          Swal.fire({
+            title: 'Error',
             text: this.msjError,
-            duration: 4000,
-            close: true,
-            gravity: 'top',
-            position: 'center',
-            backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
-          }).showToast();
+            icon: 'error',
+            background: '#fff',
+            backdrop: 'rgba(0,0,123,0.3)',
+            timer: 4000,
+            timerProgressBar: true,
+          });
 
           this.userIngresado = '';
           this.claveIngresado = '';
@@ -150,14 +152,15 @@ export class RegistroComponent implements OnInit {
           this.edadIngresada = '';
         });
     } else {
-      Toastify({
+      Swal.fire({
+        title: 'Error',
         text: 'Reingrese los datos opcionales',
-        duration: 4000,
-        close: true,
-        gravity: 'top',
-        position: 'center',
-        backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
-      }).showToast();
+        icon: 'error',
+        background: '#fff',
+        backdrop: 'rgba(0,0,123,0.3)',
+        timer: 4000,
+        timerProgressBar: true,
+      });
     }
   }
 

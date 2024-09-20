@@ -52,7 +52,6 @@ export class PreguntadosComponent implements OnInit {
   }
 
   iniciarPartida() {
-    // Selecciona 10 países únicos para la partida
     this.partidaActual = this.seleccionarPaisesAleatorios(
       this.cantidadParaPartida
     );
@@ -62,13 +61,11 @@ export class PreguntadosComponent implements OnInit {
   }
 
   seleccionarPaisesAleatorios(n: number): any[] {
-    // Asegúrate de que hay suficientes países
     if (n > this.paises.length) {
       console.error('No hay suficientes países disponibles para seleccionar.');
       return [];
     }
 
-    // Baraja los países y selecciona los primeros n países únicos
     const paisesAleatorios = [...this.paises];
     const seleccionados = new Set<any>();
     while (seleccionados.size < n) {
@@ -102,14 +99,6 @@ export class PreguntadosComponent implements OnInit {
       this.respuestaCorrecta = paisAleatorio.nombre;
       this.opciones = this.generarOpciones('nombre', paisAleatorio.nombre);
     }
-    // else if (tipoPregunta === 2) {
-    //   this.preguntaActual = `¿Cuál es el tamaño de la población de este país?`;
-    //   this.respuestaCorrecta = paisAleatorio.poblacion.toString();
-    //   this.opciones = this.generarOpciones(
-    //     'poblacion',
-    //     paisAleatorio.poblacion.toString()
-    //   );
-    // }
 
     this.imagenBandera = paisAleatorio.bandera;
     this.iniciarTemporizador();
@@ -148,19 +137,17 @@ export class PreguntadosComponent implements OnInit {
   }
 
   verificarRespuesta(opcionSeleccionada: string) {
-    this.cancelarTemporizador(); // Cancela el temporizador al responder
+    this.cancelarTemporizador();
     this.enEspera = true;
 
     if (opcionSeleccionada === this.respuestaCorrecta) {
       this.jugadorExito = true;
       this.puntaje += 10 + this.tiempoRestante;
       this.mensajeRespuesta = '¡Correcto!';
-      // alert('¡Correcto!');
     } else {
       this.jugadorExito = false;
       this.puntaje -= 20;
       this.mensajeRespuesta = `'La correcta es ${this.respuestaCorrecta}'`;
-      // alert('Incorrecto, la respuesta correcta era ' + this.respuestaCorrecta);
     }
 
     setTimeout(() => {
@@ -184,18 +171,6 @@ export class PreguntadosComponent implements OnInit {
     this.juegoIniciado = false;
     this.juegoTerminado = false;
   }
-
-  // terminarJuego() {
-  //   this.juegoTerminado = true;
-  //   this.authService.scoreJuegos(
-  //     this.usuarioLogueado.email,
-  //     this.puntaje,
-  //     'preguntados'
-  //   );
-  //   this.juegoIniciado = false;
-  //   this.juegoTerminado = false;
-  //   this.puntaje = 0;
-  // }
 
   comenzar() {
     this.juegoIniciado = true; // Cambia el estado del juego a iniciado

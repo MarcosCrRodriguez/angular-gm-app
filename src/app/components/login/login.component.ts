@@ -1,5 +1,4 @@
-import 'toastify-js/src/toastify.css';
-import Toastify from 'toastify-js';
+import Swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -59,14 +58,15 @@ export class LoginComponent implements OnInit {
       .then(() => {
         setTimeout(() => {
           this.showLoadingGif = false;
-          Toastify({
+          Swal.fire({
+            title: 'Éxito',
             text: '¡Usuario logeado correctamente! ',
-            duration: 4000,
-            close: true,
-            gravity: 'top',
-            position: 'center',
-            backgroundColor: 'linear-gradient(to right, #4caf50, #81c784)',
-          }).showToast();
+            icon: 'success',
+            background: '#fff',
+            backdrop: 'rgba(0, 123, 0, 0)',
+            timer: 4000,
+            timerProgressBar: true,
+          });
           this.router.navigate(['/home']);
         }, 4000);
       })
@@ -74,15 +74,15 @@ export class LoginComponent implements OnInit {
         this.msjError = error;
         this.contError += 1;
 
-        Toastify({
+        Swal.fire({
+          title: 'Error',
           text: this.msjError,
-          duration: 4000,
-          close: true,
-          gravity: 'top',
-          position: 'center',
-          backgroundColor: 'linear-gradient(to right, #ff5f6d, #ffc371)',
-        }).showToast();
-
+          icon: 'error',
+          background: '#fff',
+          backdrop: 'rgba(0,0,123,0.3)',
+          timer: 4000,
+          timerProgressBar: true,
+        });
         if (this.contError == this.limitErrors) {
           this.router.navigate(['/error'], {
             state: { error: 'Llegaste al límite de intentos' },
