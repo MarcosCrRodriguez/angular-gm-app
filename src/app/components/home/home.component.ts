@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     if (this.usuarioLogueado) {
       this.router.navigate(['juegos', 'ahorcado']);
     } else {
-      this.authService.mustrarMensajeError();
+      this.authService.mostrarMsjAdvertencia();
     }
   }
 
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
     if (this.usuarioLogueado) {
       this.router.navigate(['juegos', 'mayor-menor']);
     } else {
-      this.authService.mustrarMensajeError();
+      this.authService.mostrarMsjAdvertencia();
     }
   }
 
@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     if (this.usuarioLogueado) {
       this.router.navigate(['juegos', 'preguntados']);
     } else {
-      this.authService.mustrarMensajeError();
+      this.authService.mostrarMsjAdvertencia();
     }
   }
 
@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     if (this.usuarioLogueado) {
       this.router.navigate(['juegos', 'generala']);
     } else {
-      this.authService.mustrarMensajeError();
+      this.authService.mostrarMsjAdvertencia();
     }
   }
 }

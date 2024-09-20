@@ -208,15 +208,14 @@ export class AuthService {
     return this.msjError;
   }
 
-  mustrarMensajeError() {
+  mostrarMsjAdvertencia() {
     Swal.fire({
-      title: 'Error',
-      text: 'Primero debe logearse / registrarse para poder ingresar a los juegos',
-      icon: 'error',
-      background: '#fff',
-      backdrop: 'rgba(0,0,123,0.3)',
-      timer: 4000,
-      timerProgressBar: true,
+      title: 'Acceso restringido',
+      text: 'Necesitas iniciar sesión para acceder a esta sección.',
+      icon: 'warning',
+      confirmButtonText: 'Ir al login',
+    }).then(() => {
+      this.router.navigate(['/login']);
     });
   }
 }
