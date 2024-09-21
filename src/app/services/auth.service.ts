@@ -228,7 +228,7 @@ export class AuthService {
       title: titulo,
       text: texto,
       icon: 'error',
-      confirmButtonText: 'Ir al login',
+      confirmButtonText: 'Okey',
     }).then(() => {
       this.router.navigate(['/error'], {
         state: { error: texto },
