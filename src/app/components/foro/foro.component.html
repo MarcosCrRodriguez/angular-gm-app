@@ -51,6 +51,9 @@
         >
           <p class="usuario">
             <strong>{{ mensaje.usuario }}</strong>
+            <span style="float: right">{{
+              formatDate(mensaje.timestamp)
+            }}</span>
           </p>
           <p class="texto-msj">{{ mensaje.texto }}</p>
         </div>

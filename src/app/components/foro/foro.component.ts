@@ -59,6 +59,11 @@ export class ForoComponent implements OnInit {
     });
   }
 
+  formatDate(timestamp: any): string {
+    const date = new Date(timestamp.seconds * 1000);
+    return date.toLocaleString();
+  }
+
   async enviarMensaje(): Promise<void> {
     const usuario = this.authService.getUsuarioLogueado();
     const mensaje = this.nuevoMensaje.trim();
