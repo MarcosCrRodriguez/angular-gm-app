@@ -8,6 +8,7 @@ import {
   signOut,
   User,
   updatePassword as firebaseUpdatePassword,
+  authState,
 } from '@angular/fire/auth';
 import {
   addDoc,
@@ -39,6 +40,7 @@ export class AuthService {
   ) {
     // Monitorea el estado de autenticación
     onAuthStateChanged(this.auth, (user) => {
+      // console.log('Estado de autenticación cambiado:', user);
       this.usuarioLogueado.next(user);
     });
   }
@@ -47,6 +49,7 @@ export class AuthService {
     return signInWithEmailAndPassword(this.auth, email, password)
       .then((res) => {
         this.logUserActivity(res.user.email!);
+        localStorage.setItem('user', JSON.stringify(res.user));
         // this.router.navigate(['/home']);
       })
       .catch((error) => {
@@ -67,6 +70,7 @@ export class AuthService {
   }
 
   logout(): Promise<void> {
+    localStorage.removeItem('user');
     return signOut(this.auth);
   }
 
@@ -216,6 +220,19 @@ export class AuthService {
       confirmButtonText: 'Ir al login',
     }).then(() => {
       this.router.navigate(['/login']);
+    });
+  }
+
+  mostrarMsjError(titulo: string, texto: string) {
+    Swal.fire({
+      title: titulo,
+      text: texto,
+      icon: 'error',
+      confirmButtonText: 'Ir al login',
+    }).then(() => {
+      this.router.navigate(['/error'], {
+        state: { error: texto },
+      });
     });
   }
 }

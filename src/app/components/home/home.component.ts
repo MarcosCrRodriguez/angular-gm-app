@@ -13,13 +13,12 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent implements OnInit {
   public usuarioLogueado: any = null;
-
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.authService.usuarioLogueado$.subscribe((user) => {
       this.usuarioLogueado = user;
-      console.log(`${this.usuarioLogueado} esta en el home (⌐■_■)`);
+      console.log(`${this.usuarioLogueado.email} esta en el home (⌐■_■)`);
     });
 
     window.scrollTo(0, 0);

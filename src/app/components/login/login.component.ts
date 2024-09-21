@@ -89,11 +89,9 @@ export class LoginComponent implements OnInit {
           });
         }
 
-        // Limpiar los campos de entrada
         this.userIngresado = '';
         this.claveIngresado = '';
 
-        // Asegurarse de que el GIF no se quede visible en caso de error
         this.showLoadingGif = false;
       });
   }

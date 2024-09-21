@@ -8,7 +8,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { PuntajeComponent } from './components/puntaje/puntaje.component';
 import { ForoComponent } from './components/foro/foro.component';
-import { AuthGuardService } from './services/auth-guard.service';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,16 +17,20 @@ export const routes: Routes = [
     path: 'juegos',
     loadChildren: () =>
       import('./modules/juegos/juegos.module').then((m) => m.JuegosModule),
-    canLoad: [AuthGuardService],
+    canActivate: [authGuard],
   },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   {
     path: 'ranking',
     component: PuntajeComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [authGuard],
   },
-  { path: 'foro', component: ForoComponent, canActivate: [AuthGuardService] },
+  {
+    path: 'foro',
+    component: ForoComponent,
+    canActivate: [authGuard],
+  },
   { path: 'quien-soy', component: QuienSoyComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'error', component: ErrorComponent },
