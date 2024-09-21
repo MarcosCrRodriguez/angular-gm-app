@@ -69,7 +69,6 @@ export class ForoComponent implements OnInit {
     const mensaje = this.nuevoMensaje.trim();
 
     if (mensaje.length > 200) {
-      // Muestra mensaje de error con Toastify
       Swal.fire({
         title: 'Error',
         text: 'Demasiados caracteres. ¡Máximo 200!',

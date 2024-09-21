@@ -58,7 +58,7 @@ export class AhorcadoComponent implements OnInit {
     if (this.palabras.length > 0) {
       const indice = Math.floor(Math.random() * this.palabras.length);
       this.palabraActual = this.palabras[indice];
-
+      // console.log(`Palabra actual: ${this.palabraActual}`);
       this.palabras.splice(indice, 1);
 
       this.palabraOculta = this.palabraActual.split('').map(() => '_');
@@ -90,7 +90,6 @@ export class AhorcadoComponent implements OnInit {
     }
 
     if (!this.palabraOculta.includes('_')) {
-      // this.mostrarUltimaImagen();
       this.puntuacion += this.palabraActual.length;
       this.rondaTerminada = true;
       this.rondaGanda = true;

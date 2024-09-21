@@ -69,7 +69,9 @@ export class MayorMenorComponent implements OnInit {
       this.cartaActual = this.mazoCompleto.shift();
       this.cartaSiguiente = this.mazoCompleto.shift();
       this.cartasRestantes -= 2;
-      // console.log(`Cartas restantes: ${this.cartasRestantes}`);
+      // const valorSiguiente = this.obtenerValorCarta(this.cartaSiguiente.value);
+      // console.log(`Carta siguiente: ${valorSiguiente}`);
+
       this.cargando = false;
     }
   }
@@ -77,8 +79,9 @@ export class MayorMenorComponent implements OnInit {
   sacarCarta(): void {
     if (this.mazoCompleto.length > 0) {
       this.cartaSiguiente = this.mazoCompleto.shift();
+      // const valorSiguiente = this.obtenerValorCarta(this.cartaSiguiente.value);
+      // console.log(`Carta siguiente: ${valorSiguiente}`);
       this.cartasRestantes--;
-      // console.log(`Cartas restantes: ${this.cartasRestantes}`);
       if (this.cartasRestantes === 0 && this.usuarioLogueado?.email) {
         this.authService.scoreJuegos(
           this.usuarioLogueado.email,
