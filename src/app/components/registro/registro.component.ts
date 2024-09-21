@@ -102,15 +102,7 @@ export class RegistroComponent implements OnInit {
           ) {
             console.log('Se cagragon los datos opcionales correctamente');
           } else {
-            Swal.fire({
-              title: 'Error',
-              text: 'Algunos datos opcionales no fueron proporcionados',
-              icon: 'error',
-              background: '#fff',
-              backdrop: 'rgba(0,0,123,0.3)',
-              timer: 4000,
-              timerProgressBar: true,
-            });
+            console.log('Algunos datos opcionales no fueron proporcionados');
           }
           this.authService.optionalRegisterData(
             this.userIngresado,
@@ -144,7 +136,7 @@ export class RegistroComponent implements OnInit {
             timer: 4000,
             timerProgressBar: true,
           });
-
+          this.showLoadingGif = false;
           this.userIngresado = '';
           this.claveIngresado = '';
           this.nombreIngresado = '';

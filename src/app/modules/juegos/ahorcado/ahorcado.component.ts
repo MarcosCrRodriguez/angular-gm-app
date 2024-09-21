@@ -48,7 +48,7 @@ export class AhorcadoComponent implements OnInit {
       .obtenerPalabras(this.maxPalabras)
       .subscribe((palabras) => {
         this.palabras = palabras;
-        // console.log(this.palabras);
+        // console.log('Palabras:', this.palabras);
       });
 
     window.scrollTo(0, 0);
@@ -139,7 +139,7 @@ export class AhorcadoComponent implements OnInit {
 
   chooseAdjectives() {
     this.ahorcadoService
-      .getWordsAnjectives(this.maxPalabras)
+      .getWordsAdjectives(this.maxPalabras)
       .subscribe((palabras) => {
         this.palabras = palabras;
         this.tipoPalabras = 'English: Adjectives';
