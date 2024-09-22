@@ -19,9 +19,20 @@
           </tr>
         </thead>
         <tbody class="body-tabla">
-          <tr *ngFor="let item of tablaGenerala">
+          <tr
+            *ngFor="let item of tablaGenerala; let i = index"
+            (click)="seleccionarJuego(i)"
+            [class.selected]="item.selected"
+            [class.disabled]="item.disabled"
+          >
             <td>{{ item.juegos }}</td>
-            <td>{{ item.puntosJugador }}</td>
+            <td>
+              <!-- Mostrar el puntaje o la "X" después de evaluar -->
+              <span *ngIf="item.puntosJugador !== ''">{{
+                item.puntosJugador
+              }}</span>
+              <span *ngIf="item.puntosJugador === '' && item.disabled">X</span>
+            </td>
             <td>{{ item.puntosIA }}</td>
           </tr>
         </tbody>
