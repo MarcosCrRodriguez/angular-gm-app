@@ -32,7 +32,11 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   { path: 'quien-soy', component: QuienSoyComponent },
-  { path: 'profile', component: ProfileComponent },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [authGuard],
+  },
   { path: 'error', component: ErrorComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
