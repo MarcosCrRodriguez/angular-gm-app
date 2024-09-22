@@ -8,49 +8,67 @@
 </div>
 <div class="generala-bg">
   <!-- Seccion de la generala -->
-</div>
-<div class="como-jugar">
-  <div class="card card-como-jugar">
-    <div class="card-header">Como Jugar</div>
-    <div class="card-info">
-      <p class="exp-general">
-        La Generala es un juego de dados que se juega con cinco dados y un
-        marcador. El objetivo es sumar la mayor cantidad de puntos combinando
-        los resultados de los dados en diversas categorías, siendo la jugada más
-        alta la "Generala", que consiste en sacar cinco dados iguales. Las
-        reglas básicas son:
-      </p>
-      <p class="info-pto">
-        1- En cada turno, tienes hasta tres tiradas para obtener la mejor
-        combinación de dados. En cada tirada, puedes apartar algunos dados y
-        volver a lanzar los otros.
-      </p>
-      <p class="info-pto">
-        2- Después de tus tiradas, debes seleccionar una combinación de las
-        siguientes:
-      </p>
-      <p class="letra-pto">
-        a. 1s, 2s, 3s, 4s, 5s, 6s: Se anotan los valores de los dados.
-      </p>
-      <p class="letra-pto">b. Escalera: Una secuencia de dados consecutivos.</p>
-      <p class="letra-pto">c. Full: Tres dados de un valor y dos de otro.</p>
-      <p class="letra-pto">d. Poker: Cuatro dados iguales.</p>
-      <p class="letra-pto">
-        e. Generala: Cinco dados iguales (la jugada más alta).
-      </p>
-      <p class="letra-pto">
-        f. Doble Generala: Una segunda Generala, que otorga un puntaje adicional
-        si se logra.
-      </p>
-      <p class="info-pto">
-        3- El puntaje final se obtiene sumando los puntos de las distintas
-        combinaciones realizadas a lo largo de la partida.
-      </p>
-      <p class="info-pto">
-        4- El juego termina cuando todos los jugadores han llenado todas las
-        categorías en su marcador, y el jugador con la mayor cantidad de puntos
-        es el ganador.
-      </p>
+  <div class="generala-game">
+    <h2>Generala</h2>
+    <button (click)="lanzarDados()">Lanzar Dados</button>
+
+    <div *ngIf="resultados.length > 0">
+      <h3>Resultados:</h3>
+      <div class="dice-container">
+        <img
+          *ngFor="let dado of resultados"
+          [src]="'assets/dice' + dado + '.png'"
+          [alt]="'Dado ' + dado"
+          class="dice-image"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="como-jugar">
+    <div class="card card-como-jugar">
+      <div class="card-header">Como Jugar</div>
+      <div class="card-info">
+        <p class="exp-general">
+          La Generala es un juego de dados que se juega con cinco dados y un
+          marcador. El objetivo es sumar la mayor cantidad de puntos combinando
+          los resultados de los dados en diversas categorías, siendo la jugada
+          más alta la "Generala", que consiste en sacar cinco dados iguales. Las
+          reglas básicas son:
+        </p>
+        <p class="info-pto">
+          1- En cada turno, tienes hasta tres tiradas para obtener la mejor
+          combinación de dados. En cada tirada, puedes apartar algunos dados y
+          volver a lanzar los otros.
+        </p>
+        <p class="info-pto">
+          2- Después de tus tiradas, debes seleccionar una combinación de las
+          siguientes:
+        </p>
+        <p class="letra-pto">
+          a. 1s, 2s, 3s, 4s, 5s, 6s: Se anotan los valores de los dados.
+        </p>
+        <p class="letra-pto">
+          b. Escalera: Una secuencia de dados consecutivos.
+        </p>
+        <p class="letra-pto">c. Full: Tres dados de un valor y dos de otro.</p>
+        <p class="letra-pto">d. Poker: Cuatro dados iguales.</p>
+        <p class="letra-pto">
+          e. Generala: Cinco dados iguales (la jugada más alta).
+        </p>
+        <p class="letra-pto">
+          f. Doble Generala: Una segunda Generala, que otorga un puntaje
+          adicional si se logra.
+        </p>
+        <p class="info-pto">
+          3- El puntaje final se obtiene sumando los puntos de las distintas
+          combinaciones realizadas a lo largo de la partida.
+        </p>
+        <p class="info-pto">
+          4- El juego termina cuando todos los jugadores han llenado todas las
+          categorías en su marcador, y el jugador con la mayor cantidad de
+          puntos es el ganador.
+        </p>
+      </div>
     </div>
   </div>
 </div>
