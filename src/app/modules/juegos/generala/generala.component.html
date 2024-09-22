@@ -8,7 +8,34 @@
 </div>
 <div class="generala-bg">
   <!-- Seccion de la generala -->
-  <div class="generala-game">
+  <div class="juego-generala">
+    <h2>{{ turnoJugador ? "Tu Turno" : "Turno de la Máquina" }}</h2>
+
+    <div class="dados-container">
+      <img
+        *ngFor="let dado of cubilete.dados; let i = index"
+        [src]="'assets/dice' + dado.valor + '.png'"
+        alt="Dado"
+        (click)="toggleGuardarDado(i)"
+        [class.guardar]="dado.guardado"
+      />
+    </div>
+
+    <button [disabled]="!puedeTirar()" (click)="lanzarDados()">
+      Tirar Dados
+    </button>
+
+    <button [disabled]="!puedeTerminarTurno()" (click)="terminarTurno()">
+      Terminar Turno
+    </button>
+
+    <p *ngIf="!puedeTirar() && turnoJugador">
+      Has realizado las 3 tiradas, espera a terminar tu turno...
+    </p>
+    <p *ngIf="lanzandoMaquina">La máquina está tirando...</p>
+  </div>
+
+  <!-- <div class="generala-game">
     <h2>Generala</h2>
     <button (click)="lanzarDados()">Lanzar Dados</button>
 
@@ -23,7 +50,7 @@
         />
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="como-jugar">
     <div class="card card-como-jugar">
       <div class="card-header">Como Jugar</div>

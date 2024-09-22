@@ -51,23 +51,28 @@
   font-family: "Grenze Gotisch", serif;
 }
 
-.generala-game {
+.juego-generala {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.dice-container {
+.dados-container {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
 
-.dice-image {
+.dados-container img {
   width: 50px;
   height: 50px;
   margin: 0 5px;
   background: #141414;
+}
+
+.guardar {
+  transform: rotate(90deg);
+  opacity: 0.5;
 }
 
 .card-como-jugar {
