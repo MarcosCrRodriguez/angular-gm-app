@@ -17,6 +17,19 @@ export class PuntajeComponent implements OnInit {
   public rankingGenerala: any;
   public usuarioLogueado: any = null;
   public isLoading: boolean = true;
+  public tablaGenerala = [
+    { juegos: '1', puntosJugador: '', puntosIA: '' },
+    { juegos: '2', puntosJugador: '', puntosIA: '' },
+    { juegos: '3', puntosJugador: '', puntosIA: '' },
+    { juegos: '4', puntosJugador: '', puntosIA: '' },
+    { juegos: '5', puntosJugador: '', puntosIA: '' },
+    { juegos: '6', puntosJugador: '', puntosIA: '' },
+    { juegos: 'Escalera', puntosJugador: '', puntosIA: '' },
+    { juegos: 'Full', puntosJugador: '', puntosIA: '' },
+    { juegos: 'Poker', puntosJugador: '', puntosIA: '' },
+    { juegos: 'Generala', puntosJugador: '', puntosIA: '' },
+    { juegos: 'GD', puntosJugador: '', puntosIA: '' },
+  ];
 
   constructor(private authService: AuthService, private router: Router) {}
 

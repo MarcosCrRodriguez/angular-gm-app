@@ -14,14 +14,27 @@ import { Cubilete } from '../../../models/cubilete';
 })
 export class GeneralaComponent implements OnInit {
   public usuarioLogueado: any = null;
-  public cubilete: Cubilete = new Cubilete(); // Inicializamos con 5 dados
-  public resultados: number[] = [1, 1, 1, 1, 1]; // Iniciamos con 5 dados
+  public cubilete: Cubilete = new Cubilete();
+  public resultados: number[] = [1, 1, 1, 1, 1];
   public tiradasJugador: number = 0;
   public tiradasMaquina: number = 0;
   public turnoJugador: boolean = true;
   public maxTiradas: number = 3;
   public lanzandoMaquina: boolean = false;
   public turnoFinalizado: boolean = false;
+  public tablaGenerala = [
+    { juegos: '1', puntosJugador: '', puntosIA: '' },
+    { juegos: '2', puntosJugador: '', puntosIA: '' },
+    { juegos: '3', puntosJugador: '', puntosIA: '' },
+    { juegos: '4', puntosJugador: '', puntosIA: '' },
+    { juegos: '5', puntosJugador: '', puntosIA: '' },
+    { juegos: '6', puntosJugador: '', puntosIA: '' },
+    { juegos: 'Escalera', puntosJugador: '', puntosIA: '' },
+    { juegos: 'Full', puntosJugador: '', puntosIA: '' },
+    { juegos: 'Poker', puntosJugador: '', puntosIA: '' },
+    { juegos: 'Generala', puntosJugador: '', puntosIA: '' },
+    { juegos: 'GD', puntosJugador: '', puntosIA: '' },
+  ];
 
   constructor(
     private authService: AuthService,
@@ -96,22 +109,23 @@ export class GeneralaComponent implements OnInit {
       this.turnoFinalizado = false; // Resetear el estado del turno finalizado
 
       // Aquí habilitamos los dados nuevamente
-      this.cubilete.resetGuardado(); // Resetear estado de guardado
+      this.cubilete.reset(); // Resetear estado de guardado
 
       console.log('Tu turno');
     }
   }
 
   async simularTiradasMaquina() {
+    this.cubilete.reset();
     this.lanzandoMaquina = true; // Deshabilitar interacción del jugador
     for (let i = 0; i < this.maxTiradas; i++) {
-      await this.esperar(2500);
+      await this.esperar(3000);
       await this.tirarDados(); // Asegura que la tirada de la máquina espera a que termine
       console.log(`Tirada de la máquina ${i + 1}`);
     }
     console.log('La máquina ha terminado sus tiradas');
 
-    await this.esperar(2500);
+    await this.esperar(3000);
     this.lanzandoMaquina = false; // Habilitar interacción del jugador después de que la máquina termine
   }
 
@@ -138,6 +152,7 @@ export class GeneralaComponent implements OnInit {
   esperar(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
+
   toggleGuardarDado(index: number): void {
     if (this.turnoJugador && this.tiradasJugador > 0) {
       // Solo permite guardar si ya se ha tirado

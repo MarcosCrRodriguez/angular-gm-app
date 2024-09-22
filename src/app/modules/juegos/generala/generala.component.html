@@ -9,30 +9,59 @@
 <div class="generala-bg">
   <!-- Seccion de la generala -->
   <div class="juego-generala">
-    <h2>{{ turnoJugador ? "Tu Turno" : "Turno de la Máquina" }}</h2>
-
-    <div class="dados-container">
-      <img
-        *ngFor="let dado of cubilete.dados; let i = index"
-        [src]="'assets/dice' + dado.valor + '.png'"
-        alt="Dado"
-        (click)="toggleGuardarDado(i)"
-        [class.guardar]="dado.guardado"
-      />
+    <div class="generala-left">
+      <table class="generala-table">
+        <thead class="header-tabla">
+          <tr>
+            <th>Juegos</th>
+            <th>Yo</th>
+            <th>IA</th>
+          </tr>
+        </thead>
+        <tbody class="body-tabla">
+          <tr *ngFor="let item of tablaGenerala">
+            <td>{{ item.juegos }}</td>
+            <td>{{ item.puntosJugador }}</td>
+            <td>{{ item.puntosIA }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+    <div class="generala-right">
+      <h2>{{ turnoJugador ? "Tu Turno" : "Turno IA" }}</h2>
 
-    <button [disabled]="!puedeTirar()" (click)="lanzarDados()">
-      Tirar Dados
-    </button>
+      <div class="dados-container">
+        <img
+          *ngFor="let dado of cubilete.dados; let i = index"
+          [src]="'assets/dice' + dado.valor + '.png'"
+          alt="Dado"
+          (click)="toggleGuardarDado(i)"
+          [class.guardar]="dado.guardado"
+        />
+      </div>
 
-    <button [disabled]="!puedeTerminarTurno()" (click)="terminarTurno()">
-      Terminar Turno
-    </button>
+      <div class="btn-right">
+        <button [disabled]="!puedeTirar()" (click)="lanzarDados()">
+          Tirar Dados
+        </button>
 
-    <p *ngIf="!puedeTirar() && turnoJugador">
-      Has realizado las 3 tiradas, espera a terminar tu turno...
-    </p>
-    <p *ngIf="lanzandoMaquina">La máquina está tirando...</p>
+        <button [disabled]="!puedeTerminarTurno()" (click)="terminarTurno()">
+          Terminar Turno
+        </button>
+      </div>
+      <div>
+        <div class="msj-final-turno" *ngIf="puedeTirar() && turnoJugador">
+          <p>Turno jugador...</p>
+        </div>
+        <div class="msj-final-turno" *ngIf="!puedeTirar() && turnoJugador">
+          <p>Limite de tiradas alcanzado...</p>
+          <p></p>
+        </div>
+        <div class="msj-final-turno">
+          <p *ngIf="lanzandoMaquina">La IA está tirando...</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- <div class="generala-game">

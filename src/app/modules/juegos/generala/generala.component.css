@@ -60,19 +60,122 @@
 .dados-container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   margin-top: 10px;
+  margin-bottom: 16px;
 }
 
 .dados-container img {
   width: 50px;
   height: 50px;
-  margin: 0 5px;
+  margin: 10px 5px;
+  border: 2px solid #141414;
   background: #141414;
+  transition: 0.4s;
+  cursor: pointer;
 }
 
 .guardar {
   transform: rotate(90deg);
   opacity: 0.5;
+}
+
+.btn-right {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.btn-right button {
+  margin-bottom: 12px;
+}
+
+.generala-left,
+.generala-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 70px;
+  font-family: "Grenze Gotisch", serif;
+  color: #fff;
+}
+
+.generala-left {
+  margin-right: 3%;
+}
+
+.generala-right {
+  margin-left: 3%;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
+    -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
+}
+
+.generala-left h3,
+.generala-right h3 {
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: 32px;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
+    -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
+}
+
+.generala-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-tabla {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.body-tabla {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.generala-table {
+  width: 70%;
+  border-collapse: collapse;
+  background-color: #2c2c2c;
+  border: 3px solid #1a1a1a;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.generala-table th,
+.generala-table td {
+  padding: 12px 20px;
+  text-align: center;
+  color: white;
+  border: 2px solid #1a1a1a;
+}
+
+.generala-table th {
+  background-color: #2a2a2a;
+}
+
+.generala-table td {
+  background-color: #333;
+}
+
+.generala-table tr:first-child th {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.generala-table tr:last-child td {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.msj-final-turno {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  font-size: 18px;
 }
 
 .card-como-jugar {
@@ -127,6 +230,11 @@
 
 .title-app:hover {
   transform: scale(1.04);
+  transition: 0.4s;
+}
+
+.dados-container img:hover {
+  transform: scale(1.05);
   transition: 0.4s;
 }
 
@@ -191,6 +299,23 @@
     width: 96%;
     margin-left: 2%;
     margin-right: 2%;
+  }
+
+  .header-tabla {
+    font-size: 20px;
+  }
+
+  .body-tabla {
+    font-size: 18px;
+  }
+
+  .generala-table th,
+  .generala-table td {
+    padding: 10px 14px;
+  }
+
+  .msj-final-turno {
+    font-size: 14px;
   }
 
   .card-como-jugar {

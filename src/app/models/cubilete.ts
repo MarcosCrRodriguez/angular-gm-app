@@ -58,11 +58,4 @@ export class Cubilete {
       dado.guardado = false;
     });
   }
-
-  // Método para resetear el estado de guardado de los dados
-  resetGuardado(): void {
-    this.dados.forEach((dado) => {
-      dado.guardado = false; // Habilitar todos los dados
-    });
-  }
 }
