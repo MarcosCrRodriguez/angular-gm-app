@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AhorcadoService } from '../../../services/ahorcado.service';
 import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import { DiceService } from '../../../services/dice.service';
-import { Observer } from 'rxjs';
 import { Cubilete } from '../../../models/cubilete';
 import { juegos } from './../../../models/juegos-generala';
 
@@ -28,71 +26,91 @@ export class GeneralaComponent implements OnInit {
       juegos: 'Uno',
       puntosJugador: '',
       puntosIA: '',
-      disabled: false,
+      disabledJugador: false,
+      disabledIA: false,
       selected: false,
+      selectedIA: false,
     },
     {
       juegos: 'Dos',
       puntosJugador: '',
       puntosIA: '',
-      disabled: false,
+      disabledJugador: false,
+      disabledIA: false,
       selected: false,
+      selectedIA: false,
     },
     {
       juegos: 'Tres',
       puntosJugador: '',
       puntosIA: '',
-      disabled: false,
+      disabledJugador: false,
+      disabledIA: false,
       selected: false,
+      selectedIA: false,
     },
     {
       juegos: 'Cuatro',
       puntosJugador: '',
       puntosIA: '',
-      disabled: false,
+      disabledJugador: false,
+      disabledIA: false,
       selected: false,
+      selectedIA: false,
     },
     {
       juegos: 'Cinco',
       puntosJugador: '',
       puntosIA: '',
-      disabled: false,
+      disabledJugador: false,
+      disabledIA: false,
       selected: false,
+      selectedIA: false,
     },
     {
       juegos: 'Seis',
       puntosJugador: '',
       puntosIA: '',
-      disabled: false,
+      disabledJugador: false,
+      disabledIA: false,
       selected: false,
+      selectedIA: false,
     },
     {
       juegos: 'Escalera',
       puntosJugador: '',
       puntosIA: '',
-      disabled: false,
+      disabledJugador: false,
+      disabledIA: false,
       selected: false,
+      selectedIA: false,
     },
     {
       juegos: 'Full',
       puntosJugador: '',
       puntosIA: '',
-      disabled: false,
+      disabledJugador: false,
+      disabledIA: false,
       selected: false,
+      selectedIA: false,
     },
     {
       juegos: 'Poker',
       puntosJugador: '',
       puntosIA: '',
-      disabled: false,
+      disabledJugador: false,
+      disabledIA: false,
       selected: false,
+      selectedIA: false,
     },
     {
       juegos: 'Generala',
       puntosJugador: '',
       puntosIA: '',
-      disabled: false,
+      disabledJugador: false,
+      disabledIA: false,
       selected: false,
+      selectedIA: false,
     },
     // {
     //   juegos: 'GD',
@@ -104,6 +122,7 @@ export class GeneralaComponent implements OnInit {
   ];
   public juegoSeleccionado: number | null = null;
   public juegoYaSeleccionado: boolean = false;
+  public juegosDisponibles = juegos.juegos;
   public juegos = juegos;
 
   constructor(
@@ -123,7 +142,7 @@ export class GeneralaComponent implements OnInit {
   lanzarDados() {
     if (this.puedeTirar()) {
       this.cubilete.tirarDados(this.diceService).then(() => {
-        this.resultados = this.cubilete.dados.map((dado) => dado.valor); // Asegura que siempre uses los dados actuales
+        this.resultados = this.cubilete.dados.map((dado) => dado.valor);
         if (this.turnoJugador) {
           this.tiradasJugador++;
           console.log(`Jugador ha tirado ${this.tiradasJugador} veces`);
@@ -133,19 +152,21 @@ export class GeneralaComponent implements OnInit {
   }
 
   seleccionarJuego(index: number) {
-    // Aseguramos que el jugador ya haya lanzado al menos una vez, y que esté en su turno
+    // aseguramos que el jugador ya haya lanzado al menos una vez, y que esté en su turno
     if (
       this.tiradasJugador > 0 &&
       this.turnoJugador &&
       !this.juegoYaSeleccionado &&
-      !this.tablaGenerala[index].disabled // Verifica si el juego ya está bloqueado
+      // verifica si el juego ya está bloqueado
+      !this.tablaGenerala[index].disabledJugador
     ) {
       if (this.juegoSeleccionado === null) {
         this.juegoSeleccionado = index;
-        this.juegoYaSeleccionado = true; // Marcar que ya seleccionó un juego
+        // marcar que ya seleccionó un juego
+        this.juegoYaSeleccionado = true;
         console.log('Juego seleccionado: ' + this.juegoSeleccionado);
         this.tablaGenerala[index].selected = true;
-        this.evaluarJuego(this.tablaGenerala[index].juegos, index); // Evaluamos el juego
+        this.evaluarJuego(this.tablaGenerala[index].juegos, index);
       }
     } else {
       console.log(
@@ -165,11 +186,13 @@ export class GeneralaComponent implements OnInit {
         this.tablaGenerala[index].puntosJugador =
           resultado.puntaje?.toString() || '';
       } else {
-        this.tablaGenerala[index].puntosJugador = ''; // No tiene puntaje, se muestra "X"
+        // Si no tiene puntaje, asignar 0
+        this.tablaGenerala[index].puntosJugador = '0';
       }
 
-      this.tablaGenerala[index].disabled = true; // Deshabilita la fila después de evaluar
-      this.juegoSeleccionado = null; // Permitir seleccionar otro juego después
+      // Deshabilita la fila después de evaluar
+      this.tablaGenerala[index].disabledJugador = true;
+      this.juegoSeleccionado = null;
     }
   }
 
@@ -179,7 +202,7 @@ export class GeneralaComponent implements OnInit {
   }
 
   puedeTirar(): boolean {
-    // Deshabilitar botón si la máquina está lanzando, si ya se seleccionó un juego, o si se alcanzó el límite de tiradas
+    // deshabilitar botón si la máquina está lanzando, si ya se seleccionó un juego, o si se alcanzó el límite de tiradas
     if (this.lanzandoMaquina || this.juegoYaSeleccionado) {
       return false;
     }
@@ -197,12 +220,12 @@ export class GeneralaComponent implements OnInit {
   }
 
   inicializarDados() {
-    this.cubilete.reset(); // Reseteamos los dados a 1 y no guardados
+    this.cubilete.reset();
   }
 
   async pasarTurno() {
     if (this.turnoJugador) {
-      this.juegoYaSeleccionado = false; // Resetear selección de juego al pasar turno
+      this.juegoYaSeleccionado = false;
       this.turnoJugador = false;
       this.tiradasMaquina = 0;
       console.log('Turno de la máquina');
@@ -211,23 +234,102 @@ export class GeneralaComponent implements OnInit {
       this.tiradasJugador = 0;
       this.inicializarDados();
       this.turnoFinalizado = false;
-      this.juegoSeleccionado = null; // Resetear juego seleccionado para el siguiente turno
+      this.juegoSeleccionado = null;
       console.log('Tu turno');
     }
   }
 
   async simularTiradasMaquina() {
     this.cubilete.reset();
-    this.lanzandoMaquina = true; // Deshabilitar interacción del jugador
-    for (let i = 0; i < this.maxTiradas; i++) {
-      await this.esperar(3000);
-      await this.tirarDados(); // Asegura que la tirada de la máquina espera a que termine
-      console.log(`Tirada de la máquina ${i + 1}`);
-    }
-    console.log('La máquina ha terminado sus tiradas');
+    this.lanzandoMaquina = true;
 
+    let juegoSeleccionado = null;
+
+    for (let i = 0; i < this.maxTiradas; i++) {
+      await this.esperar(3000); // Esperar antes de cada tirada
+      await this.tirarDados(); // Tirar los dados
+      console.log(
+        `Tirada de la máquina ${i + 1}:`,
+        this.cubilete.getResultados()
+      );
+
+      const posiblesJuegos = this.evaluarJuegosPosibles(
+        this.cubilete.getResultados()
+      );
+      console.log('Posibles juegos:', posiblesJuegos);
+
+      if (posiblesJuegos) {
+        if (i === this.maxTiradas - 1 || posiblesJuegos.puntaje >= 20) {
+          juegoSeleccionado = posiblesJuegos;
+          console.log(
+            `La máquina selecciona el juego: ${juegoSeleccionado.nombre} con ${juegoSeleccionado.puntaje} puntos`
+          );
+
+          this.anotarPuntosIA(
+            juegoSeleccionado.nombre,
+            juegoSeleccionado.puntaje
+          );
+
+          break; // Salir del bucle si se seleccionó un juego
+        }
+      }
+    }
+
+    if (!juegoSeleccionado) {
+      console.log(
+        'La máquina no encontró un juego adecuado. Asignando puntaje 0 a un juego no anotado.'
+      );
+
+      // Asigna 0 a uno de los juegos que no tenga puntos anotados
+      const juegoSinPuntos = this.tablaGenerala.find(
+        (j) => j.puntosIA === '' && !j.disabledIA
+      );
+
+      if (juegoSinPuntos) {
+        this.anotarPuntosIA(juegoSinPuntos.juegos, 0); // Anota 0
+      } else {
+        console.log('No hay juegos disponibles para anotar 0 puntos.');
+      }
+    }
+
+    console.log('La máquina ha terminado sus tiradas');
     await this.esperar(3000);
-    this.lanzandoMaquina = false; // Habilitar interacción del jugador después de que la máquina termine
+    this.lanzandoMaquina = false;
+  }
+
+  evaluarJuegosPosibles(
+    resultados: number[]
+  ): { nombre: string; puntaje: number } | null {
+    for (const juego of this.juegosDisponibles) {
+      const juegoYaSeleccionado = this.tablaGenerala.find(
+        (j) => j.juegos === juego.nombre && (j.selectedIA || j.disabledIA) // Incluir selectedIA
+      );
+
+      if (!juegoYaSeleccionado) {
+        const { esPosible, puntaje } = juego.evaluar(resultados);
+        if (esPosible && puntaje !== null) {
+          return { nombre: juego.nombre, puntaje };
+        }
+      }
+    }
+    return null;
+  }
+
+  anotarPuntosIA(nombreJuego: string, puntaje: number) {
+    const juegoEncontrado = this.tablaGenerala.find(
+      (juego) => juego.juegos === nombreJuego
+    );
+
+    if (juegoEncontrado) {
+      juegoEncontrado.puntosIA = puntaje.toString();
+      juegoEncontrado.selectedIA = true; // Marcar como seleccionado por la IA
+      juegoEncontrado.disabledIA = true; // Deshabilitar el juego para la IA
+      console.log(
+        `Puntos actualizados para la IA en el juego ${nombreJuego}: ${puntaje}`
+      );
+    } else {
+      console.log(`No se encontró el juego: ${nombreJuego}`);
+    }
   }
 
   tirarDados(): Promise<void> {
@@ -235,7 +337,7 @@ export class GeneralaComponent implements OnInit {
       this.diceService.rollDice(5).subscribe(
         (data) => {
           this.resultados = data.result.random.data;
-          // Actualizamos los dados en cubilete
+          // actualizamos los dados en cubilete
           this.resultados.forEach((valor, index) => {
             this.cubilete.dados[index].valor = valor;
           });
@@ -256,7 +358,7 @@ export class GeneralaComponent implements OnInit {
 
   toggleGuardarDado(index: number): void {
     if (this.turnoJugador && this.tiradasJugador > 0) {
-      // Solo permite guardar si ya se ha tirado
+      // solo permite guardar si ya se ha tirado
       this.cubilete.toggleGuardarDado(index);
     }
   }

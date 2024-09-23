@@ -23,7 +23,7 @@
             *ngFor="let item of tablaGenerala; let i = index"
             (click)="seleccionarJuego(i)"
             [class.selected]="item.selected"
-            [class.disabled]="item.disabled"
+            [class.disabled]="item.disabledJugador || lanzandoMaquina"
           >
             <td>{{ item.juegos }}</td>
             <td>
@@ -31,9 +31,15 @@
               <span *ngIf="item.puntosJugador !== ''">{{
                 item.puntosJugador
               }}</span>
-              <span *ngIf="item.puntosJugador === '' && item.disabled">X</span>
+              <span *ngIf="item.puntosJugador === '' && item.disabledJugador"
+                >X</span
+              >
             </td>
-            <td>{{ item.puntosIA }}</td>
+            <td>
+              <!-- Mostrar puntaje de la IA o X si está deshabilitado -->
+              <span *ngIf="item.puntosIA !== ''">{{ item.puntosIA }}</span>
+              <span *ngIf="item.puntosIA === '' && item.disabledIA">X</span>
+            </td>
           </tr>
         </tbody>
       </table>

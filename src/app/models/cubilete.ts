@@ -58,4 +58,9 @@ export class Cubilete {
       dado.guardado = false;
     });
   }
+
+  // Método para obtener los resultados actuales de los dados
+  getResultados(): number[] {
+    return this.dados.map((dado) => dado.valor);
+  }
 }

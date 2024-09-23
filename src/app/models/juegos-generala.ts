@@ -2,82 +2,25 @@ import { Juegos } from './juego-int';
 
 export const juegos: Juegos = {
   juegos: [
-    // Juego Uno (Sumar 1s)
     {
-      nombre: 'Uno',
+      nombre: 'Generala',
       evaluar: (
         resultados: number[]
       ): { esPosible: boolean; puntaje: number | null } => {
-        const suma = resultados.reduce(
-          (acumulador, dado) => (dado === 1 ? acumulador + 1 : acumulador),
-          0
+        const conteo: Record<number, number> = {};
+
+        resultados.forEach((valor) => {
+          conteo[valor] = (conteo[valor] || 0) + 1; // Incrementar el conteo del valor actual
+        });
+
+        // Verificar si hay un valor que se repita 5 veces (Generala)
+        const esPosible = Object.values(conteo).some(
+          (cantidad) => cantidad === 5
         );
-        return { esPosible: suma > 0, puntaje: suma };
-      },
-    },
-    // Juego Dos (Sumar 2s)
-    {
-      nombre: 'Dos',
-      evaluar: (
-        resultados: number[]
-      ): { esPosible: boolean; puntaje: number | null } => {
-        const suma = resultados.reduce(
-          (acumulador, dado) => (dado === 2 ? acumulador + 2 : acumulador),
-          0
-        );
-        return { esPosible: suma > 0, puntaje: suma };
-      },
-    },
-    // Juego Tres (Sumar 3s)
-    {
-      nombre: 'Tres',
-      evaluar: (
-        resultados: number[]
-      ): { esPosible: boolean; puntaje: number | null } => {
-        const suma = resultados.reduce(
-          (acumulador, dado) => (dado === 3 ? acumulador + 3 : acumulador),
-          0
-        );
-        return { esPosible: suma > 0, puntaje: suma };
-      },
-    },
-    // Juego Cuatro (Sumar 4s)
-    {
-      nombre: 'Cuatro',
-      evaluar: (
-        resultados: number[]
-      ): { esPosible: boolean; puntaje: number | null } => {
-        const suma = resultados.reduce(
-          (acumulador, dado) => (dado === 4 ? acumulador + 4 : acumulador),
-          0
-        );
-        return { esPosible: suma > 0, puntaje: suma };
-      },
-    },
-    // Juego Cinco (Sumar 5s)
-    {
-      nombre: 'Cinco',
-      evaluar: (
-        resultados: number[]
-      ): { esPosible: boolean; puntaje: number | null } => {
-        const suma = resultados.reduce(
-          (acumulador, dado) => (dado === 5 ? acumulador + 5 : acumulador),
-          0
-        );
-        return { esPosible: suma > 0, puntaje: suma };
-      },
-    },
-    // Juego Seis (Sumar 6s)
-    {
-      nombre: 'Seis',
-      evaluar: (
-        resultados: number[]
-      ): { esPosible: boolean; puntaje: number | null } => {
-        const suma = resultados.reduce(
-          (acumulador, dado) => (dado === 6 ? acumulador + 6 : acumulador),
-          0
-        );
-        return { esPosible: suma > 0, puntaje: suma };
+
+        const puntaje = esPosible ? 50 : 0;
+
+        return { esPosible, puntaje };
       },
     },
     {
@@ -152,27 +95,76 @@ export const juegos: Juegos = {
       },
     },
     {
-      nombre: 'Generala',
+      nombre: 'Uno',
       evaluar: (
         resultados: number[]
       ): { esPosible: boolean; puntaje: number | null } => {
-        const conteo: Record<number, number> = {};
-
-        resultados.forEach((valor) => {
-          conteo[valor] = (conteo[valor] || 0) + 1; // Incrementar el conteo del valor actual
-        });
-
-        // Verificar si hay un valor que se repita 5 veces (Generala)
-        const esPosible = Object.values(conteo).some(
-          (cantidad) => cantidad === 5
+        const suma = resultados.reduce(
+          (acumulador, dado) => (dado === 1 ? acumulador + 1 : acumulador),
+          0
         );
-
-        // Si es posible, retorna 100 puntos, de lo contrario 0
-        const puntaje = esPosible ? 100 : 0;
-
-        return { esPosible, puntaje };
+        return { esPosible: suma > 0, puntaje: suma };
       },
     },
-    // otros juegos generala
+    {
+      nombre: 'Dos',
+      evaluar: (
+        resultados: number[]
+      ): { esPosible: boolean; puntaje: number | null } => {
+        const suma = resultados.reduce(
+          (acumulador, dado) => (dado === 2 ? acumulador + 2 : acumulador),
+          0
+        );
+        return { esPosible: suma > 0, puntaje: suma };
+      },
+    },
+    {
+      nombre: 'Tres',
+      evaluar: (
+        resultados: number[]
+      ): { esPosible: boolean; puntaje: number | null } => {
+        const suma = resultados.reduce(
+          (acumulador, dado) => (dado === 3 ? acumulador + 3 : acumulador),
+          0
+        );
+        return { esPosible: suma > 0, puntaje: suma };
+      },
+    },
+    {
+      nombre: 'Cuatro',
+      evaluar: (
+        resultados: number[]
+      ): { esPosible: boolean; puntaje: number | null } => {
+        const suma = resultados.reduce(
+          (acumulador, dado) => (dado === 4 ? acumulador + 4 : acumulador),
+          0
+        );
+        return { esPosible: suma > 0, puntaje: suma };
+      },
+    },
+    {
+      nombre: 'Cinco',
+      evaluar: (
+        resultados: number[]
+      ): { esPosible: boolean; puntaje: number | null } => {
+        const suma = resultados.reduce(
+          (acumulador, dado) => (dado === 5 ? acumulador + 5 : acumulador),
+          0
+        );
+        return { esPosible: suma > 0, puntaje: suma };
+      },
+    },
+    {
+      nombre: 'Seis',
+      evaluar: (
+        resultados: number[]
+      ): { esPosible: boolean; puntaje: number | null } => {
+        const suma = resultados.reduce(
+          (acumulador, dado) => (dado === 6 ? acumulador + 6 : acumulador),
+          0
+        );
+        return { esPosible: suma > 0, puntaje: suma };
+      },
+    },
   ],
 };
