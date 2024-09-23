@@ -27,7 +27,7 @@
           >
             <td>{{ item.juegos }}</td>
             <td>
-              <!-- Mostrar el puntaje o la "X" después de evaluar -->
+              <!-- Mostrar el puntaje o un '0' después de evaluar -->
               <span *ngIf="item.puntosJugador !== ''">{{
                 item.puntosJugador
               }}</span>
@@ -36,7 +36,7 @@
               >
             </td>
             <td>
-              <!-- Mostrar puntaje de la IA o X si está deshabilitado -->
+              <!-- Mostrar puntaje de la IA o un '0' si está deshabilitado -->
               <span *ngIf="item.puntosIA !== ''">{{ item.puntosIA }}</span>
               <span *ngIf="item.puntosIA === '' && item.disabledIA">X</span>
             </td>
@@ -62,41 +62,28 @@
           Tirar Dados
         </button>
 
-        <button [disabled]="!puedeTerminarTurno()" (click)="terminarTurno()">
-          Terminar Turno
-        </button>
+        <div class="btn-terminar">
+          <button [disabled]="!puedeTerminarTurno()" (click)="terminarTurno()">
+            Terminar Turno
+          </button>
+        </div>
       </div>
       <div>
         <div class="msj-final-turno" *ngIf="puedeTirar() && turnoJugador">
-          <p>Turno jugador...</p>
+          <p>El jugador</p>
+          <p>está tirando..</p>
         </div>
         <div class="msj-final-turno" *ngIf="!puedeTirar() && turnoJugador">
-          <p>Limite de tiradas alcanzado...</p>
-          <p></p>
+          <p>Límite tiradas</p>
+          <p>alcanzado...</p>
         </div>
-        <div class="msj-final-turno">
-          <p *ngIf="lanzandoMaquina">La IA está tirando...</p>
+        <div class="msj-final-turno" *ngIf="lanzandoMaquina">
+          <p>La IA</p>
+          <p class="segunda-parte">está tirando..</p>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- <div class="generala-game">
-    <h2>Generala</h2>
-    <button (click)="lanzarDados()">Lanzar Dados</button>
-
-    <div *ngIf="resultados.length > 0">
-      <h3>Resultados:</h3>
-      <div class="dice-container">
-        <img
-          *ngFor="let dado of resultados"
-          [src]="'assets/dice' + dado + '.png'"
-          [alt]="'Dado ' + dado"
-          class="dice-image"
-        />
-      </div>
-    </div>
-  </div> -->
   <div class="como-jugar">
     <div class="card card-como-jugar">
       <div class="card-header">Como Jugar</div>

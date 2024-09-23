@@ -66,8 +66,8 @@
 }
 
 .dados-container img {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
   margin: 10px 5px;
   border: 2px solid #141414;
   background: #141414;
@@ -87,7 +87,13 @@
 }
 
 .btn-right button {
+  font-size: 24px;
+  font-weight: 500;
   margin-bottom: 12px;
+}
+
+.btn-terminar {
+  margin-bottom: 20px;
 }
 
 .generala-left,
@@ -109,6 +115,11 @@
   margin-left: 3%;
   text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
     -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
+}
+
+.generala-right h2 {
+  font-size: 42px;
+  font-weight: 600;
 }
 
 .generala-left h3,
@@ -175,7 +186,12 @@
   display: flex;
   justify-content: center;
   text-align: center;
-  font-size: 18px;
+  flex-direction: column;
+  font-size: 20px;
+}
+
+.msj-final-turno p {
+  margin-top: -20px;
 }
 
 .card-como-jugar {
@@ -301,6 +317,24 @@
     margin-right: 2%;
   }
 
+  .dados-container img {
+    width: 49px;
+    height: 49px;
+  }
+
+  .btn-right button {
+    font-size: 18px;
+  }
+
+  .generala-right h2 {
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  .btn-terminar {
+    margin-bottom: 12px;
+  }
+
   .header-tabla {
     font-size: 20px;
   }
@@ -315,7 +349,7 @@
   }
 
   .msj-final-turno {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .card-como-jugar {
