@@ -25,42 +25,42 @@ export class GeneralaComponent implements OnInit {
   public turnoFinalizado: boolean = false;
   public tablaGenerala = [
     {
-      juegos: '1',
+      juegos: 'Uno',
       puntosJugador: '',
       puntosIA: '',
       disabled: false,
       selected: false,
     },
     {
-      juegos: '2',
+      juegos: 'Dos',
       puntosJugador: '',
       puntosIA: '',
       disabled: false,
       selected: false,
     },
     {
-      juegos: '3',
+      juegos: 'Tres',
       puntosJugador: '',
       puntosIA: '',
       disabled: false,
       selected: false,
     },
     {
-      juegos: '4',
+      juegos: 'Cuatro',
       puntosJugador: '',
       puntosIA: '',
       disabled: false,
       selected: false,
     },
     {
-      juegos: '5',
+      juegos: 'Cinco',
       puntosJugador: '',
       puntosIA: '',
       disabled: false,
       selected: false,
     },
     {
-      juegos: '6',
+      juegos: 'Seis',
       puntosJugador: '',
       puntosIA: '',
       disabled: false,
@@ -94,13 +94,13 @@ export class GeneralaComponent implements OnInit {
       disabled: false,
       selected: false,
     },
-    {
-      juegos: 'GD',
-      puntosJugador: '',
-      puntosIA: '',
-      disabled: false,
-      selected: false,
-    },
+    // {
+    //   juegos: 'GD',
+    //   puntosJugador: '',
+    //   puntosIA: '',
+    //   disabled: false,
+    //   selected: false,
+    // },
   ];
   public juegoSeleccionado: number | null = null;
   public juegoYaSeleccionado: boolean = false;
@@ -114,28 +114,19 @@ export class GeneralaComponent implements OnInit {
 
   ngOnInit() {
     this.authService.usuarioLogueado$.subscribe((usuario) => {
-      if (usuario) {
-        console.log(`${usuario.email} ingresó a la generala`);
-      }
       this.usuarioLogueado = usuario;
     });
     this.inicializarDados();
-
     window.scrollTo(0, 0);
   }
 
   lanzarDados() {
     if (this.puedeTirar()) {
       this.cubilete.tirarDados(this.diceService).then(() => {
+        this.resultados = this.cubilete.dados.map((dado) => dado.valor); // Asegura que siempre uses los dados actuales
         if (this.turnoJugador) {
           this.tiradasJugador++;
           console.log(`Jugador ha tirado ${this.tiradasJugador} veces`);
-
-          if (this.tiradasJugador === this.maxTiradas) {
-            console.log(
-              'Has realizado las 3 tiradas. Espera para terminar el turno.'
-            );
-          }
         }
       });
     }
@@ -146,7 +137,8 @@ export class GeneralaComponent implements OnInit {
     if (
       this.tiradasJugador > 0 &&
       this.turnoJugador &&
-      !this.juegoYaSeleccionado
+      !this.juegoYaSeleccionado &&
+      !this.tablaGenerala[index].disabled // Verifica si el juego ya está bloqueado
     ) {
       if (this.juegoSeleccionado === null) {
         this.juegoSeleccionado = index;
@@ -156,16 +148,17 @@ export class GeneralaComponent implements OnInit {
         this.evaluarJuego(this.tablaGenerala[index].juegos, index); // Evaluamos el juego
       }
     } else {
-      console.log('No puedes seleccionar otro juego en este turno.');
+      console.log(
+        'No puedes seleccionar este juego. Ya está seleccionado o no es tu turno.'
+      );
     }
   }
 
   evaluarJuego(juego: string, index: number) {
-    // Encuentra el juego por nombre
+    console.log('Resultados actuales:', this.resultados);
     const juegoEncontrado = juegos.juegos.find((j) => j.nombre === juego);
 
     if (juegoEncontrado) {
-      // Usa la función de evaluación que ya tienes en el archivo juegos.generala
       const resultado = juegoEncontrado.evaluar(this.resultados);
 
       if (resultado.esPosible) {
