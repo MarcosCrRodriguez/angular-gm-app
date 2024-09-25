@@ -41,19 +41,29 @@
                 : mensaje.usuario === usuarioSlayer
                 ? 'url(/assets/doom.jpg)'
                 : 'url(/assets/normal-banner.jpg)',
-            color: '#fff',
             'background-color': 'transparent',
-            'text-shadow':
-              '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000',
             'background-size': 'cover',
             'background-repeat': 'no-repeat'
           }"
         >
           <p class="usuario">
-            <strong>{{ mensaje.usuario }}</strong>
-            <span style="float: right">{{
-              formatDate(mensaje.timestamp)
-            }}</span>
+            <strong
+              [ngStyle]="{
+                color:
+                  mensaje.usuario === usuarioLogueado.email ? '#ffeb3b' : '#fff'
+              }"
+            >
+              {{ mensaje.usuario }}
+            </strong>
+            <span
+              style="float: right"
+              [ngStyle]="{
+                color:
+                  mensaje.usuario === usuarioLogueado.email ? '#ffeb3b' : '#fff'
+              }"
+            >
+              {{ formatDate(mensaje.timestamp) }}
+            </span>
           </p>
           <p class="texto-msj">{{ mensaje.texto }}</p>
         </div>

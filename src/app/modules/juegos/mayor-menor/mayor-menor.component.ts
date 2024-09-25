@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CardService } from './../../../services/card.service';
 import { AuthService } from './../../../services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mayor-menor',
@@ -27,8 +26,7 @@ export class MayorMenorComponent implements OnInit {
 
   constructor(
     private cartaService: CardService,
-    private authService: AuthService,
-    private router: Router
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {

@@ -246,8 +246,8 @@ export class GeneralaComponent implements OnInit {
     let juegoSeleccionado = null;
 
     for (let i = 0; i < this.maxTiradas; i++) {
-      await this.esperar(3000); // Esperar antes de cada tirada
-      await this.tirarDados(); // Tirar los dados
+      await this.esperar(3000);
+      await this.tirarDados();
       console.log(
         `Tirada de la máquina ${i + 1}:`,
         this.cubilete.getResultados()
@@ -269,8 +269,8 @@ export class GeneralaComponent implements OnInit {
             juegoSeleccionado.nombre,
             juegoSeleccionado.puntaje
           );
-
-          break; // Salir del bucle si se seleccionó un juego
+          // Salir del bucle si se seleccionó un juego
+          break;
         }
       }
     }
@@ -302,7 +302,7 @@ export class GeneralaComponent implements OnInit {
   ): { nombre: string; puntaje: number } | null {
     for (const juego of this.juegosDisponibles) {
       const juegoYaSeleccionado = this.tablaGenerala.find(
-        (j) => j.juegos === juego.nombre && (j.selectedIA || j.disabledIA) // Incluir selectedIA
+        (j) => j.juegos === juego.nombre && (j.selectedIA || j.disabledIA)
       );
 
       if (!juegoYaSeleccionado) {
@@ -322,8 +322,10 @@ export class GeneralaComponent implements OnInit {
 
     if (juegoEncontrado) {
       juegoEncontrado.puntosIA = puntaje.toString();
-      juegoEncontrado.selectedIA = true; // Marcar como seleccionado por la IA
-      juegoEncontrado.disabledIA = true; // Deshabilitar el juego para la IA
+      // Marcar como seleccionado por la IA
+      juegoEncontrado.selectedIA = true;
+      // Deshabilitar el juego para la IA
+      juegoEncontrado.disabledIA = true;
       console.log(
         `Puntos actualizados para la IA en el juego ${nombreJuego}: ${puntaje}`
       );

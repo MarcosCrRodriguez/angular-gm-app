@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { AhorcadoService } from '../../../services/ahorcado.service';
 import { AuthService } from '../../../services/auth.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ahorcado',
@@ -32,8 +31,7 @@ export class AhorcadoComponent implements OnInit {
 
   constructor(
     private ahorcadoService: AhorcadoService,
-    private authService: AuthService,
-    private router: Router
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
