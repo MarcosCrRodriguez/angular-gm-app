@@ -47,6 +47,33 @@
   font-family: "Grenze Gotisch", serif;
 }
 
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.menu h2 {
+  margin-top: 40px;
+  margin-bottom: 90px;
+  font-size: 52px;
+  font-weight: 600;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 hsl(0, 0%, 0%),
+    2px 2px 0 #000;
+}
+
+.menu button {
+  margin-top: 120px;
+  margin-bottom: 60px;
+  font-size: 36px;
+  font-weight: 600;
+  border: 2px solid black;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000,
+    -1.5px 1.5px 0 hsl(0, 0%, 0%), 1.5px 1.5px 0 #000;
+  transition: 0.4s;
+}
+
 .juego-generala {
   display: flex;
   align-items: center;
@@ -258,19 +285,20 @@
   padding-left: 24px !important;
 }
 
-.dados-container img:hover {
-  transform: scale(1.05);
-  transition: 0.4s;
-}
-
 .item-juegos:hover {
   transform: scale(1.025);
   transition: 0.3s;
 }
 
 .btn-right button:hover,
-.btn-terminar button:hover {
+.btn-terminar button:hover,
+.dados-container img:hover {
   transform: scale(1.05);
+  transition: 0.4s;
+}
+
+.menu button:hover {
+  transform: scale(1.04);
   transition: 0.4s;
 }
 
@@ -335,6 +363,16 @@
     width: 96%;
     margin-left: 2%;
     margin-right: 2%;
+  }
+
+  .menu h2 {
+    font-size: 42px;
+    font-weight: 600;
+  }
+
+  .menu button {
+    font-size: 28px;
+    font-weight: 500;
   }
 
   .dados-container img {

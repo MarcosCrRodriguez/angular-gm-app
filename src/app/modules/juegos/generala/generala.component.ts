@@ -395,7 +395,7 @@ export class GeneralaComponent implements OnInit {
   }
 
   verificarFinDelJuego() {
-    if (this.contJugadasJugador === 9 && this.contJugadasIA === 9) {
+    if (this.contJugadasJugador === 0 && this.contJugadasIA === 0) {
       this.juegoIniciado = false;
       this.juegoTerminado = true;
       if (this.ptosJugador > this.ptosIA) {

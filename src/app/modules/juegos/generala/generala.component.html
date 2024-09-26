@@ -6,8 +6,18 @@
 <div class="generala-bg">
   <!-- Seccion de la generala -->
   <div class="card text-bg-dark">
-    <div *ngIf="!juegoIniciado && !juegoTerminado">
-      <button (click)="iniciarJuego()">Comenzar Partida</button>
+    <div class="menu" *ngIf="!juegoIniciado && !juegoTerminado">
+      <h2>Menu Generala</h2>
+      <div class="dados-container">
+        <img
+          *ngFor="let dado of cubilete.dados; let i = index"
+          src="assets/dice1.png"
+          alt="Dado"
+        />
+      </div>
+      <button class="btn btn-secondary" (click)="iniciarJuego()">
+        Comenzar Partida
+      </button>
     </div>
     <div class="juego-generala" *ngIf="juegoIniciado && !juegoTerminado">
       <div class="generala-left">
@@ -113,9 +123,18 @@
         </div>
       </div>
     </div>
-    <div *ngIf="!juegoIniciado && juegoTerminado">
-      <p>{{ mensajeGanador }}</p>
-      <button (click)="iniciarJuego()">Reiniciar Partida</button>
+    <div class="menu" *ngIf="!juegoIniciado && juegoTerminado">
+      <h2>{{ mensajeGanador }}</h2>
+      <div class="dados-container">
+        <img
+          *ngFor="let dado of cubilete.dados; let i = index"
+          src="assets/dice1.png"
+          alt="Dado"
+        />
+      </div>
+      <button class="btn btn-secondary" (click)="iniciarJuego()">
+        Reiniciar Partida
+      </button>
     </div>
   </div>
   <div class="como-jugar">
@@ -148,10 +167,6 @@
         <p class="letra-pto">d. Poker: Cuatro dados iguales.</p>
         <p class="letra-pto">
           e. Generala: Cinco dados iguales (la jugada más alta).
-        </p>
-        <p class="letra-pto">
-          f. Doble Generala: Una segunda Generala, que otorga un puntaje
-          adicional si se logra.
         </p>
         <p class="info-pto">
           3- El puntaje final se obtiene sumando los puntos de las distintas
