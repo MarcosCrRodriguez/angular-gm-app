@@ -2,10 +2,9 @@
   <div class="registro">
     <div class="card text-center">
       <div>
-        <h1 class="title">{{ title }}</h1>
+        <h1 class="title">Registro</h1>
       </div>
       <div *ngIf="showLoadingGif">
-        <!-- Esta capa bloquea la interacción -->
         <div class="bloquear"></div>
         <div class="notificacion">
           <img src="assets/carga-login.gif" alt="Cargando..." />
@@ -13,118 +12,103 @@
       </div>
       <div class="card-body">
         <hr class="div-hr" />
-        <div>
-          <h1 class="sub-title">Campos Obligatorios</h1>
-        </div>
-        <div class="registro-input">
-          <div class="columna-input">
-            <input
-              type="text"
-              id="inputUser"
-              class="form-control"
-              placeholder="{{ txtSeptimo }}"
-              [(ngModel)]="userIngresado"
-              autocomplete="off"
-            />
-            <small class="form-text text-muted"
-              >El mail ingresado debe ser un mail válido
-            </small>
-          </div>
-          <div class="columna-input">
-            <input
-              type="password"
-              id="inputClave"
-              class="form-control"
-              placeholder="{{ txtOctavo }}"
-              [(ngModel)]="claveIngresado"
-              autocomplete="off"
-            />
-            <small class="form-text text-muted"
-              >La contraseña debe tener al menos 8 caracteres sin caracter
-              especial / espacio</small
-            >
-          </div>
-        </div>
-        <hr class="div-hr" />
-        <div>
-          <h1 class="sub-title">Campos Opcionales</h1>
-        </div>
-        <div class="registro-input">
-          <div class="columna-input">
-            <input
-              type="text"
-              id="inputNombre"
-              class="form-control"
-              placeholder="{{ txtPrimero }}"
-              [(ngModel)]="nombreIngresado"
-            />
-            <small class="form-text text-muted">{{ this.msjNombre }}</small>
-          </div>
-          <div class="columna-input">
-            <input
-              type="text"
-              id="inputApellido"
-              class="form-control"
-              aria-describedby="passwordHelpBlock"
-              placeholder="{{ txtSegundo }}"
-              [(ngModel)]="apellidoIngresado"
-            />
-            <small class="form-text text-muted">{{ this.msjApellido }}</small>
-          </div>
-        </div>
-        <div class="registro-input-medio">
-          <div class="columna-input">
-            <input
-              type="email"
-              id="inputEdad"
-              class="form-control"
-              placeholder="{{ txtTercero }}"
-              [(ngModel)]="edadIngresada"
-            />
-            <small class="form-text text-muted small-medio">{{
-              this.msjEdad
-            }}</small>
-          </div>
-        </div>
-        <!-- <div class="registro-input-pequenio">
-          <div class="columna-input">
-            <div class="columna-centrada">
+
+        <form [formGroup]="form">
+          <div class="registro-input">
+            <div class="columna-input">
               <input
                 type="text"
-                id="inputDia"
+                id="nombre"
                 class="form-control"
-                placeholder="{{ txtCuarto }}"
-                [(ngModel)]="diaIngresado"
+                formControlName="nombre"
+                placeholder="Nombre"
               />
-              <input
-                type="text"
-                id="inputMes"
-                class="form-control"
-                placeholder="{{ txtQuinto }}"
-                [(ngModel)]="mesIngresado"
-              />
-              <input
-                type="text"
-                id="inputAnio"
-                class="form-control"
-                placeholder="{{ txtSexto }}"
-                [(ngModel)]="anioIngresado"
-              />
+              <ng-container *ngIf="nombre?.hasError('pattern')">
+                <small class="text-danger">Sólo debe contener letras</small>
+              </ng-container>
             </div>
-            <small class="form-text text-muted small-medio"
-              >Fecha de nacimiento del usaurio</small
-            >
+
+            <div class="columna-input">
+              <input
+                type="text"
+                id="apellido"
+                class="form-control"
+                formControlName="apellido"
+                placeholder="Apellido"
+              />
+              <ng-container *ngIf="apellido?.hasError('pattern')">
+                <small class="text-danger">Sólo debe contener letras</small>
+              </ng-container>
+            </div>
           </div>
-        </div>  -->
-        <div class="registro-btn">
-          <button type="button" class="btn btn-light" (click)="loguear()">
-            Ir a Login
-          </button>
-          <button type="button" class="btn btn-warning" (click)="register()">
-            Registrar
-          </button>
-        </div>
+
+          <div class="registro-input">
+            <div class="columna-input">
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                formControlName="email"
+                placeholder="Email"
+              />
+              <small class="text-danger">{{
+                email?.getError("usuarioExiste")
+              }}</small>
+            </div>
+
+            <div class="columna-input">
+              <input
+                type="number"
+                id="edad"
+                class="form-control"
+                formControlName="edad"
+                placeholder="Edad"
+              />
+              <ng-container *ngIf="edad?.hasError('min')">
+                <small class="text-danger">Debe ser mayor de edad</small>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="registro-input">
+            <div class="columna-input">
+              <input
+                type="password"
+                id="clave"
+                class="form-control"
+                formControlName="clave"
+                placeholder="Clave"
+              />
+              <ng-container *ngIf="clave?.hasError('minlength')">
+                <small class="text-danger">
+                  La clave debe tener mínimo
+                  {{ clave?.getError("minlength").requiredLength }} caracteres
+                </small>
+              </ng-container>
+            </div>
+
+            <div class="columna-input">
+              <input
+                type="password"
+                id="repiteClave"
+                class="form-control"
+                formControlName="repiteClave"
+                placeholder="Repetir Clave"
+              />
+              <small class="text-danger">
+                {{ repiteClave?.getError("noCoincide") }}
+              </small>
+            </div>
+          </div>
+
+          <div class="registro-btn">
+            <button type="button" class="btn btn-warning" (click)="registrar()">
+              Registrar
+            </button>
+          </div>
+        </form>
       </div>
+
       <div class="registro-info">
         <p>
           Te invito a conocer un nuevo espacio interactivo, para que puedas

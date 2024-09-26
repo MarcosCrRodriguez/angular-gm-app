@@ -137,7 +137,7 @@
 .columna-input small {
   font-size: 16px;
   margin-top: -6px;
-  color: #fff !important;
+  /* color: #fff !important; */
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
 }
@@ -253,6 +253,11 @@ input:focus + .form-text {
 }
 
 @media (max-width: 768px) {
+  .registro-input {
+    display: flex;
+    flex-direction: column;
+  }
+
   .title {
     font-size: 60px;
   }

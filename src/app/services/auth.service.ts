@@ -193,6 +193,9 @@ export class AuthService {
       case 'auth/invalid-credential':
         this.msjError = '¡Credenciales inválidas!';
         break;
+      case 'auth/missing-email':
+        this.msjError = '¡Faltan datos para que sea un mail válido!';
+        break;
       case 'auth/invalid-email':
         this.msjError = '¡El email ingresado es inválido!';
         break;
