@@ -152,6 +152,7 @@
 .generala-right h2 {
   font-size: 42px;
   font-weight: 600;
+  margin-bottom: 60px;
 }
 
 .generala-left h3,
@@ -229,6 +230,7 @@
   text-align: center;
   flex-direction: column;
   font-size: 20px;
+  margin-top: 60px;
 }
 
 .msj-final-turno p {
