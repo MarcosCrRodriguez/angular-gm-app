@@ -395,17 +395,22 @@ export class GeneralaComponent implements OnInit {
   }
 
   verificarFinDelJuego() {
-    if (this.contJugadasJugador === 0 && this.contJugadasIA === 0) {
+    if (this.contJugadasJugador === 8 && this.contJugadasIA === 8) {
       this.juegoIniciado = false;
       this.juegoTerminado = true;
       if (this.ptosJugador > this.ptosIA) {
-        this.mensajeGanador = `¡Jugador ha ganado con ${this.ptosJugador}`;
+        this.mensajeGanador = `¡Jugador ha ganado con ${this.ptosJugador} ptos!`;
       } else if (this.ptosIA > this.ptosJugador) {
-        this.mensajeGanador = `La IA ha ganado con ${this.ptosIA}`;
+        this.mensajeGanador = `La IA ha ganado con ${this.ptosIA} ptos!`;
       } else {
         this.mensajeGanador = `Es un empate :O ${this.ptosJugador} a ${this.ptosIA}`;
       }
       console.log('Ganador determinado:', this.mensajeGanador);
+      this.authService.scoreJuegos(
+        this.usuarioLogueado.email,
+        this.ptosJugador,
+        'generala'
+      );
     }
   }
 
