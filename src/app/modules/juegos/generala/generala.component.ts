@@ -124,6 +124,13 @@ export class GeneralaComponent implements OnInit {
   public juegoYaSeleccionado: boolean = false;
   public juegosDisponibles = juegos.juegos;
   public juegos = juegos;
+  public ptosJugador: any = 0;
+  public ptosIA: any = 0;
+  public contJugadasJugador: number = 10;
+  public contJugadasIA: number = 10;
+  public juegoIniciado: boolean = false;
+  public juegoTerminado: boolean = false;
+  public mensajeGanador: string = '';
 
   constructor(
     private authService: AuthService,
@@ -178,6 +185,7 @@ export class GeneralaComponent implements OnInit {
   evaluarJuego(juego: string, index: number) {
     console.log('Resultados actuales:', this.resultados);
     const juegoEncontrado = juegos.juegos.find((j) => j.nombre === juego);
+    this.contJugadasJugador--;
 
     if (juegoEncontrado) {
       const resultado = juegoEncontrado.evaluar(this.resultados);
@@ -185,6 +193,7 @@ export class GeneralaComponent implements OnInit {
       if (resultado.esPosible) {
         this.tablaGenerala[index].puntosJugador =
           resultado.puntaje?.toString() || '';
+        this.ptosJugador += resultado.puntaje;
       } else {
         // Si no tiene puntaje, asignar 0
         this.tablaGenerala[index].puntosJugador = '0';
@@ -198,10 +207,15 @@ export class GeneralaComponent implements OnInit {
 
   terminarTurno() {
     console.log('Jugador decidió terminar su turno');
+    this.verificarFinDelJuego();
     this.pasarTurno();
   }
 
   puedeTirar(): boolean {
+    // Bloqueo si el juego ya ha terminado
+    if (this.juegoTerminado) {
+      return false;
+    }
     // deshabilitar botón si la máquina está lanzando, si ya se seleccionó un juego, o si se alcanzó el límite de tiradas
     if (this.lanzandoMaquina || this.juegoYaSeleccionado) {
       return false;
@@ -295,6 +309,8 @@ export class GeneralaComponent implements OnInit {
     console.log('La máquina ha terminado sus tiradas');
     await this.esperar(3000);
     this.lanzandoMaquina = false;
+
+    this.verificarFinDelJuego();
   }
 
   evaluarJuegosPosibles(
@@ -320,8 +336,11 @@ export class GeneralaComponent implements OnInit {
       (juego) => juego.juegos === nombreJuego
     );
 
+    this.contJugadasIA--;
+
     if (juegoEncontrado) {
       juegoEncontrado.puntosIA = puntaje.toString();
+      this.ptosIA += puntaje;
       // Marcar como seleccionado por la IA
       juegoEncontrado.selectedIA = true;
       // Deshabilitar el juego para la IA
@@ -363,5 +382,42 @@ export class GeneralaComponent implements OnInit {
       // solo permite guardar si ya se ha tirado
       this.cubilete.toggleGuardarDado(index);
     }
+  }
+
+  iniciarJuego() {
+    this.juegoIniciado = true;
+    this.juegoTerminado = false;
+    this.contJugadasJugador = 10;
+    this.contJugadasIA = 10;
+    this.ptosJugador = 0;
+    this.ptosIA = 0;
+    this.resetTablaGenerala();
+  }
+
+  verificarFinDelJuego() {
+    if (this.contJugadasJugador === 9 && this.contJugadasIA === 9) {
+      this.juegoIniciado = false;
+      this.juegoTerminado = true;
+      if (this.ptosJugador > this.ptosIA) {
+        this.mensajeGanador = `¡Jugador ha ganado con ${this.ptosJugador}`;
+      } else if (this.ptosIA > this.ptosJugador) {
+        this.mensajeGanador = `La IA ha ganado con ${this.ptosIA}`;
+      } else {
+        this.mensajeGanador = `Es un empate :O ${this.ptosJugador} a ${this.ptosIA}`;
+      }
+      console.log('Ganador determinado:', this.mensajeGanador);
+    }
+  }
+
+  resetTablaGenerala() {
+    this.tablaGenerala = this.tablaGenerala.map((juego) => ({
+      juegos: juego.juegos,
+      puntosJugador: '',
+      puntosIA: '',
+      disabledJugador: false,
+      disabledIA: false,
+      selected: false,
+      selectedIA: false,
+    }));
   }
 }

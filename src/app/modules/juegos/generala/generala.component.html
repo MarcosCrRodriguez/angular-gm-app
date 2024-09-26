@@ -6,7 +6,10 @@
 <div class="generala-bg">
   <!-- Seccion de la generala -->
   <div class="card text-bg-dark">
-    <div class="juego-generala">
+    <div *ngIf="!juegoIniciado && !juegoTerminado">
+      <button (click)="iniciarJuego()">Comenzar Partida</button>
+    </div>
+    <div class="juego-generala" *ngIf="juegoIniciado && !juegoTerminado">
       <div class="generala-left">
         <table class="generala-table">
           <thead class="header-tabla">
@@ -37,6 +40,26 @@
                 <!-- Mostrar puntaje de la IA o un '0' si está deshabilitado -->
                 <span *ngIf="item.puntosIA !== ''">{{ item.puntosIA }}</span>
                 <span *ngIf="item.puntosIA === '' && item.disabledIA">X</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="generala-table sec-table">
+          <thead class="header-tabla">
+            <tr>
+              <th>Puntos</th>
+              <th>Yo</th>
+              <th>IA</th>
+            </tr>
+          </thead>
+          <tbody class="body-tabla">
+            <tr>
+              <td>Total</td>
+              <td>
+                <span>{{ ptosJugador }}</span>
+              </td>
+              <td>
+                <span>{{ ptosIA }}</span>
               </td>
             </tr>
           </tbody>
@@ -89,6 +112,10 @@
           </div>
         </div>
       </div>
+    </div>
+    <div *ngIf="!juegoIniciado && juegoTerminado">
+      <p>{{ mensajeGanador }}</p>
+      <button (click)="iniciarJuego()">Reiniciar Partida</button>
     </div>
   </div>
   <div class="como-jugar">

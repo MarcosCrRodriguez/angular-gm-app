@@ -192,6 +192,10 @@
   cursor: pointer;
 }
 
+.sec-table {
+  margin-top: 40px !important;
+}
+
 .msj-final-turno {
   display: flex;
   justify-content: center;
