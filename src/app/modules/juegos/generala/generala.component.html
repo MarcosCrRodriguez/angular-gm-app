@@ -1,85 +1,92 @@
 <div class="generala-container">
   <div class="inicio">
-    <h1 class="title-app" routerLink="/home" routerLinkActive="active">
-      Perfect
-      <img class="home-icon" src="assets/icon-clean.png" alt="icono" />Game
-    </h1>
+    <h1 class="title-app">Generala</h1>
   </div>
 </div>
 <div class="generala-bg">
   <!-- Seccion de la generala -->
-  <div class="juego-generala">
-    <div class="generala-left">
-      <table class="generala-table">
-        <thead class="header-tabla">
-          <tr>
-            <th>Juegos</th>
-            <th>Yo</th>
-            <th>IA</th>
-          </tr>
-        </thead>
-        <tbody class="body-tabla">
-          <tr
-            *ngFor="let item of tablaGenerala; let i = index"
-            (click)="seleccionarJuego(i)"
-            [class.selected]="item.selected"
-            [class.disabled]="item.disabledJugador || lanzandoMaquina"
+  <div class="card text-bg-dark">
+    <div class="juego-generala">
+      <div class="generala-left">
+        <table class="generala-table">
+          <thead class="header-tabla">
+            <tr>
+              <th>Juegos</th>
+              <th>Yo</th>
+              <th>IA</th>
+            </tr>
+          </thead>
+          <tbody class="body-tabla">
+            <tr
+              *ngFor="let item of tablaGenerala; let i = index"
+              (click)="seleccionarJuego(i)"
+              [class.selected]="item.selected"
+              [class.disabled]="item.disabledJugador || lanzandoMaquina"
+            >
+              <td class="item-juegos">{{ item.juegos }}</td>
+              <td>
+                <!-- Mostrar el puntaje o un '0' después de evaluar -->
+                <span *ngIf="item.puntosJugador !== ''">{{
+                  item.puntosJugador
+                }}</span>
+                <span *ngIf="item.puntosJugador === '' && item.disabledJugador"
+                  >X</span
+                >
+              </td>
+              <td>
+                <!-- Mostrar puntaje de la IA o un '0' si está deshabilitado -->
+                <span *ngIf="item.puntosIA !== ''">{{ item.puntosIA }}</span>
+                <span *ngIf="item.puntosIA === '' && item.disabledIA">X</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="generala-right">
+        <h2>{{ turnoJugador ? "Tu Turno" : "Turno IA" }}</h2>
+
+        <div class="dados-container">
+          <img
+            *ngFor="let dado of cubilete.dados; let i = index"
+            [src]="'assets/dice' + dado.valor + '.png'"
+            alt="Dado"
+            (click)="toggleGuardarDado(i)"
+            [class.guardar]="dado.guardado"
+          />
+        </div>
+
+        <div class="btn-right">
+          <button
+            class="btn btn-secondary"
+            [disabled]="!puedeTirar()"
+            (click)="lanzarDados()"
           >
-            <td>{{ item.juegos }}</td>
-            <td>
-              <!-- Mostrar el puntaje o un '0' después de evaluar -->
-              <span *ngIf="item.puntosJugador !== ''">{{
-                item.puntosJugador
-              }}</span>
-              <span *ngIf="item.puntosJugador === '' && item.disabledJugador"
-                >X</span
-              >
-            </td>
-            <td>
-              <!-- Mostrar puntaje de la IA o un '0' si está deshabilitado -->
-              <span *ngIf="item.puntosIA !== ''">{{ item.puntosIA }}</span>
-              <span *ngIf="item.puntosIA === '' && item.disabledIA">X</span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="generala-right">
-      <h2>{{ turnoJugador ? "Tu Turno" : "Turno IA" }}</h2>
-
-      <div class="dados-container">
-        <img
-          *ngFor="let dado of cubilete.dados; let i = index"
-          [src]="'assets/dice' + dado.valor + '.png'"
-          alt="Dado"
-          (click)="toggleGuardarDado(i)"
-          [class.guardar]="dado.guardado"
-        />
-      </div>
-
-      <div class="btn-right">
-        <button [disabled]="!puedeTirar()" (click)="lanzarDados()">
-          Tirar Dados
-        </button>
-
-        <div class="btn-terminar">
-          <button [disabled]="!puedeTerminarTurno()" (click)="terminarTurno()">
-            Terminar Turno
+            Tirar Dados
           </button>
+
+          <div class="btn-terminar">
+            <button
+              class="btn btn-secondary"
+              [disabled]="!puedeTerminarTurno()"
+              (click)="terminarTurno()"
+            >
+              Terminar Turno
+            </button>
+          </div>
         </div>
-      </div>
-      <div>
-        <div class="msj-final-turno" *ngIf="puedeTirar() && turnoJugador">
-          <p>El jugador</p>
-          <p>está tirando..</p>
-        </div>
-        <div class="msj-final-turno" *ngIf="!puedeTirar() && turnoJugador">
-          <p>Límite tiradas</p>
-          <p>alcanzado...</p>
-        </div>
-        <div class="msj-final-turno" *ngIf="lanzandoMaquina">
-          <p>La IA</p>
-          <p class="segunda-parte">está tirando..</p>
+        <div>
+          <div class="msj-final-turno" *ngIf="puedeTirar() && turnoJugador">
+            <p>El jugador</p>
+            <p>está tirando..</p>
+          </div>
+          <div class="msj-final-turno" *ngIf="!puedeTirar() && turnoJugador">
+            <p>Límite tiradas</p>
+            <p>alcanzado...</p>
+          </div>
+          <div class="msj-final-turno" *ngIf="lanzandoMaquina">
+            <p>La IA</p>
+            <p class="segunda-parte">está tirando..</p>
+          </div>
         </div>
       </div>
     </div>
