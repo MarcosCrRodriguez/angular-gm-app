@@ -110,24 +110,6 @@
   margin-bottom: 5px;
 }
 
-.registro-input-medio input {
-  border: 2.5px solid rgb(45, 45, 45);
-  font-size: 24px;
-  padding: 10px;
-  width: 49%;
-  margin-bottom: 5px;
-}
-
-.registro-input-pequenio input {
-  border: 2.5px solid rgb(45, 45, 45);
-  font-size: 24px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding: 10px;
-  width: 14%;
-  margin-bottom: 5px;
-}
-
 .columna-input {
   display: flex;
   flex-direction: column;
@@ -209,9 +191,7 @@ input:focus + .form-text {
 }
 
 @media (max-width: 1024px) {
-  .registro-input,
-  .registro-input-medio,
-  .registro-input-pequenio {
+  .registro-input {
     display: flex;
     flex-direction: center;
     gap: 15px;
@@ -226,25 +206,6 @@ input:focus + .form-text {
     margin-right: 10px;
     padding: 10px;
     width: 100%;
-  }
-
-  .registro-input-medio input {
-    flex-direction: column;
-    border: 2.5px solid rgb(45, 45, 45);
-    font-size: 24px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 10px;
-    width: 45%;
-  }
-
-  .registro-input-pequenio input {
-    border: 2.5px solid rgb(45, 45, 45);
-    font-size: 24px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 10px;
-    width: 20%;
   }
 
   .registro-btn button {
@@ -275,14 +236,6 @@ input:focus + .form-text {
   }
 
   .registro-input input {
-    font-size: 20px;
-  }
-
-  .registro-input-medio input {
-    font-size: 20px;
-  }
-
-  .registro-input-pequenio input {
     font-size: 20px;
   }
 
