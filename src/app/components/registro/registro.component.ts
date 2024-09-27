@@ -59,6 +59,7 @@ export class RegistroComponent implements OnInit {
       },
       confirmarCalveValidator()
     );
+    window.scrollTo(0, 0);
   }
 
   get email() {
