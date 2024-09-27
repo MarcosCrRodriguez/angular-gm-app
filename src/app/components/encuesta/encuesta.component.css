@@ -140,7 +140,7 @@
 }
 
 .encuesta-input label {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 500;
   color: #fff;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
@@ -282,5 +282,28 @@
     font-size: 16px;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
       1px 1px 0 #000;
+  }
+
+  .opciones-check {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .opciones-radio label,
+  .opciones-check label {
+    font-size: 22px;
+  }
+
+  .encuesta-input textarea {
+    font-size: 22px !important;
+  }
+
+  .txt-area {
+    margin-left: 0;
+    margin-right: 0;
   }
 }
