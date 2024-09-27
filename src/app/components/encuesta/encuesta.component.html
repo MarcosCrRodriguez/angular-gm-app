@@ -1,0 +1,236 @@
+<div class="img-registro">
+  <div class="registro">
+    <div class="card text-center">
+      <div>
+        <h1 class="title">Encuesta</h1>
+      </div>
+      <div *ngIf="showLoadingGif">
+        <div class="bloquear"></div>
+        <div class="notificacion">
+          <img src="assets/satanic.gif" alt="Cargando..." />
+        </div>
+      </div>
+      <div class="card-body">
+        <hr class="div-hr" />
+
+        <form [formGroup]="form">
+          <div class="registro-input">
+            <div class="columna-input">
+              <input
+                type="text"
+                id="nombre"
+                class="form-control"
+                formControlName="nombre"
+                placeholder="Nombre"
+              />
+              <ng-container *ngIf="nombre?.hasError('pattern')">
+                <small class="text-danger">Sólo debe contener letras</small>
+              </ng-container>
+            </div>
+
+            <div class="columna-input">
+              <input
+                type="text"
+                id="apellido"
+                class="form-control"
+                formControlName="apellido"
+                placeholder="Apellido"
+              />
+              <ng-container *ngIf="apellido?.hasError('pattern')">
+                <small class="text-danger">Sólo debe contener letras</small>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="registro-input">
+            <div class="columna-input">
+              <input
+                type="number"
+                id="edad"
+                class="form-control"
+                formControlName="edad"
+                placeholder="Edad"
+              />
+              <ng-container *ngIf="edad?.hasError('min')">
+                <small class="text-danger">Debe ser mayor de edad</small>
+              </ng-container>
+            </div>
+            <div class="columna-input">
+              <input
+                type="tel"
+                id="telefono"
+                class="form-control"
+                formControlName="telefono"
+                placeholder="Teléfono"
+              />
+              <small class="text-danger">
+                {{
+                  telefono?.getError("pattern")
+                    ? "El teléfono debe tener 10 dígitos."
+                    : ""
+                }}
+              </small>
+            </div>
+          </div>
+          <hr class="div-hr" />
+          <!-- Pregunta 1: ¿Disfruta del uso de la página? -->
+          <div class="encuesta-input">
+            <label>¿Disfruta del uso de la página?</label>
+            <div class="opciones-radio">
+              <div>
+                <input
+                  type="radio"
+                  id="si"
+                  value="sí"
+                  formControlName="disfrutaPagina"
+                />
+                <label for="si">Sí</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="no"
+                  value="no"
+                  formControlName="disfrutaPagina"
+                />
+                <label for="no">No</label>
+              </div>
+            </div>
+            <div class="special-error">
+              <ng-container
+                *ngIf="form.get('disfrutaPagina')?.hasError('required')"
+              >
+                <small class="text-danger">Este campo es obligatorio.</small>
+              </ng-container>
+            </div>
+          </div>
+
+          <!-- Pregunta 2: Juegos jugados -->
+          <div class="encuesta-input">
+            <label>¿Cuáles fueron los juegos que jugaste?</label>
+            <div class="opciones-check">
+              <div>
+                <input
+                  type="checkbox"
+                  id="ahorcado"
+                  value="ahorcado"
+                  (change)="onCheckboxChange($event)"
+                />
+                <label for="ahorcado">Ahorcado</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="mayorMenor"
+                  value="mayor menor"
+                  (change)="onCheckboxChange($event)"
+                />
+                <label for="mayorMenor">Mayor Menor</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="preguntados"
+                  value="preguntados"
+                  (change)="onCheckboxChange($event)"
+                />
+                <label for="preguntados">Preguntados</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="generala"
+                  value="generala"
+                  (change)="onCheckboxChange($event)"
+                />
+                <label for="generala">Generala</label>
+              </div>
+              <div>
+                <input
+                  type="checkbox"
+                  id="ninguno"
+                  value="ninguno"
+                  (change)="onCheckboxChange($event)"
+                />
+                <label for="ninguno">Ninguno</label>
+              </div>
+            </div>
+            <div class="special-error">
+              <ng-container
+                *ngIf="form.get('juegosJugados')?.hasError('required')"
+              >
+                <small class="text-danger">Este campo es obligatorio.</small>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="encuesta-input">
+            <!-- Pregunta 3: ¿Cuál fue el juego que más le gustó? -->
+            <div>
+              <label>¿Cuál fue el juego que más le gustó?</label>
+              <select
+                formControlName="juegoMasGustado"
+                class="form-control dropdown-list"
+              >
+                <option value="">Seleccione</option>
+                <option value="ahorcado">Ahorcado</option>
+                <option value="mayor menor">Mayor Menor</option>
+                <option value="preguntados">Preguntados</option>
+                <option value="generala">Generala</option>
+                <option value="ninguno">Ninguno</option>
+              </select>
+              <ng-container *ngIf="juegoMasGustado?.hasError('required')">
+                <small class="text-danger">Este campo es obligatorio.</small>
+              </ng-container>
+            </div>
+            <!-- Pregunta 4: ¿Cuál fue el juego que menos le gustó? -->
+            <div>
+              <label>¿Cuál fue el juego que menos le gustó?</label>
+              <select
+                formControlName="juegoMenosGustado"
+                class="form-control dropdown-list"
+              >
+                <option value="">Seleccione</option>
+                <option value="ahorcado">Ahorcado</option>
+                <option value="mayor menor">Mayor Menor</option>
+                <option value="preguntados">Preguntados</option>
+                <option value="generala">Generala</option>
+                <option value="ninguno">Ninguno</option>
+              </select>
+              <ng-container *ngIf="juegoMenosGustado?.hasError('required')">
+                <small class="text-danger">Este campo es obligatorio.</small>
+              </ng-container>
+            </div>
+          </div>
+
+          <!-- Comentario opcional -->
+          <div class="encuesta-input txt-area">
+            <label>Comentario:</label>
+            <textarea
+              formControlName="comentario"
+              class="form-control"
+              placeholder="Escribe tu comentario"
+              maxlength="250"
+            ></textarea>
+          </div>
+          <hr class="div-hr" />
+          <div class="registro-info">
+            <p>
+              ¡Gracias por completar el formulario, espero que puedas seguir
+              disfrutando de la página!
+            </p>
+          </div>
+          <div class="registro-btn">
+            <button
+              type="button"
+              class="btn btn-warning"
+              (click)="subirEncuesta()"
+            >
+              Enviar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

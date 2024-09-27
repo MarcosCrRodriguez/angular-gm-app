@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { PuntajeComponent } from './components/puntaje/puntaje.component';
 import { ForoComponent } from './components/foro/foro.component';
 import { authGuard } from './guards/auth.guard';
+import { EncuestaComponent } from './components/encuesta/encuesta.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -37,6 +38,7 @@ export const routes: Routes = [
     component: ProfileComponent,
     canActivate: [authGuard],
   },
+  { path: 'encuesta', component: EncuestaComponent },
   { path: 'error', component: ErrorComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

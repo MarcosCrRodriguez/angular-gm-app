@@ -188,6 +188,28 @@ export class AuthService {
       });
   }
 
+  registroEncuesta(datos: {
+    email: string;
+    nombre: string;
+    apellido: string;
+    edad: number;
+    telefono: string;
+    disfrutaPagina: boolean;
+    juegosJugados: string[];
+    juegoMasGustado: string;
+    juegoMenosGustado: string;
+    comentario?: string;
+  }) {
+    const col = collection(this.firestore, 'encuestas');
+    addDoc(col, { ...datos, fecha: new Date() })
+      .then(() => {
+        console.log('Registramos la encuesta en la DB');
+      })
+      .catch((error) => {
+        console.error('Error al registrar la encuesta: ', error);
+      });
+  }
+
   private getErrorMessage(ex: string): string {
     switch (ex) {
       case 'auth/invalid-credential':

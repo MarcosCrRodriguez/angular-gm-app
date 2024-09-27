@@ -1,0 +1,295 @@
+.img-registro {
+  background: url("./../../../assets/hellnight.jpg") no-repeat center fixed;
+  background-size: cover;
+  min-height: 100%;
+  width: 100%;
+  /* z-index: -1; */
+}
+
+.registro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 130px;
+  padding-bottom: 130px;
+}
+
+.notificacion {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  pointer-events: all;
+}
+
+.notificacion img {
+  max-width: 1400px;
+}
+
+.bloquear {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 1);
+  z-index: 999;
+  /* Bloquea la interacción con todo el resto */
+  pointer-events: none;
+}
+
+.card {
+  border: 2.5px solid black;
+  background: rgba(42, 42, 42, 0.4);
+  width: 90%;
+  max-width: 1300px;
+  padding: 20px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 32px;
+  font-family: "Metal Mania", cursive;
+  font-size: 64px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+.sub-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  margin-bottom: 32px;
+  font-family: "Metal Mania", cursive;
+  font-size: 36px;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
+    2px 2px 0 #000;
+}
+
+.registro-input {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Grenze Gotisch", serif;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 40px;
+  gap: 15px;
+}
+
+.registro-input input {
+  border: 2.5px solid rgb(45, 45, 45);
+  font-size: 24px;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.columna-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.columna-input small {
+  font-size: 16px;
+  margin-top: -6px;
+  /* color: #fff !important; */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.small-medio {
+  width: 47.5%;
+}
+
+/* .form-text {
+    display: none; 
+  }
+  
+  input:hover + .form-text,
+  input:focus + .form-text {
+    display: block; 
+  } */
+
+.columna-centrada {
+  display: flex;
+  align-items: center;
+  flex-direction: center;
+  margin-bottom: 5px;
+}
+
+.div-hr {
+  border: 1px solid white;
+}
+
+.encuesta-input {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Grenze Gotisch", serif;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 40px;
+  gap: 15px;
+}
+
+.encuesta-input label {
+  font-size: 26px;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.encuesta-input input {
+  border: 2.5px solid rgb(45, 45, 45);
+  font-size: 24px;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.encuesta-input select {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.opciones-radio,
+.opciones-check {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los elementos se muevan a la siguiente línea si no hay suficiente espacio */
+  gap: 1rem; /* Espacio entre los elementos */
+}
+
+.txt-area {
+  margin-left: 15%;
+  margin-right: 15%;
+}
+
+.encuesta-input textarea {
+  font-size: 26px !important;
+  font-weight: 500;
+}
+
+.registro-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.registro-btn button {
+  border: 2.5px solid rgb(45, 45, 45);
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 36px;
+  font-weight: 500;
+  font-family: "Grenze Gotisch", serif;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.registro-info {
+  margin-top: 12px;
+}
+
+.registro-info p {
+  color: #fff;
+  font-family: "Grenze Gotisch", serif;
+  font-size: 22px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.registro-info img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.registro-btn button:hover {
+  transform: scale(1.04);
+  transition: 0.4s;
+}
+
+@media (max-width: 1024px) {
+  .registro-input {
+    display: flex;
+    flex-direction: center;
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+
+  .registro-input input {
+    flex-direction: column;
+    border: 2.5px solid rgb(45, 45, 45);
+    font-size: 24px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .registro-btn button {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .registro-input {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    font-size: 60px;
+  }
+
+  .notificacion {
+    background-color: rgba(0, 0, 0, 1);
+  }
+
+  .notificacion img {
+    max-width: 600px;
+  }
+
+  .sub-title {
+    font-size: 28px;
+  }
+
+  .registro-input input {
+    font-size: 20px;
+  }
+
+  .registro-btn button {
+    font-size: 22px;
+  }
+
+  .columna-input small {
+    font-size: 16px;
+  }
+
+  .registro-info p {
+    font-size: 16px;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
+  }
+}
