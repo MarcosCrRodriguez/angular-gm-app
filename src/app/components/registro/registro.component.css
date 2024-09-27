@@ -59,11 +59,10 @@
   margin-top: 24px;
   margin-bottom: 32px;
   font-family: "Metal Mania", cursive;
-  font-size: 64px;
-  font-weight: 700;
+  font-size: 66px;
   color: #fff;
-  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000,
-    2px 2px 0 #000;
+  text-shadow: -2.3px -2.3px 0 #000, 2.3px -2.3px 0 #000, -2.3px 2.3px 0 #000,
+    2.3px 2.3px 0 #000;
 }
 
 .sub-title {
