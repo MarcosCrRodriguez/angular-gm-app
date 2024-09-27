@@ -79,17 +79,24 @@
       <div class="card-header">Información Proyecto</div>
       <div class="card-info">
         <div class="left-side">
-          <img src="/assets/anotador-vs2.jpg" alt="" />
+          <img src="/assets/generala-game.png" alt="" />
         </div>
         <div class="right-side">
           <p>
             La generala es un juego de dados tradicional que se juega con cinco
             dados. El objetivo es conseguir la mayor cantidad de puntos formando
-            combinaciones específicas en un total de 11 o 13 rondas, dependiendo
+            combinaciones específicas en un total de 10 o 11 rondas, dependiendo
             de las variantes. Entre las combinaciones se incluyen números
             iguales (como tres de un mismo valor), escalera, full, póker y
             generala (cinco dados con el mismo número).
           </p>
+          <div class="dados-container">
+            <img
+              *ngFor="let dado of cubilete.dados; let i = index"
+              src="assets/dice1.png"
+              alt="Dado"
+            />
+          </div>
           <p>
             Cada jugador tiene tres lanzamientos por turno y puede decidir
             cuáles dados volver a lanzar para intentar formar una mejor

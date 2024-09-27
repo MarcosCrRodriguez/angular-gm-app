@@ -166,9 +166,27 @@
   justify-content: space-between;
 }
 
+.dados-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.dados-container img {
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+  border: 2px solid #141414;
+  background: #141414;
+  cursor: pointer;
+}
+
 .left-side {
   width: 35%;
-  margin: 10px;
+  margin-right: 10px;
+  margin-left: 16px;
 }
 
 .left-side img {
@@ -318,5 +336,11 @@
 
   .right-side a {
     font-size: 16px;
+  }
+
+  .dados-container img {
+    height: 32px;
+    width: 32px;
+    margin: 5px;
   }
 }
