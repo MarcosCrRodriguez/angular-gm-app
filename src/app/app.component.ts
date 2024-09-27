@@ -68,6 +68,10 @@ export class AppComponent implements OnInit {
     this.menu = menu;
   }
 
+  encuesta() {
+    this.router.navigate(['/encuesta']);
+  }
+
   ranking() {
     this.router.navigate(['/ranking']);
   }

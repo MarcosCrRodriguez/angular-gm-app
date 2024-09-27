@@ -38,7 +38,11 @@ export const routes: Routes = [
     component: ProfileComponent,
     canActivate: [authGuard],
   },
-  { path: 'encuesta', component: EncuestaComponent },
+  {
+    path: 'encuesta',
+    component: EncuestaComponent,
+    canActivate: [authGuard],
+  },
   { path: 'error', component: ErrorComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

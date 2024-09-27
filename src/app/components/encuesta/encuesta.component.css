@@ -117,15 +117,6 @@
   width: 47.5%;
 }
 
-/* .form-text {
-    display: none; 
-  }
-  
-  input:hover + .form-text,
-  input:focus + .form-text {
-    display: block; 
-  } */
-
 .columna-centrada {
   display: flex;
   align-items: center;
@@ -174,8 +165,8 @@
 .opciones-radio,
 .opciones-check {
   display: flex;
-  flex-wrap: wrap; /* Permite que los elementos se muevan a la siguiente línea si no hay suficiente espacio */
-  gap: 1rem; /* Espacio entre los elementos */
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .txt-area {

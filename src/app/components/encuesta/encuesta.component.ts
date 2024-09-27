@@ -8,7 +8,6 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { confirmarCalveValidator } from '../../models/clave.validator';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 

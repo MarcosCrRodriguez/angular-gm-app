@@ -46,6 +46,9 @@
           }}</a>
         </li>
         <li>
+          <a (click)="encuesta()">Encuesta</a>
+        </li>
+        <li>
           <a (click)="ranking()">Ranking</a>
         </li>
         <li>
@@ -105,6 +108,9 @@
             <a routerLink="/profile" routerLinkActive="active">{{
               usuarioLogueado.email
             }}</a>
+          </li>
+          <li>
+            <a (click)="encuesta()">Encuesta</a>
           </li>
           <li>
             <a (click)="ranking()">Ranking</a>
