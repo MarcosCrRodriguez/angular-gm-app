@@ -60,6 +60,7 @@ export class EncuestaComponent implements OnInit {
       juegoMenosGustado: new FormControl('', Validators.required),
       comentario: new FormControl('', Validators.required),
     });
+    window.scrollTo(0, 0);
   }
 
   get nombre() {
