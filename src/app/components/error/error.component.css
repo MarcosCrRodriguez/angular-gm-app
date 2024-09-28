@@ -86,13 +86,13 @@
   font-size: 32px;
   font-weight: 500;
   font-family: "Grenze Gotisch", serif;
-  transition: 0.4s;
+  transition: 0.3s;
   cursor: pointer;
 }
 
 .back-btn button:hover {
   transform: scale(1.04);
-  transition: 0.4s;
+  transition: 0.3s;
 }
 
 @media (max-width: 768px) {

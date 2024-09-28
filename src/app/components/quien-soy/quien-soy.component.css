@@ -151,7 +151,7 @@
 }
 
 .card-row i {
-  transition: 0.4s;
+  transition: 0.3s;
 }
 
 .proyecto {
@@ -222,7 +222,7 @@
 
 .card-row i:hover {
   transform: scale(1.1);
-  transition: 0.4s;
+  transition: 0.3s;
 }
 
 .right-side a:hover {

@@ -81,7 +81,7 @@ textarea {
   font-size: 28px;
   font-weight: 500;
   font-family: "Grenze Gotisch", serif;
-  transition: 0.4s;
+  transition: 0.3s;
   cursor: pointer;
 }
 
@@ -143,7 +143,7 @@ textarea {
 
 .form-style button:hover {
   transform: scale(1.05);
-  transition: 0.4s;
+  transition: 0.3s;
 }
 
 @media (max-width: 1024px) {

@@ -31,6 +31,7 @@ export class ForoComponent implements OnInit {
   public usuarioAdmin: string = 'piedecamello@gmail.com';
   public usuarioEspecial: string = 'berrueberru@gmail.com';
   public usuarioSlayer: string = 'doomslayer@hothell.com';
+  public cantMensajes: number = 12;
 
   constructor(
     private firestore: Firestore,
@@ -50,7 +51,11 @@ export class ForoComponent implements OnInit {
 
   loadMensajes() {
     const mensajesRef = collection(this.firestore, 'mensajes');
-    const q = query(mensajesRef, orderBy('timestamp', 'desc'), limit(15));
+    const q = query(
+      mensajesRef,
+      orderBy('timestamp', 'desc'),
+      limit(this.cantMensajes)
+    );
     this.mensajes$ = collectionData(q, { idField: 'id' });
 
     this.mensajes$.subscribe((data) => {
