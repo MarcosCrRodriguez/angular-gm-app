@@ -102,7 +102,13 @@ export class MayorMenorComponent implements OnInit {
         this.mensajeResultado = resultadoCorrecto
           ? '¡Acertaste!'
           : '¡Fallaste!';
-        if (resultadoCorrecto) this.puntos++;
+        if (resultadoCorrecto) {
+          if (opcion == 'igual') {
+            this.puntos += 3;
+          } else {
+            this.puntos++;
+          }
+        }
 
         this.cartaAnterior = this.cartaActual;
         this.cartaActual = this.cartaSiguiente;
