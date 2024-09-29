@@ -4,7 +4,7 @@
       <div class="card-header">Encuestas de Usuarios</div>
       <div class="card-body">
         <div class="card-row">
-          <div class="info">
+          <div class="info bloque-inicial">
             <label for="disabledTextInput" class="form-label"
               >Filtrar Encuesta</label
             >
@@ -38,21 +38,31 @@
         <!-- Si hay encuesta disponible, mostrar los datos -->
         <div class="card-row" *ngIf="encuesta">
           <div class="info">
-            <p>
-              <strong class="string-txt">Fecha:</strong> {{ encuesta.fecha }}
-            </p>
-            <p>
-              <strong class="string-txt">Nombre:</strong> {{ encuesta.nombre }}
-            </p>
-            <p>
-              <strong class="string-txt">Apellido:</strong>
-              {{ encuesta.apellido }}
-            </p>
-            <p><strong class="string-txt">Edad:</strong> {{ encuesta.edad }}</p>
-            <p>
-              <strong class="string-txt">Teléfono:</strong>
-              {{ encuesta.telefono }}
-            </p>
+            <div class="txt-right">
+              <p>
+                <strong class="string-txt">Fecha:</strong> {{ encuesta.fecha }}
+              </p>
+            </div>
+            <div class="dos-datos">
+              <p class="txt-left">
+                <strong class="string-txt">Nombre:</strong>
+                {{ encuesta.nombre }}
+              </p>
+              <p class="txt-right">
+                <strong class="string-txt">Apellido:</strong>
+                {{ encuesta.apellido }}
+              </p>
+            </div>
+            <div class="dos-datos">
+              <p class="txt-left">
+                <strong class="string-txt">Edad:</strong> {{ encuesta.edad }}
+              </p>
+              <p class="txt-right">
+                <strong class="string-txt">Teléfono:</strong>
+                {{ encuesta.telefono }}
+              </p>
+            </div>
+            <div class="card-header"></div>
             <p>
               <strong class="string-txt">Disfruta de la Página:</strong>
               {{ encuesta.disfrutaPagina }}

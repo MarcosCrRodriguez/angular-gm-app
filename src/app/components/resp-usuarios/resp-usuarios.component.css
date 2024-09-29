@@ -37,7 +37,7 @@
 .card {
   border: 2.5px solid white;
   background: rgba(136, 134, 134, 0.4);
-  width: 50%;
+  width: 60%;
   padding-top: 20px;
   padding-bottom: 20px;
   font-family: "Metal Mania", cursive;
@@ -62,11 +62,25 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 10px;
+  width: 100%;
+  padding: 5px;
   margin-top: -12px;
   margin-bottom: -8px;
   font-family: "Grenze Gotisch", serif;
   color: #fff;
+}
+
+.info {
+  width: 100%;
+}
+
+.bloque-inicial {
+  max-width: 300px;
+}
+
+.info input {
+  text-align: center;
+  width: 100%; /* El input ocupará todo el ancho del contenedor */
 }
 
 .info label {
@@ -102,7 +116,7 @@
   border: 2.5px solid rgb(45, 45, 45);
   font-size: 26px;
   font-weight: 500;
-  margin-bottom: 8px;
+  margin: 8px 0;
   font-family: "Grenze Gotisch", serif;
   transition: 0.3s;
   cursor: pointer;
@@ -111,6 +125,28 @@
 .info-btn button {
   margin-bottom: 24px !important;
 }
+
+.txt-left {
+  text-align: start;
+  margin-left: 10%;
+}
+
+.txt-right {
+  text-align: end;
+  margin-right: 10%;
+}
+
+.dos-datos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Asegúrate de que ocupe todo el ancho disponible */
+  /* padding: 0; 
+  margin: 0; */
+}
+
+/* .dos-datos p {
+  margin: 0; 
+} */
 
 .back-btn button:hover,
 .info-btn button:hover {
@@ -148,5 +184,21 @@
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 hsl(0, 0%, 0%),
       1px 1px 0 #000;
     margin: 10px;
+  }
+
+  .dos-datos {
+    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .txt-left {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .txt-right {
+    text-align: center;
+    margin-right: 0;
   }
 }
