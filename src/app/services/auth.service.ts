@@ -48,9 +48,17 @@ export class AuthService {
   login(email: string, password: string): Promise<void> {
     return signInWithEmailAndPassword(this.auth, email, password)
       .then((res) => {
-        this.logUserActivity(res.user.email!);
-        localStorage.setItem('user', JSON.stringify(res.user));
-        // this.router.navigate(['/home']);
+        this.getUserRegistrado(res.user.email!).subscribe((userData) => {
+          const usuarioCompleto = {
+            ...res.user,
+            rol: userData.rol,
+          };
+          localStorage.setItem('user', JSON.stringify(usuarioCompleto));
+          this.logUserActivity(res.user.email!);
+        });
+        // this.logUserActivity(res.user.email!);
+        // localStorage.setItem('user', JSON.stringify(res.user));
+        // // this.router.navigate(['/home']);
       })
       .catch((error) => {
         return Promise.reject(this.getErrorMessage(error.code));
@@ -92,6 +100,7 @@ export class AuthService {
             nombre: userData.nombre,
             apellido: userData.apellido,
             edad: userData.edad,
+            rol: userData.rol,
           };
         } else {
           return {
@@ -99,6 +108,7 @@ export class AuthService {
             nombre: 'No hay datos',
             apellido: 'No hay datos',
             edad: 'No hay datos',
+            rol: 'No hay datos',
           };
         }
       })
@@ -155,6 +165,55 @@ export class AuthService {
     );
   }
 
+  getEncuestaRegistrada(usuario: string): Observable<any> {
+    let col = collection(this.firestore, 'encuestas');
+
+    const filteredQuery = query(
+      col,
+      where('email', '==', usuario),
+      orderBy('fecha', 'desc'),
+      limit(1)
+    );
+
+    return collectionData(filteredQuery).pipe(
+      map((respuesta: any[]) => {
+        if (respuesta.length > 0) {
+          const userData = respuesta[0];
+          return {
+            email: userData.usuario,
+            fecha: this.formatTimestampToDate(userData.fecha),
+            nombre: userData.nombre || 'No hay datos',
+            apellido: userData.apellido || 'No hay datos',
+            edad: userData.edad || 'No hay datos',
+            telefono: userData.telefono || 'No hay datos',
+            disfrutaPagina: userData.disfrutaPagina || 'No hay datos',
+            juegosJugados:
+              userData.juegosJugados?.length > 0
+                ? userData.juegosJugados
+                : ['No hay datos'],
+            juegoMasGustado: userData.juegoMasGustado || 'No hay datos',
+            juegoMenosGustado: userData.juegoMenosGustado || 'No hay datos',
+            comentario: userData.comentario || 'No hay datos',
+          };
+        } else {
+          return {
+            email: usuario,
+            fecha: 'No hay datos',
+            nombre: 'No hay datos',
+            apellido: 'No hay datos',
+            edad: 'No hay datos',
+            telefono: 'No hay datos',
+            disfrutaPagina: 'No hay datos',
+            juegosJugados: ['No hay datos'],
+            juegoMasGustado: 'No hay datos',
+            juegoMenosGustado: 'No hay datos',
+            comentario: 'No hay datos',
+          };
+        }
+      })
+    );
+  }
+
   private logUserActivity(email: string) {
     const col = collection(this.firestore, 'logins');
     addDoc(col, { fecha: new Date(), user: email });
@@ -179,6 +238,7 @@ export class AuthService {
       nombre: nombre || 'Desconocido',
       apellido: apellido || 'Desconocido',
       edad: edad || 'Desconocido',
+      rol: 'usuario',
     })
       .then(() => {
         console.log('Datos opcionales registrados exitosamente');
@@ -259,5 +319,21 @@ export class AuthService {
         state: { error: texto },
       });
     });
+  }
+
+  public formatTimestampToDate(timestamp: any): string {
+    // Verifica si el timestamp es válido
+    if (timestamp && timestamp.seconds) {
+      // Convierte el timestamp en un objeto Date
+      const date = new Date(timestamp.seconds * 1000);
+
+      // Formatea la fecha en el formato deseado (por ejemplo, 'DD/MM/YYYY')
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0'); // Los meses son 0-indexados
+      const year = date.getFullYear();
+
+      return `${day}/${month}/${year}`;
+    }
+    return 'Fecha no válida';
   }
 }

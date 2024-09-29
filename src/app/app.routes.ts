@@ -10,6 +10,8 @@ import { PuntajeComponent } from './components/puntaje/puntaje.component';
 import { ForoComponent } from './components/foro/foro.component';
 import { authGuard } from './guards/auth.guard';
 import { EncuestaComponent } from './components/encuesta/encuesta.component';
+import { admin } from './guards/admin.guard';
+import { RespUsuariosComponent } from './components/resp-usuarios/resp-usuarios.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -42,6 +44,11 @@ export const routes: Routes = [
     path: 'encuesta',
     component: EncuestaComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: 'respuesta-usuarios',
+    component: RespUsuariosComponent,
+    canActivate: [admin],
   },
   { path: 'error', component: ErrorComponent },
   { path: '**', component: PageNotFoundComponent },

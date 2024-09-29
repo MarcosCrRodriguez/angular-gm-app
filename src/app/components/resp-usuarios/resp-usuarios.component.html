@@ -1,0 +1,93 @@
+<section class="respuestas">
+  <div class="data">
+    <div class="card text-center">
+      <div class="card-header">Encuestas de Usuarios</div>
+      <div class="card-body">
+        <div class="card-row">
+          <div class="info">
+            <label for="disabledTextInput" class="form-label"
+              >Filtrar Encuesta</label
+            >
+            <input
+              type="text"
+              id="txtUsername"
+              class="form-control"
+              [(ngModel)]="usuario"
+            />
+          </div>
+          <div class="info-txt">
+            <p>Se filtra por el mail del usuario</p>
+          </div>
+        </div>
+      </div>
+      <div class="info-btn">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="filtrarEncuesta()"
+        >
+          Filtrar
+        </button>
+      </div>
+      <div class="card-row">
+        <!-- aca tiene que estar los datos de la encuesta -->
+        <div *ngIf="mensajeError" class="alert alert-danger" role="alert">
+          {{ mensajeError }}
+        </div>
+
+        <!-- Si hay encuesta disponible, mostrar los datos -->
+        <div class="card-row" *ngIf="encuesta">
+          <div class="info">
+            <p>
+              <strong class="string-txt">Fecha:</strong> {{ encuesta.fecha }}
+            </p>
+            <p>
+              <strong class="string-txt">Nombre:</strong> {{ encuesta.nombre }}
+            </p>
+            <p>
+              <strong class="string-txt">Apellido:</strong>
+              {{ encuesta.apellido }}
+            </p>
+            <p><strong class="string-txt">Edad:</strong> {{ encuesta.edad }}</p>
+            <p>
+              <strong class="string-txt">Teléfono:</strong>
+              {{ encuesta.telefono }}
+            </p>
+            <p>
+              <strong class="string-txt">Disfruta de la Página:</strong>
+              {{ encuesta.disfrutaPagina }}
+            </p>
+            <p>
+              <strong class="string-txt">Juegos Jugados:</strong>
+              {{ encuesta.juegosJugados.join(", ") }}
+            </p>
+            <p>
+              <strong class="string-txt">Juego que Más Gustó:</strong>
+              {{ encuesta.juegoMasGustado }}
+            </p>
+            <p>
+              <strong class="string-txt">Juego que Menos Gustó:</strong>
+              {{ encuesta.juegoMenosGustado }}
+            </p>
+            <p>
+              <strong class="string-txt">Comentario:</strong>
+              {{ encuesta.comentario }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="card-header"></div>
+      <div class="card-row">
+        <div class="back-btn">
+          <button
+            type="button"
+            class="btn btn-warning"
+            (click)="volverEncuestas()"
+          >
+            Volver Encuestas
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
