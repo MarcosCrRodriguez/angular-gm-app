@@ -234,6 +234,15 @@
               Enviar
             </button>
           </div>
+          <ng-container *ngIf="this.datosUsuario.rol == 'admin'">
+            <button
+              type="button"
+              class="btn btn-dark respuesta-btn"
+              (click)="navegarRespuestasEncuestas()"
+            >
+              Ver Encuestas
+            </button>
+          </ng-container>
         </form>
       </div>
     </div>

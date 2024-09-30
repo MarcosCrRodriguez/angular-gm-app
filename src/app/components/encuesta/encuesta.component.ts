@@ -22,6 +22,7 @@ export class EncuestaComponent implements OnInit {
   form!: FormGroup;
   public showLoadingGif = false;
   public usuarioLogueado: any = null;
+  public datosUsuario: any;
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -31,7 +32,9 @@ export class EncuestaComponent implements OnInit {
         console.log(`${usuario.email} ingreso a encuesta`);
       }
       this.usuarioLogueado = usuario;
+      console.log(`${this.usuarioLogueado.rol} datos`);
     });
+    this.datosUsuario = JSON.parse(localStorage.getItem('user')!);
     this.form = new FormGroup({
       nombre: new FormControl('', [
         Validators.required,
@@ -194,5 +197,9 @@ export class EncuestaComponent implements OnInit {
         ...checkArray.value.slice(index + 1),
       ]);
     }
+  }
+
+  navegarRespuestasEncuestas() {
+    this.router.navigate(['/respuesta-usuarios']);
   }
 }
