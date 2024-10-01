@@ -141,6 +141,18 @@
   transition: 0.3s;
 }
 
+.quick-access-left i {
+  width: 32px;
+  height: 32px;
+  margin-left: 12px;
+  margin-bottom: -12px;
+  color: #fff;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
 .user-icon {
   height: auto;
   width: 60px;
@@ -203,7 +215,8 @@
 }
 
 .quick-access-left img:hover,
-.quick-access-right img:hover {
+.quick-access-right img:hover,
+.quick-access-left i:hover {
   transform: scale(1.08);
   transition: 0.3s;
 }
@@ -257,6 +270,14 @@
 
   .login-btn button {
     font-size: 26px;
+  }
+
+  .quick-access-left {
+    margin-left: 8px;
+  }
+
+  .quick-access-right {
+    margin-right: 8px;
   }
 
   .quick-access-left p,

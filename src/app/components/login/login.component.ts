@@ -21,11 +21,12 @@ export class LoginComponent implements OnInit {
   public msjError: string = '';
   public contError: number = 0;
   public limitErrors: number = 5;
-  // public userQuickAcces = 'quicklogin@gmail.com';
-  // public passwordUserQuickAcces = 'quicklogin';
+  public commanderQuickAcces = 'warhammer@commander.com';
+  public passwordCommanderQuickAcces = 'warhammer';
   public slayerQuickAcces = 'doomslayer@hothell.com';
   public passwordSlayerQuickAcces = 'doomslayer';
   public showLoadingGif = false;
+  public oneOrTwo: boolean = true;
 
   constructor(private authService: AuthService, private router: Router) {
     this.userIngresado = '';
@@ -36,14 +37,19 @@ export class LoginComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
-  // accessoRapidoUser() {
-  //   this.userIngresado = this.userQuickAcces;
-  //   this.claveIngresado = this.passwordUserQuickAcces;
-  // }
+  accessoRapidoCommander() {
+    this.userIngresado = this.commanderQuickAcces;
+    this.claveIngresado = this.passwordCommanderQuickAcces;
+  }
 
   accessoRapidoSlayer() {
     this.userIngresado = this.slayerQuickAcces;
     this.claveIngresado = this.passwordSlayerQuickAcces;
+  }
+
+  changeIcon() {
+    this.oneOrTwo = !this.oneOrTwo;
+    // console.log('Estado actual:', this.oneOrTwo);
   }
 
   limpiarInputs() {

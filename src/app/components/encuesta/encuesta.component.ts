@@ -32,7 +32,6 @@ export class EncuestaComponent implements OnInit {
         console.log(`${usuario.email} ingreso a encuesta`);
       }
       this.usuarioLogueado = usuario;
-      console.log(`${this.usuarioLogueado.rol} datos`);
     });
     this.datosUsuario = JSON.parse(localStorage.getItem('user')!);
     this.form = new FormGroup({

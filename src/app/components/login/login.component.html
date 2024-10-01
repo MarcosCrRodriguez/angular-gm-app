@@ -39,19 +39,28 @@
       </div>
       <div class="quick-row">
         <div class="quick-access-left">
+          <i class="fa-solid fa-shuffle" (click)="changeIcon()"></i>
+        </div>
+      </div>
+      <div class="quick-row">
+        <div class="quick-access-left">
           <p>Accesso rápido</p>
-          <!-- <img
-            class="user-icon"
-            src="assets/icon-programmer.png"
-            alt="quick-login"
-            (click)="accessoRapidoUser()"
-          /> -->
-          <img
-            class="slayer-icon"
-            src="assets/sleyer.png"
-            alt="quick-login"
-            (click)="accessoRapidoSlayer()"
-          />
+          <ng-container *ngIf="!oneOrTwo">
+            <img
+              class="user-icon"
+              src="assets/warhammer-icon.png"
+              alt="quick-login"
+              (click)="accessoRapidoCommander()"
+            />
+          </ng-container>
+          <ng-container *ngIf="oneOrTwo">
+            <img
+              class="slayer-icon"
+              src="assets/sleyer.png"
+              alt="quick-login"
+              (click)="accessoRapidoSlayer()"
+            />
+          </ng-container>
         </div>
         <div class="quick-access-right">
           <p>Limpiar casillas</p>
